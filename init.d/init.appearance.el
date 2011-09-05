@@ -44,9 +44,9 @@
 	     ))
 
 
-(set-cursor-color "Black")
-(set-background-color "White")
-(set-foreground-color "Black")
+;; (set-cursor-color "Black")
+;; (set-background-color "White")
+;; (set-foreground-color "Black")
 ;; (set-frame-font "Monaco-12")
 
 (defun set-frame-size-according-to-resolution ()
@@ -71,73 +71,70 @@
 
 
 (when (>= emacs-major-version 23)
+ (setq fixed-width-use-QuickDraw-for-ascii t)
+ (setq mac-allow-anti-aliasing t)
+ (add-to-list 'default-frame-alist '(font . "fontset-default"))
+ (set-face-attribute 'default nil
+                     :family "monaco"
+                     :height 130)
 
-  (when (eq cocoa-p window-system)
-
-    (setq fixed-width-use-QuickDraw-for-ascii t)
-    (setq mac-allow-anti-aliasing t)
-    (add-to-list 'default-frame-alist '(font . "fontset-default"))
-    (set-face-attribute 'default nil
-			:family "monaco"
-			:height 130)
-
-    (create-fontset-from-fontset-spec
-     "-alias-fixed-medium-r-normal-*-16-*-*-*-c-*-fontset-16,
+ (create-fontset-from-fontset-spec
+  "-alias-fixed-medium-r-normal-*-16-*-*-*-c-*-fontset-16,
   japanese-jisx0208:-alias-fixed-medium-r-normal-*-16-*-JISX0208.1983-0,
   katakana-jisx0201:-alias-fixed-medium-r-normal-*-16-*-JISX0201.1976-0,
   japanese-jisx0213-1:-alias-fixed-medium-r-normal-*-16-*-JISX0213.2000-1,
   japanese-jisx0213-2:-alias-fixed-medium-r-normal-*-16-*-JISX0213.2000-2")
 
-    (set-fontset-font
-     ;; (frame-parameter nil 'font)
-     "fontset-16"
-     'japanese-jisx0208
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+ (set-fontset-font
+  ;; (frame-parameter nil 'font)
+  "fontset-16"
+  'japanese-jisx0208
+  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 
-    (set-fontset-font
-     ;;(frame-parameter nil 'font)
-     "fontset-16"
-     'japanese-jisx0212
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+ (set-fontset-font
+  ;;(frame-parameter nil 'font)
+  "fontset-16"
+  'japanese-jisx0212
+  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 
-;;; Unicode フォント
-    ;; (set-fontset-font
-    ;;  (frame-parameter nil 'font)
-    ;;  'mule-unicode-0100-24ff
-    ;;  '("monaco" . "iso10646-1"))
+ ;;; Unicode フォント
+ ;; (set-fontset-font
+ ;;  (frame-parameter nil 'font)
+ ;;  'mule-unicode-0100-24ff
+ ;;  '("monaco" . "iso10646-1"))
 
 ;;; キリル，ギリシア文字設定
 ;;; 注意： この設定だけでは古代ギリシア文字、コプト文字は表示できない
 ;;; http://socrates.berkeley.edu/~pinax/greekkeys/NAUdownload.html が必要
 ;;; キリル文字
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'cyrillic-iso8859-5
-     '("monaco" . "iso10646-1"))
+ (set-fontset-font
+  (frame-parameter nil 'font)
+  'cyrillic-iso8859-5
+  '("monaco" . "iso10646-1"))
 
 ;;; ギリシア文字
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'greek-iso8859-7
-     '("monaco" . "iso10646-1"))
+ (set-fontset-font
+  (frame-parameter nil 'font)
+  'greek-iso8859-7
+  '("monaco" . "iso10646-1"))
 
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'katakana-jisx0201
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+ (set-fontset-font
+  (frame-parameter nil 'font)
+  'katakana-jisx0201
+  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 
-    (setq face-font-rescale-alist
-	  '(("^-apple-hiragino.*" . 1.2)
-	    (".*osaka-bold.*" . 1.2)
-	    (".*osaka-medium.*" . 1.2)
-	    (".*courier-bold-.*-mac-roman" . 1.0)
-	    (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-	    (".*monaco-bold-.*-mac-roman" . 0.9)
-	    ("-cdac$" . 1.3)))
+ (setq face-font-rescale-alist
+       '(("^-apple-hiragino.*" . 1.2)
+         (".*osaka-bold.*" . 1.2)
+         (".*osaka-medium.*" . 1.2)
+         (".*courier-bold-.*-mac-roman" . 1.0)
+         (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+         (".*monaco-bold-.*-mac-roman" . 0.9)
+	 ("-cdac$" . 1.3))))
 
-    (when (= emacs-major-version 22)
-      (when carbon-p (require 'carbon-font)
-	    ))
+(when (= emacs-major-version 22)
+  (when carbon-p (require 'carbon-font)
     ))
+
 
 (provide 'init.appearance)
