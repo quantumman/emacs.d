@@ -1,0 +1,21 @@
+;;;; auto insertion of parenthesis
+(require' paredit)
+(define-key paredit-mode-map (kbd "M-<left>")
+  'paredit-forward-barf-sexp)
+(define-key paredit-mode-map (kbd "M-<right>")
+  'paredit-forward-slurp-sexp)
+(define-key paredit-mode-map (kbd "C-<left>")
+  'backward-word)
+(define-key paredit-mode-map (kbd "C-<right>")
+  'forward-word)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+;; (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+;; (add-hook 'c-mode-hook (lambda () (paredit-mode +1)))
+;; (add-hook 'cc-mode-hook (lambda () (paredit-mode +1)))
+;; (add-hook 'objc-mode-hook (lambda () (paredit-mode +1)))
+;; (add-hook 'haskell-mode-hook (lambda () (paredit-mode +1)))
+
+
+(provide 'init.paredit)
