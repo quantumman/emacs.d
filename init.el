@@ -37,7 +37,8 @@
 
 (require 'init.appearance)
 
-;; (require 'rsense-conf)
+(when (file-exists-p (expand-file-name "~/.rsense"))
+  (require 'rsense-conf nil nil))
 
 (require 'init.auto-complete)
 
