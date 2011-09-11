@@ -36,6 +36,7 @@
 ;; (setenv "LC_ALL" "C")
 ;; (setenv "LANG" "ja_JP.UTF8")
 
+;;;; Prompt
 (defun pcomplete/sudo ()
   "complete a command after sudo command."
   (interactive)
@@ -64,11 +65,22 @@
       (eshell:replace-prefix-match-string absolute-path home "~")
 	)))
 
+(defun get-git-branch-name (path)
+  (let ((git-directory (concat path "/.git")))
+    (if (file-exists-p git-directory)
+	(concat " (" (vc-git-mode-line-string git-directory) ") ")
+      ""
+      )))
+
 (defun custom:eshell-prompt-function ()
   (let ((hostname (eshell:string-shorten (system-name) 5))
-	(absolute-current-path (eshell/pwd)))
-    (concat (getenv "USER") "@" hostname ":" (eshell:relative-file-path) "$ ")
-    ))
+	(absolute-current-path (eshell/pwd))
+	(git-branch-name (get-git-branch-name (eshell/pwd))))
+    (concat (getenv "USER")
+	    "@" hostname
+	    ":" (eshell:relative-file-path)
+	    git-branch-name
+	    "$ ")))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp "^[^#$\n]*[#$] ")
