@@ -85,5 +85,25 @@
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp "^[^#$\n]*[#$] ")
 
+
+
+;;;; Buffer Clear
+(defun eshell/clear ()
+  "Clear the current buffer, leaving one prompt at the top."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer))
+  (reindent-then-newline-and-indent)
+  )
+
+;; OMG! eshell defines its own mode-map when eshell-mode is called...
+(add-hook 'eshell-mode-hook
+	  #'(lambda ()
+	      (define-key eshell-mode-map (kbd "\C-c C-l") 'eshell/clear)))
+
+
+
+
+
 (require 'ansi-color)
 (provide 'init.eshell)
