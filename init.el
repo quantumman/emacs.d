@@ -92,6 +92,7 @@
 
 (require 'init.eshell)
 
+(require 'init.org-mode)
 ;;;
 
 (require 'popwin)
