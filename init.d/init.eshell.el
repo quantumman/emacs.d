@@ -36,5 +36,36 @@
   (let ((pcomplete-help "complete after sudo"))
     (pcomplete-here (pcomplete-here (eshell-complete-commands-list )))))
 
+(defun eshell:string-shorten (source-string upper-length)
+  (when (stringp source-string)
+    (if (< upper-length (length source-string))
+	(concat (substring source-string 0 (- upper-length 3)) "...")
+      source-string
+      )))
+
+(defun eshell:replace-prefix-match-string (source-string from-string to-string)
+  (when (and (stringp source-string)
+	     (stringp from-string)
+	     (stringp to-string))
+    (when (string-match from-string source-string)
+      (replace-match to-string nil nil source-string))))
+
+(defun eshell:relative-file-path ()
+  (let ((absolute-path (eshell/pwd))
+	(home (getenv "HOME")))
+    (if (string= absolute-path home)
+	"~/"
+      (eshell:replace-prefix-match-string absolute-path home "~")
+	)))
+
+(defun custom:eshell-prompt-function ()
+  (let ((hostname (eshell:string-shorten (system-name) 5))
+	(absolute-current-path (eshell/pwd)))
+    (concat (getenv "USER") "@" hostname ":" (eshell:relative-file-path) "$ ")
+    ))
+
+(setq eshell-prompt-function #'custom:eshell-prompt-function)
+(setq eshell-prompt-regexp "^[^#$\n]*[#$] ")
+
 (require 'ansi-color)
 (provide 'init.eshell)
