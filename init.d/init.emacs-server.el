@@ -4,7 +4,7 @@
 (defun elscreen-save-and-killall ()
   (interactive)
   (server-edit)
-  (elscreen-kill-screen-and-buffers)
+  (elscreen-kill-screen-and-buffers (elscreen-get-current-screen))
   (message ""))
 ;; (add-hook 'server-done-hook 'iconify-emacs-when-server-is-done)
 (add-hook 'server-done-hook 'elscreen-save-and-killall)
