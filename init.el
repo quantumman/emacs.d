@@ -35,6 +35,8 @@
 (require 'env-test)
 ;;;;
 
+(require 'windmove)
+
 (require 'init.appearance)
 
 (when (file-exists-p (expand-file-name "~/.rsense"))
