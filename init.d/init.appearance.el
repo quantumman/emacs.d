@@ -71,7 +71,7 @@
 
 (when (>= emacs-major-version 23)
 
-  (when (eq cocoa-p window-system)
+  (when cocoa-p
 
     (setq fixed-width-use-QuickDraw-for-ascii t)
     (setq mac-allow-anti-aliasing t)
