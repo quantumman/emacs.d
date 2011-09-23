@@ -70,10 +70,7 @@
 (defun get-git-branch-name (path)
   (let ((git-directory (concat path "/.git")))
     (if (file-exists-p git-directory)
-	(concat " ("
-		(cadr
-		 (split-string
-		  (vc-git-mode-line-string git-directory) ":")) ") ")
+	(concat " (" (vc-git-working-revision git-directory) ") ")
       ""
       )))
 
