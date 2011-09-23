@@ -19,6 +19,12 @@
     (cache)
     ))
 
+(defvar ac-source-ghc-module
+  '((candidates . ghc-module-names)
+    (prefix . "^import\\s+*")
+    (cache)
+    ))
+
 ;; add some symbols into ac-sources
 (require 'ac-ghc-mod)
 (add-hook 'haskell-mode-hook
@@ -26,8 +32,8 @@
 	     (auto-complete-mode t)
 	     (setq ac-sources
 		   '(ac-source-ghc-completion
-		     ;; ac-source-ghc-module
 		     ;; ac-source-symbols
+		     ac-source-ghc-module
 		     ac-source-ghc-pragmas
 		     ;; ac-source-ghc-langexts
 		     ac-source-yasnippet
