@@ -9,7 +9,7 @@
 (add-hook 'haskell-mode-hook (lambda ()
 			       (ghc-init)
 			       ;; (flymake-mode)
-			       (setq auto-save-buffers-exclude-regexp "\\.hs$")
+			       ;; (setq auto-save-buffers-exclude-regexp "\\.hs$")
 			       ))
 
 
