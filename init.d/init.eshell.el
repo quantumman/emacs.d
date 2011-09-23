@@ -65,11 +65,15 @@
       (eshell:replace-prefix-match-string absolute-path home "~")
 	)))
 
+
 (require 'vc-git)
 (defun get-git-branch-name (path)
   (let ((git-directory (concat path "/.git")))
     (if (file-exists-p git-directory)
-	(concat " (" (vc-git-mode-line-string git-directory) ") ")
+	(concat " ("
+		(cadr
+		 (split-string
+		  (vc-git-mode-line-string git-directory) ":")) ") ")
       ""
       )))
 
