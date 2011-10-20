@@ -68,11 +68,11 @@
 
 (require 'vc-git)
 (defun get-git-branch-name (path)
-  (let* ((git-directory (concat path "/.git"))
-	 (revision (vc-git-working-revision git-directory))
-	 (branch (if (string-equal "" revision) "Detached!" revision)))
+  (let  ((git-directory (concat path "/.git")))
     (if (file-exists-p git-directory)
-	(concat " (" branch ") " )
+	(let* ((revision (vc-git-working-revision git-directory))
+	       (branch (if (string-equal "" revision) "Detached!" revision)))
+	  (concat " (" branch ") " ))
       ""
       )))
 

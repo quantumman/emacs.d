@@ -1,25 +1,39 @@
-#*#
+#### backup files by emacs
+*~
+
+#### data files like binarires or caches, etc..
 *.dat
 *.elc
 *.cache
-font.el
-frame.el
+
+#### make by anything, but not need sync
+#### because of dependencies to local environment
 anything-c-adaptive-history
-/doc/web/*.html
-/doc/web/upload.bat
-/doc/web/twmode.pot
-/doc/web/ja/*
-/twittering-mode-*.tar.gz
-/twittering-mode-*.zip
-test.el
-auto-save-list/*
-backup
-while
-session*
-semantic*
-tramp*
-/emacsd.tar.gz
+
+#### archived files
+*.tar.gz
+*.zip
+
+#### related to network
 url/
 url/cookies
+
+#### emacsclient (danger to sycn
+server/
+
+#### ssh
+session*
+tramp*
+
+#### docs
 doc/
+
+#### misc
+semantic*
+auto-save-list/
+backup
+while
+
+#### dumpings are not necessary
 *.stackdump
+
