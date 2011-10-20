@@ -18,6 +18,9 @@ anything-c-adaptive-history
 url/
 url/cookies
 
+#### emacsclient (danger to sycn
+server/
+
 #### ssh
 session*
 tramp*
