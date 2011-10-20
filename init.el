@@ -35,6 +35,12 @@
 (require 'env-test)
 ;;;;
 
+;; (require 'multi-term)
+;; (setq multi-term-program shell-file-name)
+;; (custom-set-variables
+;;  '(term-default-bg-color "#000000")        ;; background color (black)
+;;  '(term-default-fg-color "#FFFFFF"))       ;; foreground color (yellow)
+
 (require 'windmove)
 
 (require 'init.appearance)
@@ -127,6 +133,8 @@
 (require 'color-moccur)
 (require 'moccur-edit)
 (setq moccur-split-word t)
+(setq dmoccur-exclusion-mask
+      (append '("\\~$" "\\.o$" "\\.hi$") dmoccur-exclusion-mask))
 
 (require 'occur-schroeder)
 (define-key occur-mode-map (kbd "\C-s o") 'isearch-occur)
@@ -320,6 +328,10 @@
 ;;   (linum-dynamic-format))
 ;; (ad-activate 'previous-line 'previous-line-after-advice)
 ;; ;; (ad-deactivate 'previous-line)
+
+;; (global-set-key (kbd "C-c t") '(lambda ()
+;;                                 (interactive)
+;;                                 (term shell-file-name)))
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")

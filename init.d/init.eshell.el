@@ -105,9 +105,5 @@
 	  #'(lambda ()
 	      (define-key eshell-mode-map (kbd "\C-c C-l") 'eshell/clear)))
 
-
-
-
-
 (require 'ansi-color)
 (provide 'init.eshell)
