@@ -8,13 +8,15 @@
   (let ((elscree-keeping-to-be-alive ()))
     (and ((buffer-name) (elscreen-get-screen-to-name-alist))
 	 t)))
+
 (defun elscreen-save-and-killall ()
   (interactive)
   (server-edit)
   ;; (save-buffer)
-  (if (elscreen-buffer-still-exist-p)
-      (elscreen-kill (elscreen-get-current-screen))
-    (elscreen-kill-screen-and-buffers))
+  ;; (if (elscreen-buffer-still-exist-p)
+  ;;     (elscreen-kill (elscreen-get-current-screen))
+  ;;   (elscreen-kill-screen-and-buffers))
+  (elscreen-kill (elscreen-get-current-screen))
   (message ""))
 
 (add-hook 'server-visit-hook
