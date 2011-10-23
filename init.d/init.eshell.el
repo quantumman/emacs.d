@@ -1,5 +1,6 @@
 (require 'eshell)
 (require 'env-test)
+(require 'ansi-color)
 
 (custom-set-variables
  ;; '(eshell-ask-to-save-history (quote always))
@@ -76,19 +77,42 @@
       ""
       )))
 
+(setq git-info-command
+      (expand-file-name "~/.emacs.d/init.d/init.eshell/git.bash"))
+
+(defun get-git-info ()
+  (if (file-exists-p git-info-command)
+      (shell-command-to-string git-info-command)
+    (message (format "command not exist : %s" git-info-command))
+    ""
+    ))
+
 (defun custom:eshell-prompt-function ()
-  (let ((hostname (eshell:string-shorten (system-name) 5))
+  (let ((hostname (car (split-string (system-name) "\\.")))
 	(absolute-current-path (eshell/pwd))
-	(git-branch-name (get-git-branch-name (eshell/pwd))))
+	(git-info
+	 (replace-regexp-in-string
+	  "\n+$" "" (get-git-info))))
     (concat (getenv "USER")
 	    "@" hostname
-	    ":" (eshell:relative-file-path)
-	    git-branch-name
-	    "$ ")))
+	    "\n : " (eshell:relative-file-path)
+	    " " git-info
+	    "\n"
+	    (if (= (user-uid) 0) "#" "$") " " )))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
-(setq eshell-prompt-regexp "^[^#$\n]*[#$] ")
-
+(setq eshell-prompt-regexp
+          (mapconcat
+           '(lambda (str) (concat "\\(" str "\\)"))
+           '("^[^#$\n]* [#$] "                    ; default
+             "^\\(mysql\\|[ ]\\{4\\}[-\"'`]\\)> "
+             "^>>> "                              ; python
+             "^ftp> "
+	     "^[^#$\n]*\n\s:\s.*\n[#$] "
+	     "^[#$]> "
+	     "^[#$] "
+             )
+           "\\|"))
 
 
 ;;;; Buffer Clear
@@ -96,14 +120,46 @@
   "Clear the current buffer, leaving one prompt at the top."
   (interactive)
   (let ((inhibit-read-only t))
-    (erase-buffer))
-  (reindent-then-newline-and-indent)
-  )
+    (erase-buffer)
+    (eshell/cd)
+    ))
+
+;; 補完時に大文字小文字を区別しない
+(setq eshell-cmpl-ignore-case t)
+;; 確認なしでヒストリ保存
+(setq eshell-ask-to-save-history (quote always))
+;; 補完時にサイクルする
+(setq eshell-cmpl-cycle-completions t)
+;;補完候補がこの数値以下だとサイクルせずに候補表示
+;; (setq eshell-cmpl-cycle-cutoff-length 5)
+;; 履歴で重複を無視する
+(setq eshell-hist-ignoredups t)
+
+;;(set-face-background 'eshell-prompt-face "Black")
+;;(set-face-foreground 'eshell-prompt-face "Green")
+
+
 
 ;; OMG! eshell defines its own mode-map when eshell-mode is called...
 (add-hook 'eshell-mode-hook
 	  #'(lambda ()
-	      (define-key eshell-mode-map (kbd "\C-c C-l") 'eshell/clear)))
+	      ;; (define-key eshell-mode-map (kbd "\C-c\C-l") 'eshell/clear)
+	      (define-key eshell-mode-map (kbd "\C-r") 'eshell-previous-matching-input)
+	      (define-key eshell-mode-map [up] 'eshell-previous-input)
+	      (define-key eshell-mode-map [down] 'eshell-next-input)
 
-(require 'ansi-color)
+	      (setenv "LANG" "ja_JP.UTF-8")
+	      
+
+	      ;; There is no way to turn off linum explicitly.
+	      ;; To be off linum, I used a following tick:
+	      ;;   Once turn on linum, then linum-mode can only
+	      ;;   disable linum-mode
+	      (linum-on)
+	      (linum-mode nil)
+	      ;; run 'cd' command to set working directory to pwd
+	      (eshell/cd)
+	      ))
+
+
 (provide 'init.eshell)
