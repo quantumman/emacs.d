@@ -1,4 +1,3 @@
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 編集行を目立たせる（現在行をハイライト表示する）
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -76,68 +75,68 @@
     (setq fixed-width-use-QuickDraw-for-ascii t)
     (setq mac-allow-anti-aliasing t)
     (add-to-list 'default-frame-alist '(font . "fontset-default"))
-    (set-face-attribute 'default nil
-			:family "monaco"
-			:height 130)
 
-    (create-fontset-from-fontset-spec
-     "-alias-fixed-medium-r-normal-*-16-*-*-*-c-*-fontset-16,
-  japanese-jisx0208:-alias-fixed-medium-r-normal-*-16-*-JISX0208.1983-0,
-  katakana-jisx0201:-alias-fixed-medium-r-normal-*-16-*-JISX0201.1976-0,
-  japanese-jisx0213-1:-alias-fixed-medium-r-normal-*-16-*-JISX0213.2000-1,
-  japanese-jisx0213-2:-alias-fixed-medium-r-normal-*-16-*-JISX0213.2000-2")
+    ;; フォントセットを作る
+    (let* ((fontset-name "default") ; フォントセットの名前
+    	   (size 13) ; ASCIIフォントのサイズ [9/10/12/14/15/17/19/20/...]
+    	   (asciifont "Monaco") ; ASCIIフォント
+    	   (jpfont "Hiragino Maru Gothic ProN") ; 日本語フォント
+    	   (font (format "%s-%d:weight=normal:slant=normal" asciifont size))
+    	   (fontspec (font-spec :family asciifont))
+    	   (jp-fontspec (font-spec :family jpfont))
+    	   (fsn (create-fontset-from-ascii-font font nil fontset-name)))
+      (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
+      (set-fontset-font fsn 'japanese-jisx0213-2 jp-fontspec)
+      (set-fontset-font fsn 'katakana-jisx0201 jp-fontspec) ; 半角カナ
+      (set-fontset-font fsn '(#x0080 . #x024F) fontspec) ; 分音符付きラテン
+      (set-fontset-font fsn '(#x0370 . #x03FF) fontspec) ; ギリシャ文字
+      )
 
-    (set-fontset-font
-     ;; (frame-parameter nil 'font)
-     "fontset-16"
-     'japanese-jisx0208
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+    ;; デフォルトのフレームパラメータでフォントセットを指定
+    (add-to-list 'default-frame-alist '(font . "fontset-default"))
 
-    (set-fontset-font
-     ;;(frame-parameter nil 'font)
-     "fontset-16"
-     'japanese-jisx0212
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+    ;; フォントサイズの比を設定
+    (dolist (elt '(("^-apple-hiragino.*" . 1.2)
+    		   (".*osaka-bold.*" . 1.0)
+    		   (".*osaka-medium.*" . 1.0)
+    		   (".*courier-bold-.*-mac-roman" . 1.0)
+    		   (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+    		   (".*monaco-bold-.*-mac-roman" . 0.9)))
+      (add-to-list 'face-font-rescale-alist elt))
 
- ;;; Unicode フォント
- ;; (set-fontset-font
- ;;  (frame-parameter nil 'font)
- ;;  'mule-unicode-0100-24ff
- ;;  '("monaco" . "iso10646-1"))
+    ;; デフォルトフェイスにフォントセットを設定
+    ;; # これは起動時に default-frame-alist に従ったフレームが
+    ;; # 作成されない現象への対処
+    (set-face-font 'default "fontset-default"))
 
-;;; キリル，ギリシア文字設定
-;;; 注意： この設定だけでは古代ギリシア文字、コプト文字は表示できない
-;;; http://socrates.berkeley.edu/~pinax/greekkeys/NAUdownload.html が必要
-;;; キリル文字
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'cyrillic-iso8859-5
-     '("monaco" . "iso10646-1"))
+  (global-whitespace-mode 1)
 
-;;; ギリシア文字
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'greek-iso8859-7
-     '("monaco" . "iso10646-1"))
+  ;; スペースの定義は全角スペースとする。
+  (setq whitespace-space-regexp "\x3000+")
 
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'katakana-jisx0201
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+  ;; 改行の色を変更
+  (set-face-foreground 'whitespace-newline "gray60")
 
-    (setq face-font-rescale-alist
-	  '(("^-apple-hiragino.*" . 1.2)
-	    (".*osaka-bold.*" . 1.2)
-	    (".*osaka-medium.*" . 1.2)
-	    (".*courier-bold-.*-mac-roman" . 1.0)
-	    (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-	    (".*monaco-bold-.*-mac-roman" . 0.9)
-	    ("-cdac$" . 1.3)))
-    ))
+  ;; 半角スペースと改行を除外
+  (dolist (d '((space-mark ?\ ) (newline-mark ?\n)))
+    (setq whitespace-display-mappings
+	  (delete-if
+	   '(lambda (e) (and (eq (car d) (car e))
+			     (eq (cadr d) (cadr e))))
+	   whitespace-display-mappings)))
+
+  ;; 全角スペースと改行を追加
+  (dolist (e '((space-mark   ?\x3000 [?\□])
+	       (newline-mark ?\n     [?\u21B5 ?\n] [?$ ?\n])))
+    (add-to-list 'whitespace-display-mappings e))
+
+  ;; 強調したくない要素を削除
+  (dolist (d '(face lines space-before-tab
+		    indentation empty space-after-tab tab-mark))
+    (setq whitespace-style (delq d whitespace-style)))
+)
 
 (when (= emacs-major-version 22)
-  (when carbon-p (require 'carbon-font)
-    ))
-
+  (when carbon-p (require 'carbon-font)))
 
 (provide 'init.appearance)
