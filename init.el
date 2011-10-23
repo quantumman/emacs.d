@@ -196,13 +196,6 @@
 ;;;; sticky
 (require 'sticky)
 
-;;;; jaspace
-(require 'jaspace)
-(setq jaspace-alternate-jaspace-string "■")
-(setq jaspace-alternate-eol-string "\n")
-;; (setq jaspace-highlight-tabs t)
-(setq jaspace-highlight-tabs ?^)
-
 ;;;;;
 
 ;;;; junk file
@@ -310,7 +303,12 @@
 
 (require 'init.custom-key-binding)
 
+;; Line Number
 (global-linum-mode t)
+
+;; 行番号のフォーマット
+(set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
+(setq linum-format "%4d")
 
 ;; (defun linum-dynamic-format ()
 ;;   (setq linum-format
