@@ -3,17 +3,23 @@
 (require 'auto-install)
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(require 'cl)
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+;; (when
+;;     (load
+;;      (expand-file-name "~/.emacs.d/elpa/package.el"))
+;;   (package-initialize))
 
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init.d"))
@@ -24,9 +30,9 @@
   (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
 
 ;;;; init-check
-(require 'emacs-init-check)
-(setq auto-emacs-init-check-file-regexp "/\\.emacs\\.d/")
-(add-hook 'vc-checkin-hook 'auto-emacs-init-check)
+;; (require 'emacs-init-check)
+;; (setq auto-emacs-init-check-file-regexp "/\\.emacs\\.d/")
+;; (add-hook 'vc-checkin-hook 'auto-emacs-init-check)
 
 
 (require 'init.char-code)
@@ -94,7 +100,7 @@
 
 (require 'init.html-fold)
 
-(require 'init.el-get)
+;; (require 'init.el-get)
 
 (require 'init.eshell)
 
@@ -112,6 +118,8 @@
 ;;;
 
 (require 'ediff)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 ;; (require 'git-emacs)
 
 (require 'init.csharp-mode)
