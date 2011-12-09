@@ -26,7 +26,6 @@
     ))
 
 ;; add some symbols into ac-sources
-(require 'ac-ghc-mod)
 (add-hook 'haskell-mode-hook
 	  '(lambda ()
 	     (auto-complete-mode t)

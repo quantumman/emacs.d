@@ -2,7 +2,7 @@
 (require 'yasnippet)
 (require 'yasnippet-bundle)
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/site-lisp/yasnippet-0.6.1c/snippets/")
+(yas/load-directory "~/.emacs.d/elpa/yasnippet-0.6.1/snippets/text-mode/")
 ;; (add-hook 'jde-mode-hook 'yas/minor-mode-on)
 (add-hook 'yatex-mode-hook 'yas/minor-mode-on)
 (add-hook 'csharp-mode 'yas/minor-mode-on)
