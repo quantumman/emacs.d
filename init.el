@@ -78,6 +78,8 @@
 
 (require 'init.haskell-mode)
 
+(require 'init.fsharp-mode)
+
 (require 'init.ghc-mode)
 
 (require 'init.misc-util)
