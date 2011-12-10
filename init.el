@@ -113,6 +113,10 @@
 (require 'init.org-mode)
 ;;;
 
+;;;
+(require 'git-commit)
+(set-face-bold-p 'git-commit-summary-face nil)
+
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 
