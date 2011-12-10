@@ -1,5 +1,5 @@
 (require 'init.haskell-mode)
-
+(require 'ghc)
 ;;;; ghc-mod
 (add-to-list 'exec-path
 	     (expand-file-name "~/.cabal/bin"))
@@ -33,7 +33,7 @@
 		   '(ac-source-ghc-completion
 		     ;; ac-source-symbols
 		     ac-source-ghc-module
-		     ac-source-ghc-pragmas
+		     ;; ac-source-ghc-pragmas
 		     ;; ac-source-ghc-langexts
 		     ac-source-yasnippet
 		     ac-source-words-in-same-mode-buffers
