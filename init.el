@@ -6,6 +6,10 @@
 
 (require 'cl)
 
+;; save load-path for debug
+(require 'save-load-path)
+(save-load-path-initialize)
+
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
 (when
     (load
