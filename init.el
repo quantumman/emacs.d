@@ -118,6 +118,9 @@
 ;;;
 
 ;;;
+(require 'text-adjust)
+
+;;;
 (require 'git-commit)
 (set-face-bold-p 'git-commit-summary-face nil)
 
