@@ -1,0 +1,2 @@
+#! /bin/sh
+emacs -Q -l ~/.emacs.d/saved-load-path.el -l ~/.emacs.d/emacs-test-init.el -l "$1" $1
