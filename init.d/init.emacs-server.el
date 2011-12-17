@@ -23,7 +23,16 @@
   (interactive)
   (server-edit)
   (save-buffer)
-  (switch-to-buffer (other-buffer)))
+  (switch-to-buffer (get-previous-buffer-if-exist)))
+
+(defun get-previous-buffer-if-exist ()
+  "Return buffer object if previous buffer exists,
+otherwise it returns *Scratch* buffer."
+  (if (string-match "//*.+//*" (buffer-name (other-buffer)))
+      (get-buffer-create "*scratch*")
+    (other-buffer)
+      ))
+
 
 (add-hook 'server-visit-hook
 	  '(lambda ()
@@ -32,7 +41,7 @@
 	     ))
 (custom-set-variables '(server-kill-new-buffers t))
 
-;; (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
+(global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
 (defalias 'exit 'save-buffers-kill-emacs)
 
 (provide 'init.emacs-server)
