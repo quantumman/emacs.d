@@ -1,6 +1,3 @@
-;; command
-(global-set-key "\C-w" 'ispell-word)
-
 ;; auto check
 (autoload 'ispell-word "ispell" "Check the spelling of word in buffer." t)
 (autoload 'ispell-region "ispell" "Check the spelling of region." t)
@@ -25,8 +22,5 @@
 
 ;; exhaneg ispell to aspell
 (setq-default ispell-program-name "aspell")
-
-;; set keystroke
-(global-set-key "\C-c\C-w" 'ispell-complete-word)
 
 (provide 'ispell-configuration)
