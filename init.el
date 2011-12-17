@@ -73,7 +73,7 @@
 (require 'init.eldoc)
 
 ;; (require 'init.elscreen)
-(require 'tabbar)
+(require 'init.tabbar)
 ;; (tabbar-mode t)
 
 
