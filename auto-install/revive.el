@@ -1,3 +1,26 @@
+;;; -*- Emacs-Lisp -*-
+;;; <plaintext>
+;;; revive.el: Resume Emacs.
+;;; (c) 1994-2003 by HIROSE Yuuji [yuuji@gentei.org]
+;;; $Id: revive.el,v 2.19 2008/05/13 01:19:16 yuuji Exp yuuji $
+;;; Last modified Wed May  4 07:25:06 2011 on firestorm
+
+;;;[[[   NOTICE 注意 NOTICE 注意 NOTICE 注意 NOTICE 注意 NOTICE 注意   ]]]
+;;;--------------------------------------------------------------------------
+;;;	If you are using `windows.el', you can omit the settings of
+;;;	define-key and autoload.
+;;;	windows.elを普段使っている場合は revive.el のためのキーの割り当
+;;;	てもautoloadの設定もする必要がありません。
+;;;--------------------------------------------------------------------------
+;;;
+;;;		Resume Emacs:		revive.el
+;;;
+;;;[What is `revive'?]
+;;;
+;;;	  Revive.el  saves current editing  status including  the window
+;;;	splitting   configuration,   which   can't   be   recovered   by
+;;;	`desktop.el' nor by `saveconf.el', into a file  and reconstructs
+;;;	that status correctly.
 ;;;
 ;;;[Installation]
 ;;;
@@ -105,7 +128,111 @@
 ;;;	not responsible  for  any  possible   defects   caused  by  this
 ;;;	software.
 ;;;
-;;;	  Comments  and bug   rep (featurep 'xemacs))
+;;;	  Comments  and bug   reports  are welcome. Don't  hesitated  to
+;;;	report.  My possible e-mail address is following.
+;;;
+;;;							yuuji@gentei.org
+;;;
+;;; Japanese Document follows:
+;;;
+;;;【reviveとは】
+;;;
+;;;	  revive.el を使うと、Emacs 使用時の状態をファイルにセーブして、
+;;;	次回 Emacs を起動する時にその状態に復帰することができます。もち
+;;;	ろんウィンドウの分割状態も復元されるので saveconf や desktop で
+;;;	いらいらしていた人にもお勧めです。
+;;;
+;;;【組み込み方】
+;;;
+;;;	  revive.el を load-path の通ったディレクトリに入れ、~/.emacs に
+;;;	以下の記述を入れてください。
+;;;
+;;;	  (autoload 'save-current-configuration "revive" "Save status" t)
+;;;	  (autoload 'resume "revive" "Resume Emacs" t)
+;;;	  (autoload 'wipe "revive" "Wipe emacs" t)
+;;;
+;;;	そして上の関数を好きなキーに割り当ててください。以下は例です。
+;;;
+;;;	  (define-key ctl-x-map "S" 'save-current-configuration)
+;;;	  (define-key ctl-x-map "F" 'resume)
+;;;	  (define-key ctl-x-map "K" 'wipe)
+;;;
+;;;【使い方】
+;;;
+;;;	  上の define-key をした場合には、C-x S で現在の編集状態をセーブ
+;;;	することができます。save-current-configuration 関数に数引数をつ
+;;;	けると複数の状態を別々にセーブできます。「C-u 2 C-x S」とすると2
+;;;	番のバッファに現状をセーブできます。これをロードする時も同様に
+;;;	「C-u 2 C-x F」とタイプすると2番のバッファから状態をロードします。
+;;;
+;;;【変数のセーブ】
+;;;
+;;;	  変数の値もセーブしておくことができます。デフォルトでセーブする 
+;;;	global 変数は revive:save-variables-global-default に、local 変
+;;;	数は revive:save-variables-local-default に定義されています。ほ
+;;;	かの変数も保存したい場合は、revive:save-variables-global-private 
+;;;	に global 変数名を、revive:save-variables-local-private に local 
+;;;	変数名をそれぞれリストの形で定義しておきます。例えば gmhist を使っ
+;;;	ている場合には、
+;;;
+;;;		(setq revive:save-variables-global-private
+;;;		      '(file-history buffer-history minibuffer-history))
+;;;
+;;;	などと ~/.emacs に書いておくと快適でしょう。
+;;;
+;;;【普通でないバッファの扱い】
+;;;
+;;;	  mh-rmail ではカレントバッファが mh-folder-mode, gnus ではカレ
+;;;	ントバッファが gnus-Group-mode になります。この対応関係は、変数 
+;;;	revive:major-mode-command-alist-default に書かれています。この変
+;;;	数に登録されている以外のものを定義したい場合は、
+;;;
+;;;		(setq revive:major-mode-command-alist-private
+;;;		  '((hogehoge-mode	. hoge)
+;;;		    (herohero-mode	. herohero)
+;;;		    ("タイプ＆メニュー"	. trr)))
+;;;
+;;;	のように revive:major-mode-command-alist-private の値を設定する
+;;;	と次回 resume した時に自動的に対応するコマンドが起動されます。ま
+;;;	た上の例にあるように、major-mode(シンボル)の代わりに buffer-name
+;;;	(文字列)を指定することもできます。
+;;;
+;;;	  また、SKKの辞書のようにリジュームするとうまく動かなくなってし
+;;;	まうバッファがある場合は、変数 revive:ignore-buffer-pattern にそ
+;;;	のバッファ名がマッチするような正規表現を設定してください。
+;;;
+;;;【プログラムから使う】
+;;;
+;;;	  英語版ドキュメント [For programmers] の項を参照してください。
+;;;
+;;;【あとがき】
+;;;
+;;;	  最初は resume というファイル名だったのですが、Emacs 19 のディ
+;;;	レクトリに resume.el というファイルがあってショックを受けました。
+;;;	こちらはコマンドラインで何回 emacs と打っても、既に起動している 
+;;;	emacs にファイルを渡すというだけの(ピーー)プログラムで「どこが 
+;;;	resume やねん」と言いたくなりましたが我慢して revive.el にリネー
+;;;	ムしました。ああまったく、saveconf でも desktop でもなし得なかっ
+;;;	たウィンドウ分割状態の復元をサポートしたと言うのに…、なんてこと
+;;;	は英語版には書けないな:-)。
+;;;
+;;;【取り扱い】
+;;;
+;;;	  このプログラムは、フリーソフトウェアといたします。このプログラ
+;;;	ムを使用して生じたいかなる結果に対しても作者は一切の責任を負わな
+;;;	いものといたしますが、コメントやバグレポートは大いに歓迎いたしま
+;;;	す。お気軽にご連絡下さい。連絡は以下のアドレスまでお願いいたしま
+;;;	す(2003/6現在)。
+;;;							yuuji@gentei.org
+
+(defconst revive:version
+  "$Id: revive.el,v 2.19 2008/05/13 01:19:16 yuuji Exp yuuji $"
+  "Version of revive.el")
+
+(defconst revive:version-prefix ";;;")
+
+(defvar revive:emacs-19 (string< "18" (substring emacs-version 0 2)))
+(defvar revive:xemacs-p (featurep 'xemacs))
 (defun revive:window-edges (&optional window)
   "Borrowed from tapestry.el"
   (if (and (fboundp 'window-pixel-edges) revive:xemacs-p)
@@ -255,7 +382,7 @@ EDGES is a list of sub-windows' edges."
      ;; |top   |2 |  horizontally.  And call this function recursively on
      ;; +---+--+--+  former (that is, upper half in vertical division or
      ;; |3  |4..  |  left half in horizontal) and latter configuration.
-     ;; +---+-----+
+     ;; +---+-----+  
      (t
       (let ((flist (list topwin))
 	    (elist (cdr edges)) divwin div-x div-y former latter)
@@ -466,7 +593,7 @@ current-window-configuration-printable."
       (setq buflist (cdr buflist))
       (other-window 1))))
 
-;;;
+;;;	
 (defun revive:buffer-list ()
   (delq nil
 	(mapcar (function
@@ -486,7 +613,7 @@ current-window-configuration-printable."
 
 (defun revive:varlist (var2save)
   "Return the (variable . value) list of variables in VAR2SAVE."
-  (delq nil (mapcar
+  (delq nil (mapcar 
 	     (function (lambda (s)
 			 (if (and s (boundp s)) (cons s (symbol-value s)))))
 	     var2save)))
@@ -516,7 +643,7 @@ Variable-List is a return value of revive:varlist."
 	(local-var (append revive:save-variables-local-default
 			   revive:save-variables-local-private))
 	(mode-local-var (append revive:save-variables-mode-local-default
-				revive:save-variables-mode-local-private)))
+				revive:save-variables-mode-local-private))) 
     (save-excursion
       (run-hooks 'revive:buffer-property-list-hook)
       (while buflist
@@ -720,7 +847,7 @@ Configuration should be saved by save-current-configuration."
 	    "~/"))
   (or (and (boundp 'mew-path) mew-path)
       (and (fboundp 'mew-init) (let (mew-demo) (mew-init))))
-  (mew-cache-flush)			;Mew should take more care of
+  (mew-cache-flush)			;Mew should take more care of 
   (get-buffer-create " *mew tmp*")	;unexisting buffer...
   (let ((b (revive:prop-buffer-name x)))
     (cond
