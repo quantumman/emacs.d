@@ -76,7 +76,6 @@
 (require 'init.tabbar)
 ;; (tabbar-mode t)
 
-
 (require 'init.emacs-server)
 
 (require 'init.ffap-bindings)
@@ -337,6 +336,20 @@
 ;; 行番号のフォーマット
 (set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
 (setq linum-format "%4d")
+
+
+(require 'revive)
+(require 'windows)
+(global-unset-key "\C-z")
+(define-key global-map win:switch-prefix nil)
+(setq win:use-frame nil
+      win:quick-selection nil
+      win:switch-prefix "\C-z"
+      win:max-configs 10)
+(win:startup-with-window)
+(define-key win:switch-map ";" 'win-switch-menu)
+(define-key ctl-x-map "C" 'see-you-again)
+
 
 ;; (defun linum-dynamic-format ()
 ;;   (setq linum-format
