@@ -22,30 +22,12 @@
 (defun kill-buffer-with-save ()
   (interactive)
   (server-edit)
-  (save-buffer-if-not-scratch)
-  (let ((to-buffer (get-previous-buffer-if-exist))
-	(from-buffer (current-buffer))
-	)
-    (switch-to-buffer to-buffer)
-    (kill-buffer from-buffer)
-    ))
-
-(defun get-previous-buffer-if-exist ()
-  "Return buffer object if previous buffer exists,
-otherwise it returns *Scratch* buffer."
-  (if (string-match "//*.+//*" (buffer-name (other-buffer)))
-      (get-buffer-create "*scratch*")
-    (other-buffer)
-      ))
-
-(defun save-buffer-if-not-scratch ()
-  (let ((scratch-buffer (find-if #'(lambda (buffer)
-				      (string-equal
-				       "*scratch*"
-				       (buffer-name buffer)))
-				 (buffer-list))))
-    (when (not (equal (current-buffer) scratch-buffer))
-      (save-buffer))))
+  (when (not (string-match "\\*.+\\*" (buffer-name (current-buffer))))
+    (save-buffer)
+    (let ((from-buffer (current-buffer)))
+      (switch-to-buffer (other-buffer))
+      (kill-buffer from-buffer)
+      )))
 
 (add-hook 'server-visit-hook
 	  '(lambda ()
