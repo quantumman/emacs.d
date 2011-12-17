@@ -25,9 +25,19 @@
   (when (not (string-match "\\*.+\\*" (buffer-name (current-buffer))))
     (save-buffer)
     (let ((from-buffer (current-buffer)))
-      (switch-to-buffer (other-buffer))
-      (kill-buffer from-buffer)
-      )))
+      (switch-to-buffer (get-previous-buffer-if-exist))
+      (kill-buffer from-buffer))))
+
+(defun get-previous-buffer-or-scratch ()
+  "Return previous buffer if current buffer is not emacs buffer.
+If the buffer is emacs buffer, then it returns scratch buffer."
+  (if (string-match "\\*.+\\*" (buffer-name (other-buffer)))
+      (get-scratch-buffer)
+    (other-buffer)))
+
+(defun get-scratch-buffer ()
+  (find-if #'(lambda (buffer) (string-equal "*scratch*" (buffer-name buffer)))
+	   (buffer-list)))
 
 (add-hook 'server-visit-hook
 	  '(lambda ()
