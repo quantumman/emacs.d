@@ -72,7 +72,10 @@
 
 (require 'init.eldoc)
 
-(require 'init.elscreen)
+;; (require 'init.elscreen)
+(require 'tabbar)
+;; (tabbar-mode t)
+
 
 (require 'init.emacs-server)
 
