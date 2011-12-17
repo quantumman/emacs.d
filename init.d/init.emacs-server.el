@@ -19,6 +19,12 @@
   ;; (elscreen-kill (elscreen-get-current-screen))
   (message ""))
 
+(defun kill-buffer-with-save ()
+  (interactive)
+  (server-edit)
+  (save-buffer)
+  (switch-to-buffer (other-buffer)))
+
 (add-hook 'server-visit-hook
 	  '(lambda ()
 	     (require 'init.encoding)
