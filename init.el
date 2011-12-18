@@ -394,6 +394,9 @@
 ;;                                 (interactive)
 ;;                                 (term shell-file-name)))
 
+;; not use tab instead of space to indent
+(setq-default indent-tabs-mode nil)
+
 ;; resume windows after init elisp
 (defadvice yes-or-no-p (around yes-or-no-always-yes)
   "Return alwasy yes."
