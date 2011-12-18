@@ -37,6 +37,9 @@ while
 #### dumpings are not necessary
 *.stackdump
 
-
 #### load path
 saved-load-path.el
+
+#### log
+wget-log
+wget-log.*
