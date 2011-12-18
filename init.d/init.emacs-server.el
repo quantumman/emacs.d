@@ -39,7 +39,7 @@
    #' (lambda ()
 	(save-buffer)
 	(let ((from-buffer (current-buffer)))
-	  (switch-to-buffer (get-previous-buffer-if-scratch))
+	  (switch-to-buffer (get-previous-buffer-or-scratch))
 	  (kill-buffer from-buffer)))))
 
 (defun get-previous-buffer-or-scratch ()
