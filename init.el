@@ -372,6 +372,17 @@
 ;;                                 (interactive)
 ;;                                 (term shell-file-name)))
 
+;; resume windows after init elisp
+(defadvice yes-or-no-p (around yes-or-no-always-yes)
+  "Return alwasy yes."
+  (setq ad-return-value t))
+
+(add-hook 'after-init-hook
+	  #'(lambda ()
+	      (ad-activate 'yes-or-no-p)
+	      (resume-windows)
+	      (ad-deactivate 'yes-or-no-p)))
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
 
