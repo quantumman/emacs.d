@@ -19,14 +19,11 @@
   (elscreen-kill (elscreen-get-current-screen))
   (message ""))
 
-(defun save-and-killall ()
+(defun win-save-and-killall ()
   (interactive)
   (server-edit)
   (do-action-if-not-emacs-buffer (current-buffer) #'save-buffer)
-  ;; (if (elscreen-buffer-still-exist-p)
-  ;;     (elscreen-kill (elscreen-get-current-screen))
-  ;;   (elscreen-kill-screen-and-buffers))
-  ;; (elscreen-kill (elscreen-get-current-screen))
+  (see-you-again)
   (message ""))
 
 (defun do-action-if-not-emacs-buffer (buffer action)
