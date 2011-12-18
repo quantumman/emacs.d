@@ -1,4 +1,3 @@
-;; (require 'elscreen-server)
 (server-start)
 
 (defun iconify-emacs-when-server-is-done ()
@@ -6,11 +5,12 @@
 
 (defun elscreen-buffer-still-exist-p ()
   (let ((elscree-keeping-to-be-alive ()))
-    (and ((buffer-name) (elscreen-get-screen-to-name-alist))
+    (and (buffer-name (current-buffer)) (elscreen-get-screen-to-name-alist)
 	 t)))
 
 (defun elscreen-save-and-killall ()
   (interactive)
+  (require 'elscreen-server)
   (server-edit)
   (do-action-if-not-emacs-buffer (current-buffer) #'save-buffer)
   (if (elscreen-buffer-still-exist-p)
