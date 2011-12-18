@@ -1,4 +1,4 @@
-#! /usr/bin/ruby1.8 -sWKu
+#! /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -sWKu
 # -*- coding: utf-8 -*-
 
 #
