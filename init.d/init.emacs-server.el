@@ -12,7 +12,7 @@
 (defun elscreen-save-and-killall ()
   (interactive)
   (server-edit)
-  ;; (save-buffer)
+  (do-action-if-not-emacs-buffer (current-buffer) #'(save-buffer))
   ;; (if (elscreen-buffer-still-exist-p)
   ;;     (elscreen-kill (elscreen-get-current-screen))
   ;;   (elscreen-kill-screen-and-buffers))
@@ -21,7 +21,7 @@
 
 (defun do-action-if-not-emacs-buffer (buffer action)
   "Do action if a given buffer is emacs buffer."
-  (when (not (string-match "\\*.+\\*" (buffer-name (buffer))))
+  (when (not (string-match "\\*.+\\*" (buffer-name buffer)))
     (funcall action)))
 
 (defun kill-buffer-with-save ()
