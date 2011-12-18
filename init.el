@@ -1,3 +1,5 @@
+(setq message-log-max 1000)
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
 ;;;; auto-install.el
 (require 'auto-install)
