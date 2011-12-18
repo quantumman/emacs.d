@@ -12,7 +12,7 @@
 (defun elscreen-save-and-killall ()
   (interactive)
   (server-edit)
-  (do-action-if-not-emacs-buffer (current-buffer) #'(save-buffer))
+  (do-action-if-not-emacs-buffer (current-buffer) #'save-buffer)
   ;; (if (elscreen-buffer-still-exist-p)
   ;;     (elscreen-kill (elscreen-get-current-screen))
   ;;   (elscreen-kill-screen-and-buffers))
