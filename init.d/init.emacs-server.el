@@ -61,6 +61,6 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (custom-set-variables '(server-kill-new-buffers t))
 
 (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
-(defalias 'exit 'save-buffers-kill-emacs)
+(defalias 'exit 'win-save-and-killall)
 
 (provide 'init.emacs-server)
