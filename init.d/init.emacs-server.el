@@ -19,14 +19,21 @@
   ;; (elscreen-kill (elscreen-get-current-screen))
   (message ""))
 
+(defun do-action-if-not-emacs-buffer (buffer action)
+  "Do action if a given buffer is emacs buffer."
+  (when (not (string-match "\\*.+\\*" (buffer-name (buffer))))
+    (funcall action)))
+
 (defun kill-buffer-with-save ()
   (interactive)
   (server-edit)
-  (when (not (string-match "\\*.+\\*" (buffer-name (current-buffer))))
-    (save-buffer)
-    (let ((from-buffer (current-buffer)))
-      (switch-to-buffer (get-previous-buffer-if-exist))
-      (kill-buffer from-buffer))))
+  (do-action-if-not-emacs-buffer
+   (current-buffer)
+   #' (lambda ()
+	(save-buffer)
+	(let ((from-buffer (current-buffer)))
+	  (switch-to-buffer (get-previous-buffer-if-exist))
+	  (kill-buffer from-buffer)))))
 
 (defun get-previous-buffer-or-scratch ()
   "Return previous buffer if current buffer is not emacs buffer.
