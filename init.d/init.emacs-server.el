@@ -24,7 +24,6 @@
   (server-edit)
   (do-action-if-not-emacs-buffer (current-buffer) #'save-buffer)
   (see-you-again)
-  (kill-emacs)
   (message ""))
 
 (defun do-action-if-not-emacs-buffer (buffer action)
