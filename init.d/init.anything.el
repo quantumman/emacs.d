@@ -26,7 +26,7 @@
 
 (defcustom anything-for-files-prefered-list-including-elscreen
   '(anything-c-source-ffap-line
-    anything-c-source-elscreen
+    ;; anything-c-source-elscreen
     anything-c-source-ffap-guesser
     anything-c-source-buffers+
     anything-c-source-recentf
