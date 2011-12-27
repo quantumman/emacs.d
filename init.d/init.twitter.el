@@ -19,7 +19,7 @@
 
 (setq twittering-update-status-function
       'twittering-update-status-from-pop-up-buffer)
-(setq twittering-auth-method 'xauth)
+;; (setq twittering-auth-method 'xauth)
 (add-hook 'twittering-mode-hook '(lambda () (global-hl-line-mode 0)))
 
 (provide 'init.twitter)
