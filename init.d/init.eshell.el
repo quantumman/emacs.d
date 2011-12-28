@@ -93,12 +93,12 @@
 	(git-info
 	 (replace-regexp-in-string
 	  "\n+$" "" (get-git-info))))
-    (concat (getenv "USER")
-	    "@" hostname
-	    "\n : " (eshell:relative-file-path)
-	    " " git-info
-	    "\n"
-	    (if (= (user-uid) 0) "#" "$") " " )))
+    (format "%s@%s: %s %s\n%s "
+            (getenv "USER")
+            hostname
+            (eshell:relative-file-path)
+	    git-info
+            (if (= (user-uid) 0) "#" "$"))))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp
@@ -111,6 +111,7 @@
 	     "^[^#$\n]*\n\s:\s.*\n[#$] "
 	     "^[#$]> "
 	     "^[#$] "
+             ".*\n[#$] "
              )
            "\\|"))
 
@@ -149,7 +150,7 @@
 	      (define-key eshell-mode-map [down] 'eshell-next-input)
 
 	      (setenv "LANG" "ja_JP.UTF-8")
-	      
+
 
 	      ;; There is no way to turn off linum explicitly.
 	      ;; To be off linum, I used a following tick:
