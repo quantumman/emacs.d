@@ -56,7 +56,7 @@
 (defun anything-for-files-and-tabs ()
   "This is anything-for-files including elscreen tabs."
   (interactive)
-  (anything-other-buffer anything-for-files-prefered-list-including-elscreen
+  (anything-other-buffer anything-for-files-prefered-list-including-windows
 			 "anything for files including tabs")
   )
 (global-set-key (kbd "C-x C-o") 'anything-for-files-and-tabs)
