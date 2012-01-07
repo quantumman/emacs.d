@@ -339,36 +339,6 @@
 (set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
 (setq linum-format "%4d")
 
-
-(require 'revive)
-;; Those configurations are the source of confusion.
-;; windows.el has configuration of window as vector
-;; and it is initialized when declared using defvar.
-;; So those initialization use a given parameters
-;; before user defined.
-;; Any configs I set after (require 'windows)
-;; do not work since the above reason.
-;; Be careful to change configs.
-(setq win:base-key ?`)
-(setq win:max-configs 27)
-(setq win:use-frame nil)
-(setq win:quick-selection nil)
-(setq win:switch-prefix "\C-z")
-(setq revive:ignore-buffer-pattern "\\*.+\\*")
-(require 'windows)
-(define-key global-map win:switch-prefix nil)
-(define-key win:switch-map ";" 'win-switch-menu)
-(define-key win:switch-map "\C-z" 'win-toggle-window)
-(define-key win:switch-map "=" 'anything-scroll-other-window)
-(define-key global-map (kbd "\C-z\C-n") 'win-next-window)
-(define-key global-map (kbd "\C-z\C-p") 'win-prev-window)
-(loop for c from ?a to ?z
-      do (define-key global-map
-      	   (format "\C-z%s" (char-to-string c))
-      	   'win-switch-to-window))
-(win:startup-with-window)
-(run-with-idle-timer 30 t 'win-save-all-configurations)
-
 ;; iconify
 (global-set-key (kbd "\C-z\C-z")
 		'iconify-or-deiconify-frame)
