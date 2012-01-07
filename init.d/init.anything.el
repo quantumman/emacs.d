@@ -26,7 +26,22 @@
 
 (defcustom anything-for-files-prefered-list-including-elscreen
   '(anything-c-source-ffap-line
-    ;; anything-c-source-elscreen
+    anything-c-source-elscreen
+    anything-c-source-ffap-guesser
+    anything-c-source-buffers+
+    anything-c-source-recentf
+    anything-c-source-bookmarks
+    anything-c-source-file-cache
+    anything-c-source-files-in-current-dir+
+    anything-c-source-locate)
+  "Your prefered sources to find files."
+  :type 'list
+  :group 'anything-config)
+
+(require 'init.windows)
+(defcustom anything-for-files-prefered-list-including-windows
+  '(anything-c-source-ffap-line
+    anything-c-source-windows
     anything-c-source-ffap-guesser
     anything-c-source-buffers+
     anything-c-source-recentf
