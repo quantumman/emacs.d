@@ -2,8 +2,18 @@
 ;; (setq browse-url-browser-function 'browse-url-generic
 ;;       browse-url-generic-program "google-chrome")
 ;;;; twitter
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program  "C:\\Users\\Yokoyama\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe")
+(setq browse-url-browser-function 'browse-url-generic)
+(cond ((or cygwin-p windows-p)
+       (setq browse-url-generic-program
+        "C:\\Users\\Yokoyama\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe")
+       )
+      (t
+       (setq browse-url-generic-program
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        )
+       )
+      )
+
 
 
 (require 'twittering-mode)
@@ -19,7 +29,7 @@
 
 (setq twittering-update-status-function
       'twittering-update-status-from-pop-up-buffer)
-(setq twittering-auth-method 'xauth)
+;; (setq twittering-auth-method 'xauth)
 (add-hook 'twittering-mode-hook '(lambda () (global-hl-line-mode 0)))
 
 (provide 'init.twitter)

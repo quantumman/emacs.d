@@ -93,12 +93,12 @@
 	(git-info
 	 (replace-regexp-in-string
 	  "\n+$" "" (get-git-info))))
-    (concat (getenv "USER")
-	    "@" hostname
-	    "\n : " (eshell:relative-file-path)
-	    " " git-info
-	    "\n"
-	    (if (= (user-uid) 0) "#" "$") " " )))
+    (format "%s@%s: %s %s\n%s "
+            (getenv "USER")
+            hostname
+            (eshell:relative-file-path)
+	    git-info
+            (if (= (user-uid) 0) "#" "$"))))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp
@@ -111,6 +111,7 @@
 	     "^[^#$\n]*\n\s:\s.*\n[#$] "
 	     "^[#$]> "
 	     "^[#$] "
+             ".*\n[#$] "
              )
            "\\|"))
 
@@ -121,7 +122,6 @@
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)
-    (eshell/cd)
     ))
 
 ;; 補完時に大文字小文字を区別しない
@@ -139,27 +139,18 @@
 ;;(set-face-foreground 'eshell-prompt-face "Green")
 
 
-
 ;; OMG! eshell defines its own mode-map when eshell-mode is called...
 (add-hook 'eshell-mode-hook
 	  #'(lambda ()
-	      ;; (define-key eshell-mode-map (kbd "\C-c\C-l") 'eshell/clear)
-	      (define-key eshell-mode-map (kbd "\C-r") 'eshell-previous-matching-input)
-	      (define-key eshell-mode-map [up] 'eshell-previous-input)
-	      (define-key eshell-mode-map [down] 'eshell-next-input)
+              (progn
+                (define-key eshell-mode-map (kbd "\C-cl") 'eshell/clear)
+                (define-key eshell-mode-map (kbd "\C-r") 'eshell-previous-matching-input)
+                (define-key eshell-mode-map [up] 'eshell-previous-input)
+                (define-key eshell-mode-map [down] 'eshell-next-input)
 
-	      (setenv "LANG" "ja_JP.UTF-8")
-	      
+                (setenv "LANG" "ja_JP.UTF-8")
 
-	      ;; There is no way to turn off linum explicitly.
-	      ;; To be off linum, I used a following tick:
-	      ;;   Once turn on linum, then linum-mode can only
-	      ;;   disable linum-mode
-	      (linum-on)
-	      (linum-mode nil)
-	      ;; run 'cd' command to set working directory to pwd
-	      (eshell/cd)
-	      ))
-
+                (linum-mode -1))
+              ))
 
 (provide 'init.eshell)

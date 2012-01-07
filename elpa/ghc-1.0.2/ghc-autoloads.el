@@ -5,7 +5,7 @@
 
 ;;;### (autoloads nil nil ("ghc-command.el" "ghc-comp.el" "ghc-doc.el"
 ;;;;;;  "ghc-flymake.el" "ghc-func.el" "ghc-info.el" "ghc-pkg.el"
-;;;;;;  "ghc.el") (20192 47475 604667))
+;;;;;;  "ghc.el") (20232 3963 628902))
 
 ;;;***
 

@@ -14,8 +14,8 @@
 
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
 (when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
+    (when (< emacs-major-version 24)
+      (load (expand-file-name "~/.emacs.d/elpa/package.el")))
   (package-initialize))
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -410,4 +410,3 @@
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
-
