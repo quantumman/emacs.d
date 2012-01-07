@@ -90,9 +90,9 @@
 (defun custom:eshell-prompt-function ()
   (let ((hostname (car (split-string (system-name) "\\.")))
 	(absolute-current-path (eshell/pwd))
-	(git-info
-	 (replace-regexp-in-string
-	  "\n+$" "" (get-git-info))))
+	(git-info (replace-regexp-in-string
+                   "\n+$" ""
+                   (get-git-info))))
     (format "%s@%s: %s %s\n%s "
             (getenv "USER")
             hostname
