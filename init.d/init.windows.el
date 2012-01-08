@@ -31,12 +31,19 @@
 (defvar anything-c-source-windows
       '((name . "Windows")
         (candidates . anything-window-candinates)
-        (action ("Switch to window" . anything-switch-to-window))))
+        (action ("Switch to window" . anything-switch-to-window)
+                ("Delete window" . anything-delete-window))
+        ))
 
 (defun anything-switch-to-window (window)
   (let ((window-id (anything-get-selected-window-id window)))
     (win:save-window win:current-config)
     (win-switch-to-window 1 window-id)))
+
+(defun anything-delete-window (window)
+  (let ((window-id (anything-get-selected-window-id window)))
+    (win:save-window win:current-config)
+    (win:delete-window window-id)))
 
 (defun anything-get-selected-window-id (selected-window)
   (let ((window (car (split-string selected-window " "))))
