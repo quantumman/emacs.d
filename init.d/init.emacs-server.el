@@ -46,12 +46,8 @@
   "Return previous buffer if current buffer is not emacs buffer.
 If the buffer is emacs buffer, then it returns scratch buffer."
   (if (string-match "\\*.+\\*" (buffer-name (other-buffer)))
-      (get-scratch-buffer)
+      (get-buffer-create "*scratch*")
     (other-buffer)))
-
-(defun get-scratch-buffer ()
-  (find-if #'(lambda (buffer) (string-equal "*scratch*" (buffer-name buffer)))
-	   (buffer-list)))
 
 (add-hook 'server-visit-hook
 	  '(lambda ()
