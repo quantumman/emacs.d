@@ -76,7 +76,10 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 
 (add-hook 'server-done-hook
           #'(lambda ()
-              (win-prev-window 1)))
+              ;; enforce to save current buffer names for anything-other-buffers
+              (win:set-window-name win:current-config)
+              (win-prev-window 1)
+              ))
 
 (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
 (defalias 'exit 'win-save-and-killall)
