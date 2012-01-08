@@ -44,7 +44,7 @@
 (defun anything-window-candinates ()
   (loop for window in (get-windows)
         for buffers = (get-buffers-of-a-window window)
-        unless (null buffers)
+        when (aref win:configs (get-window-id window))
         collect (format "%s [%s]" window buffers)))
 
 (defun get-windows ()
