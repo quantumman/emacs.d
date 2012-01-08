@@ -56,9 +56,9 @@
         collect (format "%s [%s]" window buffers)))
 
 (defadvice anything-other-buffer (before anything-other-buffer-before)
-  ;; enforce current buffer names that opens current window
-  ;; because current buffer names are not reflected to
-  ;; the latest configuration immediately.
+  ;; enforce to save current buffer names
+  ;; because current buffer names are not stored into
+  ;; win:names including buffer names for each window immediately.
   (win:set-window-name win:current-config))
 (ad-activate 'anything-other-buffer)
 
