@@ -55,6 +55,13 @@
         when (aref win:configs (get-window-id window))
         collect (format "%s [%s]" window buffers)))
 
+(defadvice anything-other-buffer (before anything-other-buffer-before)
+  ;; enforce current buffer names that opens current window
+  ;; because current buffer names are not reflected to
+  ;; the latest configuration immediately.
+  (win:set-window-name win:current-config))
+(ad-activate 'anything-other-buffer)
+
 (defun get-windows ()
   (loop for i from 1 to (- win:max-configs 1)
         collect (char-to-string (+ ?` i))))
