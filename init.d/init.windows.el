@@ -75,9 +75,4 @@
 (defun string-trim (str)
   (replace-regexp-in-string "^\\s-+\\|\\s-+$" "" str))
 
-;;; save after immediately switching other buffer
-(defadvice win:switch-window (after win:switch-window-after)
-  (win:save-window win:current-config))
-(ad-activate 'win:switch-window)
-
 (provide 'init.windows)
