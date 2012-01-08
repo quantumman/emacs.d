@@ -76,6 +76,10 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (defvar window-for-emacsclient "s"
   "The name of window on which emacsclient runs.")
 
+(add-hook 'server-done-hook
+          #'(lambda ()
+              (win-prev-window 1)))
+
 (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
 (defalias 'exit 'win-save-and-killall)
 
