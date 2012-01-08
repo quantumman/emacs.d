@@ -62,10 +62,11 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (defun switch-window-for-emacsclient ()
   (require 'init.windows)
   (let ((window (get-window-id window-for-emacsclient)))
+    (win:save-window win:current-config)
     (if (aref win:configs window)
-        (win:switch-window window)
+        (anything-switch-to-window window-for-emacsclient)
       (progn
-        (win:switch-window window nil t)
+        (anything-switch-to-window window-for-emacsclient)
         (delete-other-windows)
         ))))
 
