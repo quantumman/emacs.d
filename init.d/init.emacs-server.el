@@ -60,6 +60,22 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 	     ))
 (custom-set-variables '(server-kill-new-buffers t))
 
+(add-hook 'server-switch-hook
+          #'switch-window-for-emacsclient)
+
+(defun switch-window-for-emacsclient ()
+  (require 'init.windows)
+  (let ((window (get-window-id window-for-emacsclient)))
+    (if (aref win:configs window)
+        (win:switch-window window)
+      (progn
+        (win:switch-window window nil t)
+        (delete-other-windows)
+        (switch-to-buffer (get-buffer-create "*scratch*"))))))
+
+(defvar window-for-emacsclient "s"
+  "The name of window on which emacsclient runs.")
+
 (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
 (defalias 'exit 'win-save-and-killall)
 
