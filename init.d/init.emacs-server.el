@@ -57,6 +57,7 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (custom-set-variables '(server-kill-new-buffers t))
 
 (add-hook 'server-switch-hook
+          ;; ISSUE: this cannot open the file requested from emacsclient.
           #'switch-window-for-emacsclient)
 
 (defun switch-window-for-emacsclient ()
