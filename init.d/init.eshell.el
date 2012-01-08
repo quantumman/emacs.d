@@ -20,6 +20,8 @@
      eshell-watch-for-password-prompt
      eshell-postoutput-scroll-to-bottom
      eshell-handle-ansi-color))
+ '(eshell-preoutput-filter-functions
+   '(ansi-color-filter-apply))
  '(eshell-scroll-show-maximum-output t)
  '(eshell-scroll-to-bottom-on-output nil)
  '(eshell-prefer-to-shell t nil (eshell))
