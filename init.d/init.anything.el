@@ -54,7 +54,7 @@
   :group 'anything-config)
 
 (defun anything-for-files-and-tabs ()
-  "This is anything-for-files including elscreen tabs."
+  "This is anything-for-files."
   (interactive)
   (anything-other-buffer anything-for-files-prefered-list-including-windows
 			 "anything for files including tabs")
