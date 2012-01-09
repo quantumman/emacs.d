@@ -33,14 +33,14 @@
 
 (defun kill-buffer-with-save ()
   (interactive)
-  (server-edit)
   (do-action-if-not-emacs-buffer
    (current-buffer)
    #' (lambda ()
 	(save-buffer)
 	(let ((from-buffer (current-buffer)))
 	  (switch-to-buffer (get-previous-buffer-or-scratch))
-	  (kill-buffer from-buffer)))))
+	  (kill-buffer from-buffer))))
+  (server-edit))
 
 (defun get-previous-buffer-or-scratch ()
   "Return previous buffer if current buffer is not emacs buffer.
@@ -77,7 +77,6 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (add-hook 'server-done-hook
           '(lambda ()
              ;; enforce to save current buffer names for anything-other-buffers
-             ;; ISSUE: it cannot work well for some reason...
              (win:set-window-name win:current-config)
              (win-prev-window 1)
              ))
