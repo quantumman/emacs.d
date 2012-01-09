@@ -51,8 +51,9 @@
   "Get a window as representing number from a selected window in Anything menu.
 \"selected-window\",  which is an argument supposed to be given by Anything,
 is the following format: \"NAME [BUFFER1 \\ BUFFER2 \\ ...]\".
-NAME means the name of window. The following BUFFER* is buffer names opened in
-the window. This function parses the above format and returns \"NAME\"."
+NAME means the name of window. The left parameters BUFFER* following NAME
+is buffer names opened in the window.
+This function parses the above format and returns \"NAME\"."
   (let ((window (car (split-string selected-window " "))))
     (get-window-id window)))
 
