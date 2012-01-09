@@ -36,11 +36,12 @@
   (do-action-if-not-emacs-buffer
    (current-buffer)
    #' (lambda ()
-	(save-buffer)
-	(let ((from-buffer (current-buffer)))
-	  (switch-to-buffer (get-previous-buffer-or-scratch))
+        (save-buffer)
+        (let ((from-buffer (current-buffer)))
+          (switch-to-buffer (get-previous-buffer-or-scratch))
 	  (kill-buffer from-buffer))))
-  (server-edit))
+  (flet ((yes-or-no-p (arg) "yes"))
+    (server-edit)))
 
 (defun get-previous-buffer-or-scratch ()
   "Return previous buffer if current buffer is not emacs buffer.
