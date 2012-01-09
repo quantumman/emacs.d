@@ -57,8 +57,8 @@
 
 (defadvice anything-other-buffer (before anything-other-buffer-before)
   ;; enforce to save current buffer names
-  ;; because current buffer names are not stored into
-  ;; win:names including buffer names for each window immediately.
+  ;; because current buffer names are not set into
+  ;; win:names which holds buffer names for each window immediately.
   (win:set-window-name win:current-config))
 (ad-activate 'anything-other-buffer)
 
