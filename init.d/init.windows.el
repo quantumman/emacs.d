@@ -58,7 +58,7 @@ This function parses the above format and returns \"NAME\"."
     (get-window-id window)))
 
 (defun anything-window-candinates ()
-  "Return window candinates."
+  "Return window candidates."
   (loop for window in (get-windows)
         for buffers = (get-buffers-of-a-window window)
         when (aref win:configs (get-window-id window))
