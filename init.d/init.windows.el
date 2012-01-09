@@ -38,13 +38,13 @@
 (defun anything-switch-to-window (window)
   "Switch to a given window."
   (let ((window-id (anything-get-selected-window-id window)))
-    (win:save-window win:current-config)
+    (win:store-config win:current-config)
     (win:switch-window window-id nil nil)))
 
 (defun anything-delete-window (window)
   "Delete a given window."
   (let ((window-id (anything-get-selected-window-id window)))
-    (win:save-window win:current-config)
+    (win:store-config win:current-config)
     (win:delete-window window-id)))
 
 (defun anything-get-selected-window-id (selected-window)
