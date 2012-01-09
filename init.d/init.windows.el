@@ -76,7 +76,7 @@ the window. This function parses the above format and returns \"NAME\"."
         collect (char-to-string (+ ?` i))))
 
 (defun get-buffers-of-a-window (window)
-  "Get buffers of a given window as string.
+  "Get buffers of a given window as a string.
 Each buffer in the string is separated by \"/\"."
   (let* ((window-id (get-window-id window))
          (window-buffers (aref win:names window-id)))
