@@ -36,20 +36,28 @@
         ))
 
 (defun anything-switch-to-window (window)
+  "Switch to a given window."
   (let ((window-id (anything-get-selected-window-id window)))
     (win:save-window win:current-config)
     (win:switch-window window-id nil nil)))
 
 (defun anything-delete-window (window)
+  "Delete a given window."
   (let ((window-id (anything-get-selected-window-id window)))
     (win:save-window win:current-config)
     (win:delete-window window-id)))
 
 (defun anything-get-selected-window-id (selected-window)
+  "Get a window as representing number from a selected window in Anything menu.
+\"selected-window\",  which is an argument supposed to be given by Anything,
+is the following format: \"NAME [BUFFER1 \\ BUFFER2 \\ ...]\".
+NAME means the name of window. The following BUFFER* is buffer names opened in
+the window. This function parses the above format and returns \"NAME\"."
   (let ((window (car (split-string selected-window " "))))
     (get-window-id window)))
 
 (defun anything-window-candinates ()
+  "Return window candinates."
   (loop for window in (get-windows)
         for buffers = (get-buffers-of-a-window window)
         when (aref win:configs (get-window-id window))
@@ -63,10 +71,13 @@
 (ad-activate 'anything-other-buffer)
 
 (defun get-windows ()
+  "Return windows representing from \"a\" to \"z\"."
   (loop for i from 1 to (- win:max-configs 1)
         collect (char-to-string (+ ?` i))))
 
 (defun get-buffers-of-a-window (window)
+  "Get buffers of a given window as string.
+Each buffer in the string is separated by \"/\"."
   (let* ((window-id (get-window-id window))
          (window-buffers (aref win:names window-id)))
     (if (string-equal window-buffers "")
@@ -74,9 +85,11 @@
       window-buffers)))
 
 (defun get-window-id (window)
+  "Get window id (number) from a given window."
   (- (string-to-char window) ?`))
 
 (defun get-current-window ()
+  "Get current window."
   (char-to-string (+ ?` win:current-config)))
 
 (defun string-trim (str)
