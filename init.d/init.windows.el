@@ -92,7 +92,4 @@ Each buffer in the string is separated by \"/\"."
   "Get current window."
   (char-to-string (+ ?` win:current-config)))
 
-(defun string-trim (str)
-  (replace-regexp-in-string "^\\s-+\\|\\s-+$" "" str))
-
 (provide 'init.windows)
