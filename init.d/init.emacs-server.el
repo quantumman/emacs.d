@@ -68,7 +68,8 @@ If the buffer is emacs buffer, then it returns scratch buffer."
       (progn
         (anything-switch-to-window window-for-emacsclient)
         (delete-other-windows)
-        ))))
+        )))
+  (server-switch-buffer))
 
 (defvar window-for-emacsclient "s"
   "The name of window on which emacsclient runs.")
