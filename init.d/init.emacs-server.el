@@ -76,7 +76,8 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 
 (add-hook 'server-done-hook
           '(lambda ()
-              ;; enforce to save current buffer names for anything-other-buffers
+             ;; enforce to save current buffer names for anything-other-buffers
+             ;; ISSUE: it cannot work well for some reason...
              (win:set-window-name win:current-config)
              (win-prev-window 1)
              ))
