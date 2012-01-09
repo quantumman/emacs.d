@@ -65,9 +65,8 @@ This function parses the above format and returns \"NAME\"."
         collect (format "%s [%s]" window buffers)))
 
 (defadvice anything-other-buffer (before anything-other-buffer-before)
-  ;; save current config if current window is not stored
-  (when (null (aref win:configs win:current-config))
-    (win:store-config win:current-config)))
+  ;; enforce to store current config
+  (win:store-config win:current-config))
 (ad-activate 'anything-other-buffer)
 
 (defun get-windows ()
