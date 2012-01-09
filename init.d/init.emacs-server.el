@@ -57,8 +57,7 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (custom-set-variables '(server-kill-new-buffers t))
 
 (add-hook 'server-switch-hook
-          ;; ISSUE: this cannot open the file requested from emacsclient.
-          #'switch-window-for-emacsclient)
+          'switch-window-for-emacsclient)
 
 (defun switch-window-for-emacsclient ()
   (require 'init.windows)
@@ -75,11 +74,11 @@ If the buffer is emacs buffer, then it returns scratch buffer."
   "The name of window on which emacsclient runs.")
 
 (add-hook 'server-done-hook
-          #'(lambda ()
+          '(lambda ()
               ;; enforce to save current buffer names for anything-other-buffers
-              (win:set-window-name win:current-config)
-              (win-prev-window 1)
-              ))
+             (win:set-window-name win:current-config)
+             (win-prev-window 1)
+             ))
 
 (global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
 (defalias 'exit 'win-save-and-killall)
