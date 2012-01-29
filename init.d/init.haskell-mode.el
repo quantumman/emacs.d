@@ -107,17 +107,21 @@
 (defun haskell:smart-newline ()
   (save-excursion
     (beginning-of-line)
-    (delete-horizontal-space)
     (cond ((or (string= "import" (current-word))
                (string= "data" (current-word))
                (string= "type" (current-word))
                (string= "newtype" (current-word)))
-           #'newline)
-          ((string-match ".+\s*=\s*.*"
-                     (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
-           #'newline-and-indent)
+           #'(lambda ()
+               (delete-horizontal-space)
+               (newline)))
+          ((string-match "^[^\s+let].+\s*=\s*.*"
+                         (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+           #'(lambda ()
+               (delete-horizontal-space)
+               (newline-and-indent)))
+          (())
           (t
-           #'newline
+           #'newline-and-indent
            ))))
 
 (provide 'init.haskell-mode)
