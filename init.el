@@ -123,6 +123,13 @@
 (require 'init.windows)
 ;;;
 
+
+;;; Powershell
+(require 'powershell)
+(require 'powershell-mode)
+(push '("\\.ps1$" . powershell-mode) auto-mode-alist)
+(add-to-list 'ac-modes 'powershell-mode)
+
 ;;;
 (require 'text-adjust)
 
