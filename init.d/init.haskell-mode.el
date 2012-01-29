@@ -95,7 +95,29 @@
 
 (add-hook 'haskell-mode-hook 'haskell-unicode)
 
+(define-key haskell-mode-map [return] 'haskell-smart-newline)
 (push '("\\.hs$" . haskell-mode) auto-mode-alist)
 
+
+(defun haskell-smart-newline ()
+  (interactive)
+  (let ((action (haskell:smart-newline)))
+    (funcall action)))
+
+(defun haskell:smart-newline ()
+  (save-excursion
+    (beginning-of-line)
+    (delete-horizontal-space)
+    (cond ((or (string= "import" (current-word))
+               (string= "data" (current-word))
+               (string= "type" (current-word))
+               (string= "newtype" (current-word)))
+           #'newline)
+          ((string-match ".+\s*=\s*.*"
+                     (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+           #'newline-and-indent)
+          (t
+           #'newline
+           ))))
 
 (provide 'init.haskell-mode)
