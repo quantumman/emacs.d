@@ -18,6 +18,7 @@
       (load (expand-file-name "~/.emacs.d/elpa/package.el")))
   (package-initialize))
 (require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
@@ -345,7 +346,7 @@
 (global-linum-mode t)
 
 ;; 行番号のフォーマット
-(set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
+(set-face-attribute 'linum nil :foreground "grey40" :height 0.8)
 (setq linum-format "%4d")
 
 ;; iconify
