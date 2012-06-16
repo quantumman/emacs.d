@@ -4,15 +4,15 @@
 
 
 ;;;### (autoloads nil "magit-simple-keys" "magit-simple-keys.el"
-;;;;;;  (20201 62438))
+;;;;;;  (20444 46993))
 ;;; Generated autoloads from magit-simple-keys.el
 
 (eval-after-load 'magit '(require 'magit-simple-keys))
 
 ;;;***
 
-;;;### (autoloads nil nil ("magit-simple-keys-pkg.el") (20201 62438
-;;;;;;  420576))
+;;;### (autoloads nil nil ("magit-simple-keys-pkg.el") (20444 46993
+;;;;;;  738196))
 
 ;;;***
 
