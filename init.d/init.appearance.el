@@ -164,8 +164,26 @@
       ;; charset と coding-system の優先度設定
       (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
 			    'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
-      (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)))
+      (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932))
 
+    ;; fontの設定
+    (set-face-attribute 'default nil
+                    :family "ゆたぽん（コーディング）"
+                    :height 110)
+    (set-fontset-font nil
+                      'japanese-jisx0208
+                      (font-spec :family "小夏等幅"))
+    (set-fontset-font nil
+                      'katakana-jisx0201
+                      (font-spec :family "小夏等幅"))
+
+    (setq face-font-rescale-alist
+	  '((".*profont-medium.*" . 1.0)
+		(".*profont-bold.*" . 1.0)
+		(".*nfmotoyacedar-bold.*" . 1.4)
+		(".*nfmotoyacedar-medium.*" . 1.4)
+		("-cdac$" . 1.3)))
+    )
 
   (global-whitespace-mode 1)
 
