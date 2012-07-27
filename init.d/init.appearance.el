@@ -7,12 +7,12 @@
      (:background "dark slate gray"))
     (((class color)
       (background light))
-     (:background "ForestGreen"))
+     (:background "white smoke"))
     (t
      ()))
   "*Face used by hl-line.")
 (setq hl-line-face 'hlline-face)
-(setq hl-line-face 'underline) ; 下線
+;; (setq hl-line-face 'background)
 (global-hl-line-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
