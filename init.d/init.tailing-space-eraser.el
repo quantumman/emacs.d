@@ -1,7 +1,7 @@
 ;;;; never allow spaces after filled lines.
-(defadvice reindent-then-newline-and-indent (after reindent-then-newline-and-indent-after-advice ())
-  (delete-trailing-whitespace))
-(ad-activate 'reindent-then-newline-and-indent 'reindent-then-newline-and-indent-after-advice)
+;; (defadvice reindent-then-newline-and-indent (after reindent-then-newline-and-indent-after-advice ())
+;;   (delete-trailing-whitespace))
+;; (ad-activate 'reindent-then-newline-and-indent 'reindent-then-newline-and-indent-after-advice)
 
 (defadvice previous-line (after previous-line-after-advice ())
   (delete-trailing-whitespace))
