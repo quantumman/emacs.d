@@ -172,10 +172,10 @@
                     :height 110)
     (set-fontset-font nil
                       'japanese-jisx0208
-                      (font-spec :family "小夏等幅"))
+                      (font-spec :family "MS Gothic"))
     (set-fontset-font nil
                       'katakana-jisx0201
-                      (font-spec :family "小夏等幅"))
+                      (font-spec :family "MS Gothic"))
 
     (setq face-font-rescale-alist
 	  '((".*profont-medium.*" . 1.0)
