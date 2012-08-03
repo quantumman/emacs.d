@@ -35,15 +35,37 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init.d"))
 (let ((default-directory "~/.emacs.d/init.d"))
   (load (expand-file-name "~/.emacs.d/init.d/subdirs.el")))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
-(let ((default-directory "~/.emacs.d/site-lisp"))
-  (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
+;; (let ((default-directory "~/.emacs.d/site-lisp"))
+;;   (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
+
+
+(defun directory-dirs (dir)
+  "Find all directories in DIR."
+  (unless (file-directory-p dir)
+    (error "Not a directory `%s'" dir))
+  (let ((dir (directory-file-name dir))
+        (dirs '())
+        (files (directory-files dir nil nil t)))
+    (dolist (file files)
+      (unless (member file '("." ".."))
+        (let ((file (concat dir "/" file)))
+          (when (file-directory-p file)
+            (setq dirs (append (cons file
+                                     (directory-dirs file))
+                               dirs))))))
+    dirs))
+
+(defun add-to-load-path-recursively (base)
+  (loop for dir in (directory-dirs base)
+        do (add-to-list 'load-path dir)))
+
+(add-to-load-path-recursively (expand-file-name "~/.emacs.d/site-lisp"))
 
 ;;;; init-check
 ;; (require 'emacs-init-check)
 ;; (setq auto-emacs-init-check-file-regexp "/\\.emacs\\.d/")
 ;; (add-hook 'vc-checkin-hook 'auto-emacs-init-check)
-
 
 (require 'init.char-code)
 
