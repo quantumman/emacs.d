@@ -61,4 +61,7 @@
   )
 (global-set-key (kbd "C-x C-o") 'anything-for-files-and-tabs)
 
+(require 'anything-kyr)
+(require 'anything-kyr-config)
+
 (provide 'init.anything)
