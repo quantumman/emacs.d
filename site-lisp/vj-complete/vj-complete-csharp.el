@@ -40,7 +40,7 @@
 (defvar vj-complete-csharp-top-namespaces (make-hash-table :test 'equal))
 
 
- 
+
 (defun vj-complete-csharp-setup ()
     "Setup C# completion based on `vj-complete'."
     (interactive)
@@ -70,10 +70,10 @@
                     (csharp-find-class-hierarchy vj-complete-csharp--current-classname)
                     ;;  Nices arrow:  "\x49020\x490fa"
                     "->")
-                        
+
                     "?"))))
     (when vj-complete-csharp--current-header
-        (dolist (header-entry vj-complete-csharp--current-header) 
+        (dolist (header-entry vj-complete-csharp--current-header)
             (insert header-entry))))
 
 (defun vj-complete-get-csharp-completions-begin ()
@@ -129,7 +129,7 @@
     (dolist (ns (csharp-find-namespace-candidates fq-ns))
       (setq partial (substring ns (1+ (length fq-ns))))
       (add-to-list 'result (list partial "namespace" "T")))
-    
+
     (dolist (cpl (csharp-type-search-with-using (concat fq-ns "\\.[^.]+\\'") t))
       (setq partial (substring (car cpl) (1+ (length fq-ns))))
       (add-to-list 'result (list partial (second cpl)  "T")))
@@ -142,7 +142,7 @@
   ;; FIXME add new func  (csharp-namespace-prefix-p "System") => t
   ;; (MUST use using declarations
   ;; eg. (csharp-namespace-prefix-p "File") => t if using System.IO
-  
+
   (let ((using-regex
           (regexp-opt
             (append
@@ -158,7 +158,7 @@
         (if (and
               (> (length partial) 0)
               (not (string-match "\\." partial)))
-          (add-to-list 'result 
+          (add-to-list 'result
             (list
               (substring partial 1)
               (or
@@ -166,7 +166,7 @@
                 (car (gethash ns vj-complete-csharp-generic-types))
                 "namespace")
               "T")))))
-    
+
       result))
 
 ;; (defun csharp-find-namespace-completions-old2 (class-prefix)
@@ -184,7 +184,7 @@
 ;;           (if ns
 ;;             (setq partial-classname (substring fq-classname (1+ (length ns))))
 ;;             (setq partial-classname fq-classname))
-;;           (add-to-list 'result 
+;;           (add-to-list 'result
 ;;             (if t
 ;;               (list
 ;;                 partial-classname
@@ -202,7 +202,7 @@
   (let (result chain classname partial-classname generic-type result partial)
     ;; Rewrite line (__new is treated specially)
     ;; "(new Gamma)." => "__gamma.__new."
-    (setq line (replace-regexp-in-string (concat "(new *\\(" (ident-re) "\\)([^)]*))\\.") 
+    (setq line (replace-regexp-in-string (concat "(new *\\(" (ident-re) "\\)([^)]*))\\.")
                  "\\1.__new." line))
 
     ;; FIXME new CC(-!-   display ctors "new XX(" -> "XX.ctor
@@ -211,9 +211,9 @@
     ;; FIXME enum completion
 
     ;; (var as CC).-!-  => CC.__new.
-    (setq line (replace-regexp-in-string 
-                 (concat "(" (ident-re) " [ ]*as [ ]*\\(" 
-                   (class-re) "\\))\\.") 
+    (setq line (replace-regexp-in-string
+                 (concat "(" (ident-re) " [ ]*as [ ]*\\("
+                   (class-re) "\\))\\.")
                  "\\1.__new." line))
 
     (setq completions
@@ -222,7 +222,7 @@
         ;; and match is namespace (use (member m (csharp-find-using-completions)))
 
         ;; FIXME "\s+ (is|as) \s+ CLASS"
-              
+
         ((string-match "^[ 	]*\\[\\([A-Za-z_0-9.]*\\)" line) ;; Attribute
           (message "ATTRIBUTE %s" (string-msub line 1))
 
@@ -232,9 +232,9 @@
               (point)))
 
           (csharp-find-attribute-completions (string-msub line 1)))
-              
+
         ;; "using" completion
-        ((string-match "^using \\([A-Za-z0-9._]*\\)" line) 
+        ((string-match "^using \\([A-Za-z0-9._]*\\)" line)
           (setq vj-complete-current-begin-point
             (save-excursion
               (skip-chars-backward ".A-Za-z_0-9" (point-at-bol))
@@ -254,7 +254,7 @@
           (csharp-find-namespace-completions partial))
 
         ;; "cast" completion
-        ((string-match "((\\([A-Za-z0-9._]+\\)\\(<[^>]*>\\)?)[A-Za-z0-9_]+)\\.\\'" line) 
+        ((string-match "((\\([A-Za-z0-9._]+\\)\\(<[^>]*>\\)?)[A-Za-z0-9_]+)\\.\\'" line)
           (message "CAST %s" (string-msub line 1))
 
           (setq partial-classname (string-msub line 1))
@@ -276,7 +276,7 @@
 
         ;; "C c = -!-"
         ((string-match
-           (concat "^[ 	]*\\(" (ident-re) "\\) *" (ident-re) " *=\\([ ]*\\)\\'") 
+           (concat "^[ 	]*\\(" (ident-re) "\\) *" (ident-re) " *=\\([ ]*\\)\\'")
            line)
           (setq partial-classname (string-msub line 1))
           (setq classname (vj-csharp-resolve-partial-class partial-classname nil))
@@ -319,7 +319,7 @@
           (setq classname (car (last chain)))
           (csharp-find-completions classname prefix))
 
-        ;; class completion 
+        ;; class completion
         ((string-match (concat "\\(" (class-re) "\\)\\'") line)
 
           (setq prefix (string-msub line 1))
@@ -329,25 +329,25 @@
               (car (vj-cu-find-fq-class-name-at-point))
               prefix)
             (csharp-type-search-with-using prefix t)))
-              
-        (t (message "DUNNO") 
+
+        (t (message "DUNNO")
           nil)
         )
       )
-    (if classname 
+    (if classname
       (setq vj-complete-csharp--current-classname classname))
-            
+
     completions))
 
 
 (defun vj-complete-get-csharp-completions ()
-  (vj-complete-get-csharp-completions-begin)        
+  (vj-complete-get-csharp-completions-begin)
   (let (chain completions (line-and-prefix (vj-analyze-at-point)))
     (setq line (car line-and-prefix))
     (setq prefix (second line-and-prefix))
 
     ;; --- Add custom completions here ----
-    ;; SOM 
+    ;; SOM
     (if (string-match "addField(" line)
       (progn
         (message "Addfield %s" (string-msub line 1))
@@ -357,12 +357,12 @@
 (defun csharp-find-full-classname (classname-re prompt)
     (let ((classnames (csharp-type-search classname-re)))
 
-        (vj-complete-add-to-context 
+        (vj-complete-add-to-context
             (format "csharp-find-full-classname: %s"
                 (mapconcat 'identity classnames ", ")))
 
         (if (> (length classnames) 1)
-            (completing-read 
+            (completing-read
                 prompt
                 (mapcar (lambda (pair) (cons pair pair)) classnames)
                 nil t)
@@ -385,7 +385,7 @@
               (if (re-search-backward "^[ \t]*namespace [ ]*\\([A-Za-z0-9_.]*\\)" nil t)
                 (concat (match-string-no-properties 1) ".")))
             ""))
-         (classname 
+         (classname
            (or
              (save-excursion
                (if (re-search-backward (concat "[ \t]*class [ ]*\\(" (ident-re)"\\)") nil t)
@@ -418,7 +418,7 @@ Throws error on failure unless noerror is non-nil.
     (if partial-classname
       (progn
         (if generic-type
-          (setq generic-reflection-classname 
+          (setq generic-reflection-classname
             (concat partial-classname "`"
               (number-to-string (length (split-string generic-type ","))))))
         (vj-csharp-resolve-partial-class partial-classname generic-reflection-classname))
@@ -452,7 +452,7 @@ generics can be <string, int>"
             var "[ ]*[=;]"
                                         ; varname
             ))))
-            
+
 
 ;;(csharp-find-completions "Digit" "")
 
@@ -482,7 +482,7 @@ generics can be <string, int>"
                 (if (equal csharp-type "M") (setq type "F"))
                 (if (equal csharp-type "P") (setq type "V"))
                 (if (equal csharp-type "F") (setq type "V"))
-                
+
                 (add-to-list 'completions
                     (list
                         (match-string 2) ;completion "word"
@@ -591,9 +591,9 @@ Eg. (\"System.Collections.Generic.Dictionary\" \"`2\" \"+Enumerator\")
       (clrhash vj-complete-csharp-top-namespaces)
       (setq vj-complete-csharp-type-list nil)
       (setq vj-complete-csharp-namespace-list nil)
-      ;; 
+      ;;
       (insert-file-contents (vj-complete-csharp-cla-db-filename))
-      (goto-char (point-min))      
+      (goto-char (point-min))
       (while (re-search-forward "^\\(\\([^ `]*\\)\\(`[0-9]+\\(?:+[^ ]*\\)?\\)?\\) -> .*" nil t)
         (setq name (match-string 2))
         (setq generic-name (match-string 1))
@@ -633,13 +633,13 @@ with `1, `2+Enumerator etc."
          (current-ns
            (save-excursion
              (vj-find-above "^namespace[ 	]+\\([A-Z]\\sw*\\)"))))
-    
+
     (dolist (namespace                   ; Include global namespace via (nil)
               (append (list current-ns) (csharp-find-using-declarations) '(nil)))
       (setq fq-classname (vj-ns namespace classname))
       (if (and (not result)
             (csharp-full-type-name-p fq-classname))
-        (setq result (if generic-reflection-classname 
+        (setq result (if generic-reflection-classname
                        (vj-ns namespace generic-reflection-classname)
                        fq-classname))))
     result))
@@ -662,7 +662,7 @@ with `1, `2+Enumerator etc."
     (let (completions sig
              return-type)
         (setq completions (csharp-find-completions classname member))
-        (when completions 
+        (when completions
             ;; Uses first completion only FIXME use (dolist completions) ?
             (setq sig (car (cdr (car completions))))
 
@@ -695,7 +695,7 @@ with `1, `2+Enumerator etc."
           (if ns
             (setq partial-classname (substring fq-classname (1+ (length ns))))
             (setq partial-classname fq-classname))
-          (add-to-list 'result 
+          (add-to-list 'result
             (if cpl
               (list
                 partial-classname
@@ -719,7 +719,7 @@ with `1, `2+Enumerator etc."
 ;;                                  "\\)\\."))
 ;;     (with-temp-buffer
 ;;       (insert-file-contents (vj-complete-csharp-db-filename))
-;;       (goto-char (point-min))      
+;;       (goto-char (point-min))
 ;;       (while (re-search-forward str nil t)
 
 ;;         (setq name (match-string 1))
@@ -728,7 +728,7 @@ with `1, `2+Enumerator etc."
 
 ;;         ;; Remove fully qualified part from the using directves
 ;;         (setq newname (replace-regexp-in-string using-completions-re "" name))
-        
+
 ;;         ;; Add both full name and shortened name (if any)
 ;;         (when (string-match filter-regexp newname)
 ;;           (add-to-list 'completions (list newname rest "I") t))

@@ -48,34 +48,34 @@
   ;; @ encode
 
   ;; 機種依存文字
-  (require 'cp5022x)
-  (define-coding-system-alias 'euc-jp 'cp51932)
+  ;; (require 'cp5022x nil t)
+  ;; (define-coding-system-alias 'euc-jp 'cp51932)
 
-  ;; decode-translation-table の設定
+  ;; ;; decode-translation-table の設定
 
-  (coding-system-put 'euc-jp :decode-translation-table
-		     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
-  (coding-system-put 'iso-2022-jp :decode-translation-table
-		     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
-  (coding-system-put 'utf-8 :decode-translation-table
-		     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+  ;; (coding-system-put 'euc-jp :decode-translation-table
+  ;;       	     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+  ;; (coding-system-put 'iso-2022-jp :decode-translation-table
+  ;;       	     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+  ;; (coding-system-put 'utf-8 :decode-translation-table
+  ;;       	     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
 
-  ;; encode-translation-table の設定
+  ;; ;; encode-translation-table の設定
 
-  (coding-system-put 'euc-jp :encode-translation-table
-		     (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
-  (coding-system-put 'iso-2022-jp :encode-translation-table
-		     (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
-  (coding-system-put 'cp932 :encode-translation-table
-		     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
-  (coding-system-put 'utf-8 :encode-translation-table
-		     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+  ;; (coding-system-put 'euc-jp :encode-translation-table
+  ;;       	     (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
+  ;; (coding-system-put 'iso-2022-jp :encode-translation-table
+  ;;       	     (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
+  ;; (coding-system-put 'cp932 :encode-translation-table
+  ;;       	     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+  ;; (coding-system-put 'utf-8 :encode-translation-table
+  ;;       	     (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
 
-  ;; charset と coding-system の優先度設定
+  ;; ;; charset と coding-system の優先度設定
 
-  (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
-			'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
-  (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
+  ;; (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
+  ;;       		'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
+  ;; (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
   )
 
 

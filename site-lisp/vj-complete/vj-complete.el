@@ -50,7 +50,7 @@
 ;;
 ;; Optional "hook": vj-complete-insert-header-function: called after creating
 ;; the completion buffer.
-;; 
+;;
 ;; Interface to dropdown-list:
 ;;
 ;;   Bind the functio vj-complete-dropdown to a key
@@ -121,7 +121,7 @@ With zero INDEX restore original window configuration."
         (if (get-buffer-window "*vj-complete*")
           (delete-window (get-buffer-window "*vj-complete*")))
         (jump-to-register ?C))
-        
+
         (if (or
               (eq last-command 'vj-complete)
               (eq last-command 'vj-complete-dropdown))
@@ -148,7 +148,7 @@ With zero INDEX restore original window configuration."
                 (if (<= index (length vj-complete-current-list))
                     index
                     (error (format "bad index %d <= %d" index (length vj-complete-current-list))))))
-        
+
         (when (and (listp vj-complete-current-list)
                   (<= vj-complete-current-index (length vj-complete-current-list)))
             (message "%d - %s" vj-complete-current-index
@@ -182,7 +182,7 @@ With zero INDEX restore original window configuration."
 
     ;;setq line-prefix (buffer-substring-no-properties (point-at-bol) (point))
 
-    (let ((source-window (get-buffer-window (current-buffer))) 
+    (let ((source-window (get-buffer-window (current-buffer)))
           word all-completions i completions type (prefix "")
              (insert-header-function vj-complete-insert-header-function)
              (window (get-buffer-window "*vj-complete*")))
@@ -197,12 +197,12 @@ With zero INDEX restore original window configuration."
           ;; else
           (setq prefix (buffer-substring-no-properties
                          vj-complete-current-begin-point (point))))
-        
+
         ;; Make empty buffer
         (switch-to-buffer-other-window (get-buffer-create "*vj-complete*") t)
         (delete-region (point-min) (point-max))
 
-        
+
         (dolist (completion-record all-completions)
             (when (string-match
                    (concat "^" (replace-regexp-in-string

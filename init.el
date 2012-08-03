@@ -92,7 +92,7 @@
 
 (require 'init.buffer-conf)
 
-(require 'init.calendar)
+;; (require 'init.calendar)
 
 (require 'init.eldoc)
 
@@ -409,6 +409,9 @@
 	      (ad-activate 'yes-or-no-p)
 	      (resume-windows)
 	      (ad-deactivate 'yes-or-no-p)))
+
+(require 'rst-goodies)
+(require 'rst)
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
