@@ -5,7 +5,7 @@
 ;; (remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(setq haskell-font-lock-symbols t)
+(setq haskell-font-lock-symbols nil)
 (require 'inf-haskell)
 ;; (setq haskell-program-name "/usr/bin/ghci -XTemplateHaskell")
 (setq haskell-program-name "ghci -XTemplateHaskell")
@@ -93,7 +93,7 @@
         (cons "\\(\\.\\.\\)" 'horizontal-ellipsis))))
 
 
-(add-hook 'haskell-mode-hook 'haskell-unicode)
+;; (add-hook 'haskell-mode-hook 'haskell-unicode)
 
 (define-key haskell-mode-map [return] 'haskell-smart-newline)
 (push '("\\.hs$" . haskell-mode) auto-mode-alist)
