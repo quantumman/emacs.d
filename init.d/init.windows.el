@@ -26,7 +26,7 @@
       	   (format "\C-z%s" (char-to-string c))
       	   'win-switch-to-window))
 (win:startup-with-window)
-(run-with-idle-timer 30 t 'win-save-all-configurations)
+;; (run-with-idle-timer 30 t 'win-save-all-configurations)
 
 (defvar anything-c-source-windows
       '((name . "Windows")
