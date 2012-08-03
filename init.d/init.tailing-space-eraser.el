@@ -5,7 +5,7 @@
 
 (defadvice previous-line (after previous-line-after-advice ())
   (delete-trailing-whitespace))
-x(ad-activate 'previous-line 'previous-line-after-advice)
+(ad-activate 'previous-line 'previous-line-after-advice)
 
 (defadvice next-line (after next-line-after-advice ())
   (delete-trailing-whitespace))
