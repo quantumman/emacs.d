@@ -117,32 +117,32 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Change Log:
-;; 06-Mar-2012    Matthew L. Fidler  
+;; 06-Mar-2012    Matthew L. Fidler
 ;;    Last-Updated: Tue Mar  6 22:35:39 2012 (-0600) #1299 (Matthew L. Fidler)
 ;;    Speed enhancements for parenthetical statements.
-;; 05-Mar-2012    Matthew L. Fidler  
+;; 05-Mar-2012    Matthew L. Fidler
 ;;    Last-Updated: Mon Mar  5 23:06:45 2012 (-0600) #1292 (Matthew L. Fidler)
 ;;    Bug fix for autopair-backspace.
-;; 05-Mar-2012    Matthew L. Fidler  
+;; 05-Mar-2012    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb 29 22:24:14 2012 (-0600) #1282 (Matthew L. Fidler)
-;;    Have backspace cancel parenthetical alignment timer canceling 
-;; 29-Feb-2012    Matthew L. Fidler  
+;;    Have backspace cancel parenthetical alignment timer canceling
+;; 29-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb 29 15:39:01 2012 (-0600) #1278 (Matthew L. Fidler)
-;;    Bug fix for paren handling. 
-;; 29-Feb-2012    Matthew L. Fidler  
+;;    Bug fix for paren handling.
+;; 29-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb 29 13:52:33 2012 (-0600) #1276 (Matthew L. Fidler)
 ;;    Made the handling of pairs a timer-based function so it doesn't
 ;;    interfere with work flow.
-;; 29-Feb-2012    Matthew L. Fidler  
+;; 29-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb 29 13:20:17 2012 (-0600) #1262 (Matthew L. Fidler)
 ;;    Better handling of pairs.
-;; 28-Feb-2012    Matthew L. Fidler  
+;; 28-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Tue Feb 28 14:36:30 2012 (-0600) #1236 (Matthew L. Fidler)
 ;;    Added subsequent-whole-line from Le Wang's fork.
-;; 14-Feb-2012    Matthew L. Fidler  
+;; 14-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Tue Feb 14 19:16:10 2012 (-0600) #1230 (Matthew L. Fidler)
 ;;    Fixing issue #2
-;; 01-Feb-2012    Matthew L. Fidler  
+;; 01-Feb-2012    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb  1 21:50:32 2012 (-0600) #1215 (Matthew L. Fidler)
 ;;    Added makefile-gmake-mode to the excluded auto-indent modes.
 ;; 22-Dec-2011    Matthew L. Fidler
@@ -253,7 +253,7 @@
 ;;    Made sure that auto-indent-kill-line doesn't use the kill-line advice.
 ;; 03-Feb-2011    Matthew L. Fidler
 ;;    Last-Updated: Thu Feb  3 09:26:22 2011 (-0600) #837 (Matthew L. Fidler)
-;;    
+;;
 ;; 03-Feb-2011    Matthew L. Fidler
 ;;    Last-Updated: Thu Feb  3 09:26:08 2011 (-0600) #836 (Matthew L. Fidler)
 ;;    Another kill-line bug-fix.
@@ -269,7 +269,7 @@
 ;; 02-Feb-2011    Matthew L. Fidler
 ;;    Last-Updated: Wed Feb  2 13:22:13 2011 (-0600) #756 (Matthew L. Fidler)
 ;;    Added kill-line bug-fix from Le Wang.
-;; 
+;;
 ;;    Also there is a the bug of when called as a function, you need
 ;;    to check for disabled modes every time.
 ;;
@@ -633,7 +633,7 @@ expressions defined in
 
 (defcustom auto-indent-delete-line-char-remove-last-space-prog-mode-regs
   '(("\\(\\s.\\|\\s-\\)" "\\(\\s\"\\|\\sw\\)")
-    ("\\s(" "\\(\\s(\\|\\s_\\|\\sw\\)") 
+    ("\\s(" "\\(\\s(\\|\\s_\\|\\sw\\)")
     ("\\s)" "\\s)"))
   "* Regular expressions for use with `auto-indent-delete-line-char-remove-last-space'.  This is used for programming modes as determined by `auto-indent-is-prog-mode-p'."
   :type '(repeat
@@ -814,7 +814,7 @@ activated (when it should be).  If this is activated,
 auto-indent-mode tries to do the right thing by guessing what key
 should have been pressed to get this event.  If it is the key
 that was pressed enable the advice."
-  
+
   :type 'boolean :group 'auto-indent)
 
 (defcustom auto-indent-engine nil
@@ -953,7 +953,7 @@ http://www.emacswiki.org/emacs/AutoIndentation
            (add-hook 'after-save-hook 'auto-indent-mode-post-command-hook nil 't)
            (add-hook 'post-command-hook 'auto-indent-mode-post-command-hook nil 't)
            (add-hook 'post-command-hook 'auto-indent-mode-post-command-hook-last t t)
-           
+
            (add-hook 'pre-command-hook 'auto-indent-mode-pre-command-hook nil 't)
            (mapc
             (lambda(ad)
@@ -1236,7 +1236,7 @@ standards for Viper, ErgoEmacs and standard emacs"
   "Handle end of line operations
 
 LST is the list of regular expressions to consider.
-ADD lets auto-indent-mode know that it should add a space instead 
+ADD lets auto-indent-mode know that it should add a space instead
 "
   (save-match-data
     (if (or (not add)
@@ -1260,7 +1260,7 @@ ADD lets auto-indent-mode know that it should add a space instead
 			  (delete-char 1))
 			(setq done t)))
 		    lst))))
-      (unless add 
+      (unless add
 	(when (and (eolp) (looking-back "[ \t]+" nil t))
 	  (replace-match ""))))))
 
@@ -1615,7 +1615,7 @@ Allows the kill ring save to delete the beginning white-space if desired."
       (when (and (not auto-indent-last-pre-command-hook-minibufferp)
                  (not (minibufferp))
                  (not (memq indent-line-function auto-indent-disabled-indent-functions)))
-        
+
         (unless (memq 'auto-indent-mode-pre-command-hook pre-command-hook)
           (setq auto-indent-mode-pre-command-hook-line -1)
           (add-hook 'pre-command-hook 'auto-indent-mode-pre-command-hook nil t))
@@ -1682,7 +1682,7 @@ around and the whitespace was deleted from the line."
   (condition-case err
       (when (and (not auto-indent-last-pre-command-hook-minibufferp) (not (minibufferp))
 		 (not (memq indent-line-function auto-indent-disabled-indent-functions)))
-	
+
 	(unless (memq 'auto-indent-mode-pre-command-hook pre-command-hook)
 	  (setq auto-indent-mode-pre-command-hook-line -1)
 	  (add-hook 'pre-command-hook 'auto-indent-mode-pre-command-hook nil t))

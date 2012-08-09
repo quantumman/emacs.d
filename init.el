@@ -7,11 +7,6 @@
 (auto-install-compatibility-setup)
 
 (require 'cl)
-
-;; save load-path for debug
-(require 'save-load-path)
-(save-load-path-initialize)
-
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
 (when
     (when (< emacs-major-version 24)
@@ -32,7 +27,6 @@
 ;;      (expand-file-name "~/.emacs.d/elpa/package.el"))
 ;;   (package-initialize))
 
-
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init.d"))
 (let ((default-directory "~/.emacs.d/init.d"))
   (load (expand-file-name "~/.emacs.d/init.d/subdirs.el")))
@@ -45,6 +39,9 @@
 ;; (setq auto-emacs-init-check-file-regexp "/\\.emacs\\.d/")
 ;; (add-hook 'vc-checkin-hook 'auto-emacs-init-check)
 
+;; save load-path for debug
+(require 'save-load-path)
+(save-load-path-initialize)
 
 (require 'init.char-code)
 

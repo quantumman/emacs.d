@@ -1,7 +1,7 @@
 ;;;; flymake
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/config/flymake"))
 (require 'flymake-for-csharp)
-(require 'flymake-extension)
+;; (require 'flymake-extension)
 ;; (require 'flymake-configuration)
 (setq flymake-extension-use-showtip t)
 (setq flymake-extension-auto-show nil)

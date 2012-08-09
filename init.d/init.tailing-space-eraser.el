@@ -1,32 +1,41 @@
 ;;;; never allow spaces after filled lines.
-(defadvice reindent-then-newline-and-indent (after reindent-then-newline-and-indent-after-advice ())
+;; Delete trailing whitespace when siwtching other buffer or window
+(defadvice switch-to-buffer (around switch-to-buffer--around activate)
+  (delete-trailing-whitespace)
+  ad-do-it
   (delete-trailing-whitespace))
-(ad-activate 'reindent-then-newline-and-indent 'reindent-then-newline-and-indent-after-advice)
+(ad-enable-advice 'switch-to-buffer 'around 'switch-to-buffer--around)
+(ad-activate 'switch-to-buffer)
 
-(defadvice previous-line (after previous-line-after-advice ())
+(defadvice switch-to-buffer-other-frame (around switch-to-buffer-other-frame--around activate)
+  (delete-trailing-whitespace)
+  ad-do-it
   (delete-trailing-whitespace))
-(ad-activate 'previous-line 'previous-line-after-advice)
+(ad-enable-advice 'switch-to-buffer-other-frame 'around 'switch-to-buffer-other-frame--around)
+(ad-activate 'switch-to-buffer-other-frame)
 
-(defadvice next-line (after next-line-after-advice ())
+(defadvice switch-to-buffer-other-window (around switch-to-buffer-other-window--around activate)
+  (delete-trailing-whitespace)
+  ad-do-it
   (delete-trailing-whitespace))
-(ad-activate 'next-line 'next-line-after-advice)
+(ad-enable-advice 'switch-to-buffer-other-window 'around 'switch-to-buffer-other-window--around)
+(ad-activate 'switch-to-buffer-other-window)
 
-(defadvice view-mode (before view-mode-before-advice ())
-  (progn
-    (ad-deactivate 'reindent-then-newline-and-indent)
-    (ad-deactivate 'next-line)
-    (ad-deactivate 'previous-line)))
-(ad-activate 'view-mode 'view-mode-before-advice)
-;; (ad-deactivate 'view-mode 'view-mode-before-advice)
+(defadvice other-window (around other-window--around activate)
+  (delete-trailing-whitespace)
+  ad-do-it
+  (delete-trailing-whitespace))
+(ad-enable-advice 'other-window 'around 'other-window--around)
+(ad-activate 'other-window)
 
-(defadvice view-mode (after view-mode-after-advice ())
-  (progn
-    (ad-activate 'reindent-then-newline-and-indent 'reindent-then-newline-and-indent-after-advice)
-    (ad-activate 'previous-line 'previous-line-after-advice)
-    (ad-activate 'next-line 'next-line-after-advice)))
-(ad-activate 'view-mode 'view-mode-after-advice)
-;; (ad-deactivate 'view-mode 'view-mode-after-advice)
-;;;; end of advices.
+;; Delete trailing-whitespace with saving
+(defun save-buffer--delete-trailing-whitespace ()
+  "This deletes trailing whitespace and then save current buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (when (not (string-equal (buffer-name) "*scratch*"))
+    (save-buffer)))
 
+(global-set-key (kbd "C-x C-s") 'save-buffer--delete-trailing-whitespace)
 
 (provide 'init.tailing-space-eraser)
