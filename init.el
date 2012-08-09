@@ -121,6 +121,7 @@
 (require 'init.windows)
 ;;;
 
+(require 'egg)
 
 ;;; Powershell
 (require 'powershell)
