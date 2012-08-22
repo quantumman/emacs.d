@@ -1,4 +1,3 @@
-
 (defun fullscreen-toggle ()
   "Toggle fullscreen"
   (interactive)

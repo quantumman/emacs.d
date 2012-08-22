@@ -157,7 +157,7 @@
 ;;; Code:
 
 (defvar anything-grep-version "$Id: anything-grep.el,v 1.27 2010-03-21 11:31:04 rubikitch Exp $")
-(require 'anything-config)
+(require 'anything)
 (require 'grep)
 
 (defvar anything-grep-save-buffers-before-grep nil
@@ -297,11 +297,6 @@ GNU grep is expected for COMMAND. The grep result is colorized."
     (run-at-time 1 nil agrep-do-after-minibuffer-exit)
     (setq agrep-do-after-minibuffer-exit nil)))
 (add-hook 'minibuffer-exit-hook 'agrep-minibuffer-exit-hook)
-
-(defun agrep-highlight-line-after-persistent-action ()
-  (when anything-in-persistent-action
-    (anything-persistent-highlight-point (point-at-bol) (point-at-eol))))
-(add-hook 'anything-grep-goto-hook 'agrep-highlight-line-after-persistent-action)
 
 (defun agrep-show (func)
   (if (active-minibuffer-window)
