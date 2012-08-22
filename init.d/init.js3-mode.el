@@ -12,3 +12,5 @@
                     ac-source-yasnippet
                     ac-source-words-in-same-mode-buffers
                     ac-source-abbrev))))
+
+(provide 'init.js3-mode)
