@@ -123,6 +123,8 @@
 
 (require 'egg)
 
+(require 'js3-mode)
+
 ;;; Powershell
 (require 'powershell)
 (require 'powershell-mode)
