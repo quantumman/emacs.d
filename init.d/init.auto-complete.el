@@ -21,6 +21,7 @@
 (add-to-list 'ac-modes 'clojure-mode)
 (add-to-list 'ac-modes 'yatex-mode)
 (add-to-list 'ac-modes 'csharp-mode)
+(add-to-list 'ac-modes 'js3-mode)
 
 ;; enable pos-tip.el
 (require 'pos-tip)
