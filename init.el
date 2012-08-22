@@ -119,11 +119,11 @@
 (require 'init.org-mode)
 
 (require 'init.windows)
+
+(require 'init.js3-mode)
 ;;;
 
 (require 'egg)
-
-(require 'js3-mode)
 
 ;;; Powershell
 (require 'powershell)
