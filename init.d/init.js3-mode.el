@@ -4,3 +4,11 @@
                          "new" "return"  "switch"  "this" "throw" "throw" "try"
                          "typeof" "var" "void" "while" "with"))
     (cache)))
+
+(add-hook 'js3-mode-hook
+          '(lambda ()
+             (setq ac-sources
+                  '(ac-source-javascript-reserved-words
+                    ac-source-yasnippet
+                    ac-source-words-in-same-mode-buffers
+                    ac-source-abbrev))))
