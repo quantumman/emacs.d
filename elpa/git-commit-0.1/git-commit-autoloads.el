@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (git-commit-mode) "git-commit" "git-commit.el"
-;;;;;;  (20279 41220))
+;;;;;;  (20533 35539))
 ;;; Generated autoloads from git-commit.el
 
 (autoload 'git-commit-mode "git-commit" "\
@@ -30,7 +30,7 @@ Turning on git commit calls the hooks in `git-commit-mode-hook'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("git-commit-pkg.el") (20279 41220 19594))
+;;;### (autoloads nil nil ("git-commit-pkg.el") (20533 35539 229000))
 
 ;;;***
 

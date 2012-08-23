@@ -1002,9 +1002,6 @@
  (guru-mode .
 	    [(20120622)
 	     nil "Become an Emacs guru [source: github]" single])
- (groovy-mode .
-	      [(20120331)
-	       nil "Groovy mode derived mode [source: bzr]" single])
  (grin .
        [(20110806)
 	nil "run grin and grind (python replacements for grep and find) putting hits in a grep buffer [source: hg]" single])
@@ -1150,11 +1147,6 @@
  (evil-leader .
 	      [(20111001)
 	       nil "No description available. [source: github]" single])
- (evil .
-       [(20120807)
-	((undo-tree
-	  (0 5 1)))
-	"Extensible Vi layer for Emacs. [source: git]" tar])
  (etags-table .
 	      [(20090327)
 	       nil "Set tags table(s) based on current file [source: wiki]" single])
@@ -1455,5 +1447,13 @@
 	    "An auto-complete source for Clojure using nrepl completions [source: github]" single])
  (ac-dabbrev .
 	     [(20091116)
-	      nil "auto-complete.el source for dabbrev [source: wiki]" single]))
+	      nil "auto-complete.el source for dabbrev [source: wiki]" single])
+ (groovy-mode .
+	      [(20120331)
+	       nil "Groovy mode derived mode [source: bzr]" single])
+ (evil .
+       [(20120807)
+	((undo-tree
+	  (0 5 1)))
+	"Extensible Vi layer for Emacs. [source: git]" tar]))
 
