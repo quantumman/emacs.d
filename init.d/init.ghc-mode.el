@@ -1,5 +1,4 @@
 (require 'init.haskell-mode)
-(require 'ghc)
 ;;;; ghc-mod
 (add-to-list 'exec-path
 	     (expand-file-name "~/.cabal/bin"))
