@@ -412,6 +412,10 @@
 (require 'rst-goodies)
 (require 'rst)
 
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode t)
+(ahs-set-idle-interval 0.5)
+
 (setq-default bidi-display-reordering
 	     nil
 	     bidi-paragraph-direction
