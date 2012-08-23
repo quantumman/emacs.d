@@ -1,0 +1,1 @@
+E:\Users\Yokoyama\.emacs.d\site-lisp\csharp-mode\CsComp\CsComp\obj\Debug\ResolveAssemblyReference.cache
