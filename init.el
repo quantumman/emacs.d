@@ -426,5 +426,7 @@
 	     bidi-paragraph-direction
 	     'left-to-right)
 
+(require 'rebase-mode)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
