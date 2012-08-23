@@ -61,6 +61,14 @@
   )
 (global-set-key (kbd "C-x C-o") 'anything-for-files-and-tabs)
 
+(global-set-key (kbd "M-x")
+		'(lambda ()
+		   (interactive)
+		   (condition-case nil
+		       (anything-execute-extended-command)
+		     (error nil))
+		   ))
+
 (require 'anything-kyr)
 (require 'anything-kyr-config)
 
