@@ -412,6 +412,9 @@
 (require 'rst-goodies)
 (require 'rst)
 
+(require 'windmove)               ; to load the package
+(windmove-default-keybindings)    ; default keybindings
+
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
 (ahs-set-idle-interval 0.5)
