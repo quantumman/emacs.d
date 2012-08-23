@@ -412,5 +412,10 @@
 (require 'rst-goodies)
 (require 'rst)
 
+(setq-default bidi-display-reordering
+	     nil
+	     bidi-paragraph-direction
+	     'left-to-right)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
