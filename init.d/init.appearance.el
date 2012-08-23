@@ -168,7 +168,7 @@
 
     ;; fontの設定
     (set-face-attribute 'default nil
-                    :family "ゆたぽん（コーディング）"
+                    :family "Consolas"
                     :height 110)
     (set-fontset-font nil
                       'japanese-jisx0208
