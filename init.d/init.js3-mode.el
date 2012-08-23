@@ -11,6 +11,8 @@
                   '(ac-source-javascript-reserved-words
                     ac-source-yasnippet
                     ac-source-words-in-same-mode-buffers
-                    ac-source-abbrev))))
+                    ac-source-abbrev))
+	     (setq js3-indent-tabs-mode t)
+	     ))
 
 (provide 'init.js3-mode)
