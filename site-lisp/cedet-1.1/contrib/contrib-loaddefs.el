@@ -78,7 +78,7 @@ minor mode is enabled.
 ;;; Generated autoloads from wisent-csharp.el
 
 (autoload 'wisent-csharp-default-setup "wisent-csharp" "\
-
+Not documented
 
 \(fn)" nil nil)
 
@@ -102,7 +102,7 @@ Use the alternate LALR(1) parser.
 
 ;;;### (autoloads nil nil ("cedet-contrib-load.el" "cedet-contrib.el"
 ;;;;;;  "semantic-ectag-scala.el" "wisent-csharp-wy.el" "wisent-php-wy.el"
-;;;;;;  "wisent-ruby-wy.el" "wisent-ruby.el") (20457 58825 674918))
+;;;;;;  "wisent-ruby-wy.el" "wisent-ruby.el") (20461 38969 387000))
 
 ;;;***
 

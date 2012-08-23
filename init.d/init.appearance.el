@@ -168,7 +168,7 @@
 
     ;; fontの設定
     (set-face-attribute 'default nil
-                    :family "ゆたぽん（コーディング）"
+                    :family "Consolas"
                     :height 110)
     (set-fontset-font nil
                       'japanese-jisx0208
@@ -185,38 +185,44 @@
 		("-cdac$" . 1.3)))
     )
 
-  (global-whitespace-mode 1)
+  (require 'whitespace)
 
   ;; スペースの定義は全角スペースとする。
-  (setq whitespace-space-regexp "\x3000+")
+  (setq whitespace-spacge-regexp "\x3000+")
+
+  (setq whitespace-style '(face tabs tab-mark spaces space-mark))
+
+  (setq whitespace-display-mappings
+	'((space-mark ?\u3000 [?\□])
+	  (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t])
+	  (newline-mark ?\n [?\u21B5 ?\n] [?$ ?\n])))
+
+  ;; 半角スペースを除外
+  ;; (dolist (d '((space-mark ?\ ))
+  ;;   (setq whitespace-display-mappings
+  ;; 	  (delete-if
+  ;; 	   '(lambda (e) (and (eq (car d) (car e))
+  ;; 			     (eq (cadr d) (cadr e))))
+  ;; 	   whitespace-display-mappings))))
+
+  ;; 強調したくない要素を削除
+  ;; (dolist (d '(face lines space-before-tab
+  ;;       	    indentation empty space-after-tab tab-mark))
+  ;;   (setq whitespace-style (delq d whitespace-style)))
 
   ;; 改行の色を変更
   (set-face-foreground 'whitespace-newline "gray60")
 
   ;; スペースの色を変更
   (set-face-foreground 'whitespace-hspace "gray80")
-  (set-face-background 'whitespace-hspace "gray80")
+  (set-face-background 'whitespace-hspace "white")
   (set-face-foreground 'whitespace-space "gray80")
-  (set-face-background 'whitespace-space "gray80")
+  (set-face-background 'whitespace-space "white")
+  (set-face-foreground 'whitespace-tab "grey60")
+  (set-face-background 'whitespace-tab nil)
+  (set-face-underline 'whitespace-tab "grey80")
 
-
-  ;; 半角スペースと改行を除外
-  (dolist (d '((space-mark ?\ ) (newline-mark ?\n)))
-    (setq whitespace-display-mappings
-	  (delete-if
-	   '(lambda (e) (and (eq (car d) (car e))
-			     (eq (cadr d) (cadr e))))
-	   whitespace-display-mappings)))
-
-  ;; 全角スペースと改行を追加
-  (dolist (e '((space-mark   ?\x3000 [?\□])
-	       (newline-mark ?\n     [?\u21B5 ?\n] [?$ ?\n])))
-    (add-to-list 'whitespace-display-mappings e))
-
-  ;; 強調したくない要素を削除
-  (dolist (d '(face lines space-before-tab
-		    indentation empty space-after-tab tab-mark))
-    (setq whitespace-style (delq d whitespace-style)))
+  (global-whitespace-mode t)
 )
 
 (when (= emacs-major-version 22)

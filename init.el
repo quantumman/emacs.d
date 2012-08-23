@@ -7,13 +7,18 @@
 (auto-install-compatibility-setup)
 
 (require 'cl)
+
+;; save load-path for debug
+(require 'save-load-path)
+(save-load-path-initialize)
+
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
 (when
     (when (< emacs-major-version 24)
       (load (expand-file-name "~/.emacs.d/elpa/package.el")))
   (package-initialize))
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
@@ -27,21 +32,41 @@
 ;;      (expand-file-name "~/.emacs.d/elpa/package.el"))
 ;;   (package-initialize))
 
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init.d"))
 (let ((default-directory "~/.emacs.d/init.d"))
   (load (expand-file-name "~/.emacs.d/init.d/subdirs.el")))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
-(let ((default-directory "~/.emacs.d/site-lisp"))
-  (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
+;; (let ((default-directory "~/.emacs.d/site-lisp"))
+;;   (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
+
+
+(defun directory-dirs (dir)
+  "Find all directories in DIR."
+  (unless (file-directory-p dir)
+    (error "Not a directory `%s'" dir))
+  (let ((dir (directory-file-name dir))
+        (dirs '())
+        (files (directory-files dir nil nil t)))
+    (dolist (file files)
+      (unless (member file '("." ".."))
+        (let ((file (concat dir "/" file)))
+          (when (file-directory-p file)
+            (setq dirs (append (cons file
+                                     (directory-dirs file))
+                               dirs))))))
+    dirs))
+
+(defun add-to-load-path-recursively (base)
+  (loop for dir in (directory-dirs base)
+        do (add-to-list 'load-path dir)))
+
+(add-to-load-path-recursively (expand-file-name "~/.emacs.d/site-lisp"))
 
 ;;;; init-check
 ;; (require 'emacs-init-check)
 ;; (setq auto-emacs-init-check-file-regexp "/\\.emacs\\.d/")
 ;; (add-hook 'vc-checkin-hook 'auto-emacs-init-check)
-
-;; save load-path for debug
-(require 'save-load-path)
-(save-load-path-initialize)
 
 (require 'init.char-code)
 
@@ -68,7 +93,7 @@
 
 (require 'init.buffer-conf)
 
-(require 'init.calendar)
+;; (require 'init.calendar)
 
 (require 'init.eldoc)
 
@@ -119,8 +144,6 @@
 (require 'init.org-mode)
 
 (require 'init.windows)
-
-(require 'init.js3-mode)
 ;;;
 
 (require 'egg)
@@ -130,6 +153,7 @@
 (require 'powershell-mode)
 (push '("\\.ps1$" . powershell-mode) auto-mode-alist)
 (add-to-list 'ac-modes 'powershell-mode)
+(setq powershell-indent 4)
 
 ;;;
 (require 'text-adjust)
@@ -346,7 +370,7 @@
 (global-linum-mode t)
 
 ;; 行番号のフォーマット
-(set-face-attribute 'linum nil :foreground "grey40" :height 0.8)
+(set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
 (setq linum-format "%4d")
 
 ;; iconify
@@ -374,9 +398,6 @@
 ;;                                 (interactive)
 ;;                                 (term shell-file-name)))
 
-;; not use tab instead of space to indent
-(setq-default indent-tabs-mode nil)
-
 ;; resume windows after init elisp
 (defadvice yes-or-no-p (around yes-or-no-always-yes)
   "Return alwasy yes."
@@ -387,6 +408,23 @@
 	      (ad-activate 'yes-or-no-p)
 	      (resume-windows)
 	      (ad-deactivate 'yes-or-no-p)))
+
+(require 'rst-goodies)
+(require 'rst)
+
+(require 'windmove)               ; to load the package
+(windmove-default-keybindings)    ; default keybindings
+
+(require 'riece nil t)
+
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode t)
+(ahs-set-idle-interval 0.5)
+
+(setq-default bidi-display-reordering
+	     nil
+	     bidi-paragraph-direction
+	     'left-to-right)
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")

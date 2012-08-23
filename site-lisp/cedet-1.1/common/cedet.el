@@ -130,7 +130,8 @@ load CEDET at the beginning of your init file to avoid this." eieio-version))
   ;; Require specific Emacs versions
   (inversion-require-emacs cedet-emacs-min-version
 			   cedet-xemacs-min-version
-			   cedet-sxemacs-min-version)
+			   cedet-sxemacs-min-version
+                           )
 
   ;; Go up to the parent "<INSTALL-DIR>/cedet" directory.
   (let ((default-directory (expand-file-name ".."))

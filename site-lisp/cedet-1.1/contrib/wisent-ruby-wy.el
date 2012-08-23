@@ -2,8 +2,8 @@
 
 ;;; Copyright (C) 2007 Daniel Debertin (debertin@gmail.com)
 
-;; Author: quantumman <quantumman@quantumman-no-macbook-pro.local>
-;; Created: 2012-06-27 01:39:40+0900
+;; Author:  <Yokoyama@YOKOYAMACS>
+;; Created: 2012-06-21 10:07:47+0900
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

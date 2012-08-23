@@ -47,24 +47,24 @@ Compile the current buffer's associated target.
 (autoload 'project-edit-file-target "ede" "\
 Edit the target OT associated w/ this file.
 
-\(fn (ot ede-target))" nil nil)
+\(fn (OT ede-target))" nil nil)
 
 (autoload 'project-compile-project "ede" "\
 Compile the entire current project OBJ.
 Argument COMMAND is the command to use when compiling.
 
-\(fn (obj ede-project) &optional COMMAND)" nil nil)
+\(fn (OBJ ede-project) &optional COMMAND)" nil nil)
 
 (autoload 'project-compile-target "ede" "\
 Compile the current target OBJ.
 Argument COMMAND is the command to use for compiling the target.
 
-\(fn (obj ede-target) &optional COMMAND)" nil nil)
+\(fn (OBJ ede-target) &optional COMMAND)" nil nil)
 
 (autoload 'project-make-dist "ede" "\
 Build a distribution for the project based on THIS project.
 
-\(fn (this ede-project))" nil nil)
+\(fn (THIS ede-project))" nil nil)
 
 (autoload 'ede-load-project-file "ede" "\
 Project file independent way to read a project in from DIR.
@@ -160,12 +160,12 @@ ROOTPROJ is nil, sinc there is only one project for a directory tree.
 (autoload 'ede-name "ede-base" "\
 Return the name of THIS target.
 
-\(fn (this ede-target))" nil nil)
+\(fn (THIS ede-target))" nil nil)
 
 (autoload 'ede-description "ede-base" "\
 Return a description suitable for the minibuffer about THIS.
 
-\(fn (this ede-project))" nil nil)
+\(fn (THIS ede-project))" nil nil)
 
 (autoload 'ede-documentation-files "ede-base" "\
 Return the documentation files for the current buffer.
@@ -397,12 +397,12 @@ Change .  to _ in the variable name.
 Create a shell to run stuff for TARGET.
 COMMAND is a text string representing the thing to be run.
 
-\(fn (target ede-target) COMMAND)" nil nil)
+\(fn (TARGET ede-target) COMMAND)" nil nil)
 
 (autoload 'ede-shell-buffer "ede-shell" "\
 Get the buffer for running shell commands for TARGET.
 
-\(fn (target ede-target))" nil nil)
+\(fn (TARGET ede-target))" nil nil)
 
 ;;;***
 
@@ -443,8 +443,8 @@ Argument NEWVERSION is the version number to use in the current project.
 ;;;;;;  "ede-proj-elisp.el" "ede-proj-info.el" "ede-proj-misc.el"
 ;;;;;;  "ede-proj-obj.el" "ede-proj-prog.el" "ede-proj-scheme.el"
 ;;;;;;  "ede-proj-shared.el" "ede-proj-skel.el" "ede-source.el" "ede-speedbar.el"
-;;;;;;  "ede-system.el" "makefile-edit.el" "project-am.el") (20457
-;;;;;;  58813 71262))
+;;;;;;  "ede-system.el" "makefile-edit.el" "project-am.el") (20461
+;;;;;;  38955 660000))
 
 ;;;***
 

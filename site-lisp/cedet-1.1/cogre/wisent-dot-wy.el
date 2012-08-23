@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2003, 2004, 2009 Eric M. Ludlam
 
-;; Author: quantumman <quantumman@quantumman-no-macbook-pro.local>
-;; Created: 2012-06-27 01:39:32+0900
+;; Author:  <Yokoyama@YOKOYAMACS>
+;; Created: 2012-06-21 10:07:27+0900
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
@@ -215,15 +215,9 @@
 ;;
 (require 'semantic-lex)
 
-(define-lex-string-type-analyzer wisent-dot-wy--<punctuation>-string-analyzer
-  "string analyzer for <punctuation> tokens."
-  "\\s.+"
-  '((COMMA . ",")
-    (SEMI . ";")
-    (EQUAL . "=")
-    (LINK . "--")
-    (DILINK . "->"))
-  'punctuation)
+(define-lex-keyword-type-analyzer wisent-dot-wy--<keyword>-keyword-analyzer
+  "keyword analyzer for <keyword> tokens."
+  "\\(\\sw\\|\\s_\\)+")
 
 (define-lex-block-type-analyzer wisent-dot-wy--<block>-block-analyzer
   "block analyzer for <block> tokens."
@@ -242,20 +236,26 @@
   nil
   'symbol)
 
+(define-lex-sexp-type-analyzer wisent-dot-wy--<string>-sexp-analyzer
+  "sexp analyzer for <string> tokens."
+  "\\s\""
+  'string)
+
 (define-lex-regex-type-analyzer wisent-dot-wy--<number>-regexp-analyzer
   "regexp analyzer for <number> tokens."
   semantic-lex-number-expression
   nil
   'number)
 
-(define-lex-sexp-type-analyzer wisent-dot-wy--<string>-sexp-analyzer
-  "sexp analyzer for <string> tokens."
-  "\\s\""
-  'string)
-
-(define-lex-keyword-type-analyzer wisent-dot-wy--<keyword>-keyword-analyzer
-  "keyword analyzer for <keyword> tokens."
-  "\\(\\sw\\|\\s_\\)+")
+(define-lex-string-type-analyzer wisent-dot-wy--<punctuation>-string-analyzer
+  "string analyzer for <punctuation> tokens."
+  "\\s.+"
+  '((COMMA . ",")
+    (SEMI . ";")
+    (EQUAL . "=")
+    (LINK . "--")
+    (DILINK . "->"))
+  'punctuation)
 
 
 ;;; Epilogue

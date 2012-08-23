@@ -34,7 +34,7 @@ PREBUTTONTEXT is some text between PREFIX and the object button.
 (autoload 'data-debug-show "eieio-datadebug" "\
 Run ddebug against any EIEIO object OBJ
 
-\(fn (obj eieio-default-superclass))" nil nil)
+\(fn (OBJ eieio-default-superclass))" nil nil)
 
 ;;;***
 
@@ -126,7 +126,7 @@ Works on grep, compile, or other type mode.
 ;;;### (autoloads nil nil ("eieio-base.el" "eieio-comp.el" "eieio-custom.el"
 ;;;;;;  "eieio-doc.el" "eieio-load.el" "eieio-speedbar.el" "eieio-test-methodinvoke.el"
 ;;;;;;  "eieio-test-mro.el" "eieio-test-persist.el" "eieio-tests.el"
-;;;;;;  "eieio.el") (20457 58769 702516))
+;;;;;;  "eieio.el") (20461 38922 16000))
 
 ;;;***
 

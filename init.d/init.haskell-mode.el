@@ -5,7 +5,7 @@
 ;; (remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(setq haskell-font-lock-symbols nil)
+(setq haskell-font-lock-symbols t)
 (require 'inf-haskell)
 ;; (setq haskell-program-name "/usr/bin/ghci -XTemplateHaskell")
 (setq haskell-program-name "ghci -XTemplateHaskell")

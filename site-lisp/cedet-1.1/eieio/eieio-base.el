@@ -276,7 +276,7 @@ identified, and needing more object creation."
 	(slots (nthcdr 2 inputlist))
 	(createslots nil)
 	)
-    
+
     ;; If OBJCLASS is an eieio autoload object, then we need to load it.
     (eieio-class-un-autoload objclass)
 
@@ -368,7 +368,7 @@ Secondarilly, any text properties will be stripped from strings."
 		    (nreverse objlist)))
 		 (t
 		  proposed-value))))
-	 
+
 	 ((stringp proposed-value)
 	  ;; Else, check for strings, remove properties.
 	  (substring-no-properties proposed-value))
@@ -450,7 +450,7 @@ instance."
 		(setq buffer-file-coding-system cs))
 	      ;; Old way - write file.  Leaves message behind.
 	      ;;(write-file cfn nil)
-	      
+
 	      ;; New way - Avoid the vast quantities of error checking
 	      ;; just so I can get at the special flags that disable
 	      ;; displaying random messages.

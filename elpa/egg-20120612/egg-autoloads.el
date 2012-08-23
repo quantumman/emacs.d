@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (egg-minor-mode-find-file-hook egg-minor-mode)
-;;;;;;  "egg" "egg.el" (20515 64677))
+;;;;;;  "egg" "egg.el" (20516 26920))
 ;;; Generated autoloads from egg.el
 
 (autoload 'egg-minor-mode "egg" "\
@@ -37,7 +37,7 @@ egg in current buffer.\\<egg-minor-mode-map>
 ;;;***
 
 ;;;### (autoloads (egg-grep egg-grep-mode egg-grep-process-setup)
-;;;;;;  "egg-grep" "egg-grep.el" (20515 64677))
+;;;;;;  "egg-grep" "egg-grep.el" (20516 26920))
 ;;; Generated autoloads from egg-grep.el
 
 (autoload 'egg-grep-process-setup "egg-grep" "\
@@ -58,7 +58,7 @@ Sets `compilation-last-buffer' and `compilation-window-height'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("egg-pkg.el") (20515 64677 218519))
+;;;### (autoloads nil nil ("egg-pkg.el") (20516 26920 637000))
 
 ;;;***
 

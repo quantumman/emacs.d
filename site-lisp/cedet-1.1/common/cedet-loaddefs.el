@@ -433,7 +433,7 @@ messages to CHANNEL.
 
 ;;;### (autoloads (inversion-upgrade-package inversion-add-to-load-path
 ;;;;;;  inversion-find-version inversion-require-emacs inversion-require)
-;;;;;;  "inversion" "inversion.el" (20362 59689))
+;;;;;;  "inversion" "inversion.el" (20461 38708))
 ;;; Generated autoloads from inversion.el
 
 (autoload 'inversion-require "inversion" "\
@@ -592,7 +592,7 @@ Only pulses the line if `pulse-command-advice-flag' is non-nil.
 ;;;***
 
 ;;;### (autoloads nil nil ("cedet-load.el" "cedet.el" "ezimage.el"
-;;;;;;  "working.el") (20457 58765 722641))
+;;;;;;  "working.el") (20461 38915 513000))
 
 ;;;***
 

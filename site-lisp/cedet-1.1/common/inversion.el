@@ -346,6 +346,8 @@ Optional argument RESERVED is saved for later use."
     package))
 
 ;;;###autoload
+
+
 (defun inversion-require-emacs (emacs-ver xemacs-ver sxemacs-ver)
   "Declare that you need either EMACS-VER, XEMACS-VER or SXEMACE-ver.
 Only checks one based on which kind of Emacs is being run."
