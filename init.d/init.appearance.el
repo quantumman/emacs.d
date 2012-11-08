@@ -26,21 +26,21 @@
 (setq ring-bell-function '(lambda ()))
 ;; font lock color
 (add-hook 'font-lock-mode-hook
-	  '(lambda ()
-	     (set-face-foreground 'font-lock-builtin-face "VioletRed")
-	     ;;(set-face-foreground 'font-lock-comment-face "t")
-	     (set-face-foreground 'font-lock-string-face  "LightSalmon4")
-	     (set-face-foreground 'font-lock-keyword-face "purple4")
-	     (set-face-foreground 'font-lock-constant-face "SkyBlue4")
-	     (set-face-foreground 'font-lock-function-name-face "NavyBlue")
-	     (set-face-foreground 'font-lock-variable-name-face "DarkGoldenrod4")
-	     (set-face-foreground 'font-lock-type-face "DarkGreen")
-	     ;;(set-face-foreground 'font-lock-warning-face "OrangeRed4")
-	     (set-face-bold-p 'font-lock-function-name-face nil)
-	     (set-face-bold-p 'font-lock-type-face nil)
-	     (set-face-bold-p 'font-lock-string-face nil)
-	     (set-face-bold-p 'font-lock-warning-face nil)
-	     ))
+          '(lambda ()
+             (set-face-foreground 'font-lock-builtin-face "VioletRed")
+             ;;(set-face-foreground 'font-lock-comment-face "t")
+             (set-face-foreground 'font-lock-string-face  "LightSalmon4")
+             (set-face-foreground 'font-lock-keyword-face "purple4")
+             (set-face-foreground 'font-lock-constant-face "SkyBlue4")
+             (set-face-foreground 'font-lock-function-name-face "NavyBlue")
+             (set-face-foreground 'font-lock-variable-name-face "DarkGoldenrod4")
+             (set-face-foreground 'font-lock-type-face "DarkGreen")
+             ;;(set-face-foreground 'font-lock-warning-face "OrangeRed4")
+             (set-face-bold-p 'font-lock-function-name-face nil)
+             (set-face-bold-p 'font-lock-type-face nil)
+             (set-face-bold-p 'font-lock-string-face nil)
+             (set-face-bold-p 'font-lock-warning-face nil)
+             ))
 
 
 ;; (set-cursor-color "Black")
@@ -52,19 +52,19 @@
   (interactive)
   (if window-system
       (progn
-	;; use 120 char wide window for largeish displays
-	;; and smaller 80 column windows for smaller displays
-	;; pick whatever numbers make sense for you
-	(if (> (x-display-pixel-width) 1280)
-	    (add-to-list 'default-frame-alist (cons 'width 120))
-	  (add-to-list 'default-frame-alist (cons 'width 80)))
-	;; for the height, subtract a couple hundred pixels
-	;; from the screen height (for panels, menubars and
-	;; whatnot), then divide by the height of a char to
-	;; get the height we want
-	(add-to-list 'default-frame-alist
-		     (cons 'height (/ (- (x-display-pixel-height) 200)
-				      (frame-char-height)))))))
+        ;; use 120 char wide window for largeish displays
+        ;; and smaller 80 column windows for smaller displays
+        ;; pick whatever numbers make sense for you
+        (if (> (x-display-pixel-width) 1280)
+            (add-to-list 'default-frame-alist (cons 'width 120))
+          (add-to-list 'default-frame-alist (cons 'width 80)))
+        ;; for the height, subtract a couple hundred pixels
+        ;; from the screen height (for panels, menubars and
+        ;; whatnot), then divide by the height of a char to
+        ;; get the height we want
+        (add-to-list 'default-frame-alist
+                     (cons 'height (/ (- (x-display-pixel-height) 200)
+                                      (frame-char-height)))))))
 
 (set-frame-size-according-to-resolution)
 
@@ -78,13 +78,13 @@
 
     ;; フォントセットを作る
     (let* ((fontset-name "default") ; フォントセットの名前
-    	   (size 13) ; ASCIIフォントのサイズ [9/10/12/14/15/17/19/20/...]
-    	   (asciifont "Monaco") ; ASCIIフォント
-    	   (jpfont "Hiragino Maru Gothic ProN") ; 日本語フォント
-    	   (font (format "%s-%d:weight=normal:slant=normal" asciifont size))
-    	   (fontspec (font-spec :family asciifont))
-    	   (jp-fontspec (font-spec :family jpfont))
-    	   (fsn (create-fontset-from-ascii-font font nil fontset-name)))
+           (size 13) ; ASCIIフォントのサイズ [9/10/12/14/15/17/19/20/...]
+           (asciifont "Monaco") ; ASCIIフォント
+           (jpfont "Hiragino Maru Gothic ProN") ; 日本語フォント
+           (font (format "%s-%d:weight=normal:slant=normal" asciifont size))
+           (fontspec (font-spec :family asciifont))
+           (jp-fontspec (font-spec :family jpfont))
+           (fsn (create-fontset-from-ascii-font font nil fontset-name)))
       (set-fontset-font fsn 'japanese-jisx0213.2004-1 jp-fontspec)
       (set-fontset-font fsn 'japanese-jisx0213-2 jp-fontspec)
       (set-fontset-font fsn 'katakana-jisx0201 jp-fontspec) ; 半角カナ
@@ -97,11 +97,11 @@
 
     ;; フォントサイズの比を設定
     (dolist (elt '(("^-apple-hiragino.*" . 1.2)
-    		   (".*osaka-bold.*" . 1.0)
-    		   (".*osaka-medium.*" . 1.0)
-    		   (".*courier-bold-.*-mac-roman" . 1.0)
-    		   (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-    		   (".*monaco-bold-.*-mac-roman" . 0.9)))
+                   (".*osaka-bold.*" . 1.0)
+                   (".*osaka-medium.*" . 1.0)
+                   (".*courier-bold-.*-mac-roman" . 1.0)
+                   (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+                   (".*monaco-bold-.*-mac-roman" . 0.9)))
       (add-to-list 'face-font-rescale-alist elt))
 
     ;; デフォルトフェイスにフォントセットを設定
@@ -130,9 +130,9 @@
     (let ((table (make-translation-table-from-alist '((#x301c . #xff5e))) ))
       (mapc
        (lambda (coding-system)
-	 (coding-system-put coding-system :decode-translation-table table)
-	 (coding-system-put coding-system :encode-translation-table table)
-	 )
+         (coding-system-put coding-system :decode-translation-table table)
+         (coding-system-put coding-system :encode-translation-table table)
+         )
        '(utf-8 cp932 utf-16le)))
 
 
@@ -145,25 +145,25 @@
 
       ;; decode-translation-table の設定
       (coding-system-put 'euc-jp :decode-translation-table
-			 (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+                         (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
       (coding-system-put 'iso-2022-jp :decode-translation-table
-			 (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+                         (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
       (coding-system-put 'utf-8 :decode-translation-table
-			 (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+                         (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
 
       ;; encode-translation-table の設定
       (coding-system-put 'euc-jp :encode-translation-table
-			 (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
+                         (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
       (coding-system-put 'iso-2022-jp :encode-translation-table
-			 (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
+                         (get 'japanese-ucs-cp932-to-jis-map 'translation-table))
       (coding-system-put 'cp932 :encode-translation-table
-			 (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+                         (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
       (coding-system-put 'utf-8 :encode-translation-table
-			 (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
+                         (get 'japanese-ucs-jis-to-cp932-map 'translation-table))
 
       ;; charset と coding-system の優先度設定
       (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
-			    'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
+                            'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
       (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932))
 
     ;; fontの設定
@@ -178,11 +178,11 @@
                       (font-spec :family "MS Gothic"))
 
     (setq face-font-rescale-alist
-	  '((".*profont-medium.*" . 1.0)
-		(".*profont-bold.*" . 1.0)
-		(".*nfmotoyacedar-bold.*" . 1.4)
-		(".*nfmotoyacedar-medium.*" . 1.4)
-		("-cdac$" . 1.3)))
+          '((".*profont-medium.*" . 1.0)
+                (".*profont-bold.*" . 1.0)
+                (".*nfmotoyacedar-bold.*" . 1.4)
+                (".*nfmotoyacedar-medium.*" . 1.4)
+                ("-cdac$" . 1.3)))
     )
 
   (require 'whitespace)
@@ -193,21 +193,21 @@
   (setq whitespace-style '(face tabs tab-mark spaces space-mark))
 
   (setq whitespace-display-mappings
-	'((space-mark ?\u3000 [?\□])
-	  (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t])
-	  (newline-mark ?\n [?\u21B5 ?\n] [?$ ?\n])))
+        '((space-mark ?\u3000 [?\□])
+          (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t])
+          (newline-mark ?\n [?\u21B5 ?\n] [?$ ?\n])))
 
   ;; 半角スペースを除外
   ;; (dolist (d '((space-mark ?\ ))
   ;;   (setq whitespace-display-mappings
-  ;; 	  (delete-if
-  ;; 	   '(lambda (e) (and (eq (car d) (car e))
-  ;; 			     (eq (cadr d) (cadr e))))
-  ;; 	   whitespace-display-mappings))))
+  ;;      (delete-if
+  ;;       '(lambda (e) (and (eq (car d) (car e))
+  ;;                         (eq (cadr d) (cadr e))))
+  ;;       whitespace-display-mappings))))
 
   ;; 強調したくない要素を削除
   ;; (dolist (d '(face lines space-before-tab
-  ;;       	    indentation empty space-after-tab tab-mark))
+  ;;                indentation empty space-after-tab tab-mark))
   ;;   (setq whitespace-style (delq d whitespace-style)))
 
   ;; 改行の色を変更
