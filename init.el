@@ -348,7 +348,7 @@
 (set-frame-parameter nil 'alpha '(100 . 100))
 (defun switch-opacity (opacityp)
   (let ((alpha-value (if opacityp '(100 . 100) '(0 . 0)) )
-	(lockp (if opacityp 0 1)))
+        (lockp (if opacityp 0 1)))
     (set-frame-parameter nil 'alpha alpha-value)
     (toggle-read-only lockp)))
 
@@ -356,10 +356,10 @@
  (defun toggle-opacity ()
    (interactive)
    (let ((opacity (frame-parameter nil 'alpha))
-	 (opacity-switcher #'(lambda () (switch-opacity t))))
+         (opacity-switcher #'(lambda () (switch-opacity t))))
      (if (= 100 (if (listp opacity)
-		    (car opacity) opacity))
-	 (switch-opacity nil)
+                    (car opacity) opacity))
+         (switch-opacity nil)
        (switch-opacity t))))
 (global-set-key (kbd "C-c t") 'toggle-opacity)
 
@@ -375,16 +375,16 @@
 
 ;; iconify
 (global-set-key (kbd "\C-z\C-z")
-		'iconify-or-deiconify-frame)
+                'iconify-or-deiconify-frame)
 
 ;; (defun linum-dynamic-format ()
 ;;   (setq linum-format
-;; 	(concat "%"
-;; 		(format "%dd"
-;; 			(+ 1
-;; 			   (length
-;; 			    (int-to-string
-;; 			     (count-lines (point-min) (point-max)))))))))
+;;      (concat "%"
+;;              (format "%dd"
+;;                      (+ 1
+;;                         (length
+;;                          (int-to-string
+;;                           (count-lines (point-min) (point-max)))))))))
 ;; (defadvice next-line (after next-line-after-advice ())
 ;;   (linum-dynamic-format))
 ;; (ad-activate 'next-line 'next-line-after-advice)
@@ -404,10 +404,10 @@
   (setq ad-return-value t))
 
 (add-hook 'after-init-hook
-	  #'(lambda ()
-	      (ad-activate 'yes-or-no-p)
-	      (resume-windows)
-	      (ad-deactivate 'yes-or-no-p)))
+          #'(lambda ()
+              (ad-activate 'yes-or-no-p)
+              (resume-windows)
+              (ad-deactivate 'yes-or-no-p)))
 
 (require 'rst-goodies)
 (require 'rst)
@@ -418,9 +418,9 @@
 (require 'riece nil t)
 
 (setq-default bidi-display-reordering
-	     nil
-	     bidi-paragraph-direction
-	     'left-to-right)
+             nil
+             bidi-paragraph-direction
+             'left-to-right)
 
 (require 'rebase-mode)
 
