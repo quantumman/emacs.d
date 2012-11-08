@@ -418,7 +418,7 @@
 (require 'riece nil t)
 
 (require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
+(global-auto-highlight-symbol-mode nil)
 (ahs-set-idle-interval 0.5)
 
 (setq-default bidi-display-reordering
