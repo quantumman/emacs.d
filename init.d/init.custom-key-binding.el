@@ -14,7 +14,7 @@
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
 (defun region-set-key (key-binding region-command command)
-  "Set commands for a key bindings.
+  "Set multiple commands for a key bindings.
 region-command is called when region is activated, and command is called when region is not activated."
   (unless (commandp region-command)
     (error "Not command: %S" region-command))
