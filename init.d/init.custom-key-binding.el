@@ -13,7 +13,7 @@
   (move-to-window-line -1))
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
-(defun command-alias-by-region (key-binding c1 c2)
+(defun region-set-key (key-binding c1 c2)
   "Set commands for a key bindings.
 c1 is called when region is activated, and c2 is called when region is not activated."
   (unless (commandp c1)
@@ -33,8 +33,8 @@ c1 is called when region is activated, and c2 is called when region is not activ
                                 (deactivate-mark))
                             (funcall command2)))))))
 
-(command-alias-by-region "\C-w" 'kill-region 'ispell-word)
-(command-alias-by-region [C-tab] 'indent-region 'indent-for-tab-command)
+(region-set-key "\C-w" 'kill-region 'ispell-word)
+(region-set-key [C-tab] 'indent-region 'indent-for-tab-command)
 
 (global-set-key "\C-f" 'forward-word)
 (global-set-key "\C-b" 'backward-word)
