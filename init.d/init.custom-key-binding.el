@@ -13,15 +13,15 @@
   (move-to-window-line -1))
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
-(defun region-set-key (key-binding c1 c2)
+(defun region-set-key (key-binding region-command command)
   "Set commands for a key bindings.
-c1 is called when region is activated, and c2 is called when region is not activated."
-  (unless (commandp c1)
-    (error "Not command: %S" c1))
-  (unless (commandp c2)
-    (error "Not command: %S" c2))
-  (lexical-let ((command1 c1)
-                (command2 c2))
+region-command is called when region is activated, and command is called when region is not activated."
+  (unless (commandp region-command)
+    (error "Not command: %S" region-command))
+  (unless (commandp region-command)
+    (error "Not command: %S" command))
+  (lexical-let ((command1 region-command)
+                (command2 command))
     (global-set-key key-binding
                     #'(lambda ()
                         (interactive)
