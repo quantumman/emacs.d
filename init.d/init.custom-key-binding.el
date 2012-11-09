@@ -34,6 +34,7 @@ c1 is called when region is activated, and c2 is called when region is not activ
                             (funcall command2)))))))
 
 (command-alias-by-region "\C-w" 'kill-region 'ispell-word)
+(command-alias-by-region [C-tab] 'indent-region 'indent-for-tab-command)
 
 (global-set-key "\C-f" 'forward-word)
 (global-set-key "\C-b" 'backward-word)
