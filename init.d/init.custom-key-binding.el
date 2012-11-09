@@ -13,19 +13,27 @@
   (move-to-window-line -1))
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
-(defun spell-checking-or-kill-region ()
-  "Run spell-checking if there is no marker,
-run kill-region if marker and current point are different position."
-  (interactive)
-  (let ((start (mark-marker))
-	(end (point-marker)))
-    (if (region-active-p)
-	(progn
-	  (kill-region start end)
-	  (deactivate-mark))
-	(ispell-word)
-	)))
-(global-set-key "\C-w" 'spell-checking-or-kill-region)
+(defun command-alias-by-region (key-binding c1 c2)
+  "Set commands for a key bindings.
+c1 is called when region is activated, and c2 is called when region is not activated."
+  (unless (commandp c1)
+    (error "Not command: %S" c1))
+  (unless (commandp c2)
+    (error "Not command: %S" c2))
+  (lexical-let ((command1 c1)
+                (command2 c2))
+    (global-set-key key-binding
+                    #'(lambda ()
+                        (interactive)
+                        (let ((start (mark-marker))
+                              (end (point-marker)))
+                          (if (region-active-p)
+                              (progn
+                                (funcall command1 start end)
+                                (deactivate-mark))
+                            (funcall command2)))))))
+
+(command-alias-by-region "\C-w" 'kill-region 'ispell-word)
 
 (global-set-key "\C-f" 'forward-word)
 (global-set-key "\C-b" 'backward-word)
