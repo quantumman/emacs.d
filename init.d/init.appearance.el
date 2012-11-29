@@ -72,10 +72,6 @@
 
   (when (or cocoa-p ns-p)
 
-    (setq fixed-width-use-QuickDraw-for-ascii t)
-    (setq mac-allow-anti-aliasing t)
-    (add-to-list 'default-frame-alist '(font . "fontset-default"))
-    
     (set-face-attribute 'default nil
                         :family "monaco"
                         :height 140)
