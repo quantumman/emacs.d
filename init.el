@@ -424,5 +424,7 @@
 
 (require 'rebase-mode)
 
+(require 'feature-mode)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
