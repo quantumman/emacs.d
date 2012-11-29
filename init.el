@@ -430,5 +430,15 @@
 
 (require 'camelCase)
 
+(defun ispell-camelCase ()
+  (interactive)
+  (save-excursion
+    (goto-char (car (bounds-of-thing-at-point 'word)))
+    (while (camelCase-forward-word 1)
+      (let ((head (progn (camelCase-backward-word 1) (point)))
+            (tail (progn (camelCase-forward-word 1) (point))))
+        (ispell-region head tail)
+        ))))
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
