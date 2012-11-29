@@ -5,17 +5,17 @@
 
 ;; Copyright © 1995, 1996, 1997  Joseph Brian Wells
 ;; Copyright © 1993, 1994, 1995 by William M. Perry <wmperry@cs.indiana.edu>
-;; 
+;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 2 of the License, or
 ;; (at your option) any later version.
-;; 
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
-;; 
+;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with GNU Emacs; see the file COPYING.  If not, write to the
 ;; Free Software Foundation, Inc., 59 Temple Place - Suite 330,
@@ -84,7 +84,7 @@ w3-parse-buffer which it is w3-parse-buffer's responsibility to
   (defvar w3-p-d-current-element)
   (put 'w3-p-d-current-element 'variable-documentation
        "Information structure for the current open element.")
-  
+
   (defvar w3-p-d-exceptions)
   (put 'w3-p-d-exceptions 'variable-documentation
        "Alist specifying elements (dis)allowed because of an (ex|in)clusion
@@ -92,7 +92,7 @@ exception of some containing element (not necessarily the immediately
 containing element).  Each item specifies a transition for an element
 which overrides that specified by the current element's content model.
 Each item is of the form (TAG ACTION *same ERRORP).")
-  
+
   (defvar w3-p-d-in-parsed-marked-section)
   (put 'w3-p-d-in-parsed-marked-section 'variable-documentation
        "Are we in a parsed marked section so that we have to scan for \"]]>\"?")
@@ -121,7 +121,7 @@ preexpanded the entities for speed.  We have also regexp-quoted the
 strings to be replaced, so they can be used with looking-at.  This should
 never be in an element's overrides field unless
 w3-p-d-shortref-chars is also in the field.")
-  
+
   (defvar w3-p-d-shortref-chars)
   (put 'w3-p-d-shortref-chars 'variable-documentation
        "A string of the characters which can start shortrefs in the current
@@ -132,7 +132,7 @@ overrides field of an element, its handling is magical in that the
 variable w3-p-d-non-markup-chars is saved to the element's undo-list and
 updated at the same time.  This should never be in an element's overrides
 field unless w3-p-d-shortrefs is also in the field.")
-  
+
   (defvar w3-p-d-tag-name)
   (put 'w3-p-d-tag-name 'variable-documentation
        "Name of tag we are looking at, as an Emacs Lisp symbol.
@@ -142,7 +142,7 @@ Only non-nil when we are looking at a tag.")
   (put 'w3-p-d-end-tag-p 'variable-documentation
        "Is the tag we are looking at an end tag?
 Only non-nil when we are looking at a tag.")
-  
+
   )
 
 
@@ -163,14 +163,14 @@ Only true for the first error message.")
   ;; valid HTML which is bad because it appears to rely on the way certain
   ;; browsers will display it, which should only be displayed to the user
   ;; if they have really asked for it.
-  
+
   (defmacro w3-debug-html (&rest body)
     "Emit a warning message.
 These keywords may be used at the beginning of the arguments:
   :mandatory-if sexp -- force printing if sexp evaluates non-nil.
   :bad-style         -- do not print unless w3-debug-html is 'style.
   :outer             -- do not include the current element in the element
-                        context we report. 
+                        context we report.
   :nocontext         -- do not include context where error detected.
 The remaining parameters are treated as the body of a progn, the value of
 which must be a string to use as the error message."
@@ -205,7 +205,7 @@ which must be a string to use as the error message."
 
   ;; This is unsatisfactory.
   (put 'w3-debug-html 'lisp-indent-function 0)
-  
+
   (put 'w3-debug-html 'edebug-form-spec
        '([&rest &or ":nocontext" ":outer" [":mandatory-if" form] ":bad-style"]
          &rest form))
@@ -227,7 +227,7 @@ which must be a string to use as the error message."
                        (insert "*ERROR*")
                        (prog1
                            (w3-quote-for-string
-                            (buffer-substring 
+                            (buffer-substring
                              (max (- (point) 27) (point-min))
                              (min (+ (point) 20) (point-max))))
                          (delete-char -7))))))) w3-current-badhtml))
@@ -365,14 +365,14 @@ available.  Codes in the range [128,160] are substituted using
 
 ;; These are the general entities in HTML 3.0 in terms of which the math
 ;; shortrefs are defined:
-;; 
+;;
 ;;   <!ENTITY REF1   STARTTAG   "SUP">
 ;;   <!ENTITY REF2   ENDTAG     "SUP">
 ;;   <!ENTITY REF3   STARTTAG   "SUB">
 ;;   <!ENTITY REF4   ENDTAG     "SUB">
 ;;   <!ENTITY REF5   STARTTAG   "BOX">
 ;;   <!ENTITY REF6   ENDTAG     "BOX">
-;; 
+;;
 ;; We're ignoring them because these names should really be local to the
 ;; DTD and not visible in the document.  They might change at any time in
 ;; future HTML standards.
@@ -404,7 +404,7 @@ available.  Codes in the range [128,160] are substituted using
      ((and (looking-at "&\\([a-z][-a-z0-9.]*\\)[\ ;\n]?") ; \n should be \r
            ;; We are looking at a general entity reference, maybe undefined.
            (setq w3-p-s-entity
-                 (get 
+                 (get
                   (intern (buffer-substring (match-beginning 1) (match-end 1)))
                   'html-entity-expansion)))
 
@@ -412,7 +412,7 @@ available.  Codes in the range [128,160] are substituted using
       ;; issue a warning and delete the reference.  However, the HTML
       ;; standard (contradicting the SGML standard) says to leave the
       ;; undefined reference in the text.
-    
+
       ;; We are looking at a defined general entity reference.
       (replace-match "")
       (cond ((eq 'CDATA (car w3-p-s-entity))
@@ -507,13 +507,13 @@ available.  Codes in the range [128,160] are substituted using
       ;; *** Strictly speaking, we should issue a warning for &#foo; if foo
       ;; is not a function character in the SGML declaration.
       )
-   
+
      ((eq ?& (char-after (point)))
       ;; We are either looking at an undefined reference or a & that does
       ;; not start a reference (in which case we should not have been called).
       ;; Skip over the &.
       (forward-char 1))
-   
+
      (t
       ;; What is the code doing calling us if we're not looking at a "&"?
       (error "this should never happen"))))
@@ -612,7 +612,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;       scanned for end-tags.
 ;;     XINHERIT: special non-SGML-standard mode which means to use the
 ;;       content model of the containing element instead.
-;;  
+;;
 ;;   or a vector of this structure:
 ;;
 ;;     [(INCLUDES INCSPACEP (((TAG ...) . TRANSITION) ...) DEFAULT) ...]
@@ -626,7 +626,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;     (ACTION NEW-STATE ERRORP)
 ;;     (ACTION NEW-STATE)
 ;;     (ACTION)
-;;    
+;;
 ;;   where DEFAULT is one of these:
 ;;
 ;;     nil  or  TRANSITION
@@ -643,7 +643,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;     INCSPACEP specifies how to handle data characters which include
 ;;     only whitespace characters.  The value is non-nil to indicate
 ;;     (*include *same nil) or nil to indicate (*discard *same nil).
-;;    
+;;
 ;;     TAG is a symbol corresponding to the start-tag we are looking at,
 ;;     or *data when seeing character data that includes at least one
 ;;     non-space character.
@@ -657,7 +657,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;       *discard: Discard a start-tag or data characters.
 ;;       *retry: Try again after processing NEW-STATE and ERRORP.
 ;;       ELEMENT: Open ELEMENT (with default attributes), then try again
-;;           using its content model. 
+;;           using its content model.
 ;;
 ;;     NEW-STATE (optional, default *same) is the index of the state to
 ;;     move to after processing the element or one of these:
@@ -665,7 +665,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;       *next: change the current state + 1.
 ;;     The initial state is 0.  NEW-STATE does not matter if ACTION is
 ;;     *close.
-;;    
+;;
 ;;     ERRORP (optional, default nil) if non-nil indicates this transition
 ;;     represents an error.  The error message includes this value if it
 ;;     is a string.
@@ -680,7 +680,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;   values for VAR are:
 ;;
 ;;     w3-p-d-exceptions: See doc string.
-;;  
+;;
 ;;     w3-p-d-shortrefs: See doc string.
 ;;
 ;;     w3-p-d-shortref-chars: See doc string.
@@ -694,7 +694,7 @@ available.  Codes in the range [128,160] are substituted using
 ;;
 ;;   undo-list: an alist of of former values of local variables
 ;;   of w3-parse-buffer to restore upon closing this element.  Each
-;;   item on the list is of the format (VAR . VALUE-TO-RESTORE). 
+;;   item on the list is of the format (VAR . VALUE-TO-RESTORE).
 ;;
 ;;   attributes: an alist of attributes and values.  Each item on
 ;;   this list is of the format (ATTRIBUTE-NAME . VALUE).  Each
@@ -742,10 +742,10 @@ available.  Codes in the range [128,160] are substituted using
   ;; *** move this to be with DTD declaration.
   (defmacro w3-known-element-p (tag)
     `(get ,tag 'html-element-info))
-  
+
   (defsubst w3-sgml-name-to-string (sym)
     (upcase (symbol-name sym)))
-  
+
   )
 
 
@@ -843,7 +843,7 @@ skip-chars-forward."
     (setq w3-p-d-open-element-stack (cons w3-p-d-current-element
                                           w3-p-d-open-element-stack))
     (setq w3-p-d-current-element (w3-fresh-element-for-tag tag))
-    
+
     ;; Warn if deprecated or obsolete.
     (if (w3-element-deprecated w3-p-d-current-element)
         (w3-debug-html :outer
@@ -854,7 +854,7 @@ skip-chars-forward."
                     "Deprecated")
                   (w3-sgml-name-to-string
                    (w3-element-name w3-p-d-current-element)))))
-    
+
     ;; Store attributes.
     ;; *** we are not handling #CURRENT attributes (HTML has none).
     (w3-set-element-attributes w3-p-d-current-element attributes)
@@ -864,7 +864,7 @@ skip-chars-forward."
     ;; both occurrences of VALUE are the same.  The first one needs to be
     ;; changed to the proper attribute name by consulting the DTD.
     ;; ********************
-  
+
     ;; Handle syntax/semantics overrides of new current element.
     (cond ((w3-element-overrides w3-p-d-current-element)
            (setq w3-p-s-overrides
@@ -891,13 +891,13 @@ skip-chars-forward."
              (setq w3-p-s-overrides (cdr w3-p-s-overrides)))
            (w3-set-element-undo-list w3-p-d-current-element
                                      w3-p-s-undo-list)))
-  
+
     ;; Handle content-model inheritance.  (Very non-SGML!)
     (if (eq 'XINHERIT (w3-element-content-model w3-p-d-current-element))
         (w3-set-element-content-model
-         w3-p-d-current-element 
+         w3-p-d-current-element
          (w3-element-content-model (car w3-p-d-open-element-stack))))
-  
+
     )
   )
 
@@ -936,7 +936,7 @@ skip-chars-forward."
     ;; w3-p-d-end-tag-p.
     ;; (OLD: ... otherwise it is a symbol indicating the start-tag
     ;; of an element or *data or *space indicating data characters.)
-    
+
     (cond ((and inferred
                 (not (w3-element-end-tag-omissible w3-p-d-current-element)))
            (w3-debug-html
@@ -956,7 +956,7 @@ skip-chars-forward."
                             (format "start-tag for %s"
                                     (w3-sgml-name-to-string inferred)))
                            )))))
-    
+
     ;; Undo any variable bindings of this element.
     (cond ((w3-element-undo-list w3-p-d-current-element)
            (setq w3-p-s-undo-list
@@ -965,10 +965,10 @@ skip-chars-forward."
              (set (car (car w3-p-s-undo-list))
                   (cdr (car w3-p-s-undo-list)))
              (setq w3-p-s-undo-list (cdr w3-p-s-undo-list)))))
-  
+
     (setq w3-p-s-end-tag
           (w3-element-end-tag-name w3-p-d-current-element))
-  
+
     ;; Fix up the content of the current element in preparation for putting
     ;; it in the parent.
     ;; Remove trailing newline from content, if there is one, otherwise send
@@ -978,7 +978,7 @@ skip-chars-forward."
           ((equal "\n" (car w3-p-s-content))
            (setq w3-p-s-content (cdr w3-p-s-content)))
           )
-  
+
     (cond ;; *** Handle LISTING the way the old parser did.
           ((eq 'EMPTY (w3-element-content-model w3-p-d-current-element))
            ;; Do nothing, can't have an end tag.
@@ -999,16 +999,16 @@ skip-chars-forward."
                      (format "Empty %s element."
                              (w3-sgml-name-to-string
                               (w3-element-name w3-p-d-current-element))))))))
-    
+
     ;; Put the current element in the proper place in its parent.
     ;; This will cause an error if we overpop the stack.
     (w3-set-element-content
-     (car w3-p-d-open-element-stack) 
+     (car w3-p-d-open-element-stack)
      (cons (list (w3-element-name w3-p-d-current-element)
                  (w3-element-attributes w3-p-d-current-element)
                  (nreverse w3-p-s-content))
            (w3-element-content (car w3-p-d-open-element-stack))))
-  
+
     ;; Pop the stack.
     (setq w3-p-d-current-element (car w3-p-d-open-element-stack))
     (setq w3-p-d-open-element-stack (cdr w3-p-d-open-element-stack)))
@@ -1099,16 +1099,16 @@ skip-chars-forward."
             (setq element (w3-make-element))
             (w3-set-element-name element name)
             (w3-set-element-end-tag-name
-             element 
+             element
              (intern (concat "/" (symbol-name name))))
             (w3-set-element-state element 0)
             (w3-set-element-content-model element content-model)
             (w3-set-element-end-tag-omissible element end-tag-omissible)
-            
+
             (or (memq deprecated '(nil t obsolete))
                 (error "impossible"))
             (w3-set-element-deprecated element deprecated)
-            
+
             ;; Inclusions and exclusions are specified differently in the
             ;; human-coded DTD than in the format the implementation uses.
             ;; The human-coded version is designed to be easy to edit and to
@@ -1119,7 +1119,7 @@ skip-chars-forward."
             (let ((inclusions (cdr-safe (assq 'inclusions item)))
                   (exclusions (cdr-safe (assq 'exclusions item)))
                   (exclusion-mode '*close)
-                  (exclusion-message 
+                  (exclusion-message
                    (format "%s exclusion" (w3-sgml-name-to-string name)))
                   exceptions)
               (while inclusions
@@ -1145,7 +1145,7 @@ skip-chars-forward."
                                          overrides)
                                  overrides)))
                 (w3-set-element-overrides element overrides)))
-            
+
             (setq result (cons (cons name element) result))))
         (setq items (cdr items)))
       result)))
@@ -1181,7 +1181,7 @@ skip-chars-forward."
        ;; Emacs-w3 extensions
        (%emacsw3-crud  . (pinhead flame cookie yogsothoth hype peek))
 
-       (%block . (p %list dl form %preformatted 
+       (%block . (p %list dl form %preformatted
                     %blockquote isindex fn table fig note
                     multicol center %block-deprecated %block-obsoleted))
        (%list . (ul ol))
@@ -1189,10 +1189,10 @@ skip-chars-forward."
        (%blockquote . (bq))
        (%block-deprecated . (dir menu blockquote))
        (%block-obsoleted . (xmp listing))
-       
+
        ;; Why is IMG in this list?
        (%pre.exclusion . (*include img *discard tab math big small sub sup))
-       
+
        (%text . (*data b %notmath sub sup %emacsw3-crud %input.fields))
        (%notmath . (%special %font %phrase %misc))
        (%font . (i u s strike tt big small sub sup font
@@ -1200,7 +1200,7 @@ skip-chars-forward."
        (%phrase . (em strong dfn code samp kbd var cite blink))
        (%special . (a nobr img applet object font basefont br script style map math tab span bdo))
        (%misc . (q lang au person acronym abbrev ins del))
-       
+
        (%formula . (*data %math))
        (%math . (box above below %mathvec root sqrt array sub sup
                      %mathface))
@@ -1703,7 +1703,7 @@ skip-chars-forward."
        ;; completely impossible to specify in SGML.
        ;;
        ;; See
-       ;; <URL:http://www.eit.com/goodies/lists/www.lists/www-html.1995q3/0603.html>  
+       ;; <URL:http://www.eit.com/goodies/lists/www.lists/www-html.1995q3/0603.html>
        ;;
        ;; Questions: Does EMBED require the end-tag?  How does NOEMBED fit
        ;; into this?  Where can EMBED appear?
@@ -1797,7 +1797,7 @@ skip-chars-forward."
           (setq w3-p-s-state-transitions
                 (aref w3-p-s-content-model
                       (w3-element-state w3-p-d-current-element)))
-        
+
           ;; Optimize the common cases.
           (cond
            ((eq '*space tag-name)
@@ -1896,22 +1896,22 @@ skip-chars-forward."
                               '(*close *same "not allowed here")))
                     (setq w3-p-s-transition
                           '(*discard *same "not allowed here")))))))
-            
+
             ;; We have found a transition to take.  The transition is of
             ;; the format (ACTION NEW-STATE ERRORP) where the latter two
             ;; items are optional.
-            
+
             ;; First, handle any state-change.
             (or (memq (car-safe (cdr w3-p-s-transition)) '(nil *same))
                 (w3-set-element-state
-                 w3-p-d-current-element 
+                 w3-p-d-current-element
                  (if (eq '*next (car-safe (cdr w3-p-s-transition)))
                      (1+ (w3-element-state w3-p-d-current-element))
                    (car-safe (cdr w3-p-s-transition)))))
-          
+
             ;; Handle any error message.
             (if (car-safe (cdr-safe (cdr w3-p-s-transition)))
-                (w3-debug-html 
+                (w3-debug-html
                   :mandatory-if (and (eq '*data tag-name)
                                      (eq '*discard (car w3-p-s-transition)))
                   (format "Bad %s [%s], %s"
@@ -1939,7 +1939,7 @@ skip-chars-forward."
                                    (concat "inferring <"
                                            (w3-sgml-name-to-string action)
                                            ">")))))))
-            
+
             ;; Handle the action.
             (cond
              ((eq '*include (car w3-p-s-transition))
@@ -1967,10 +1967,10 @@ skip-chars-forward."
               t)
              (t
               (error "impossible transition")))))))
-    
+
       ;; Empty while loop body.
       )
-  
+
     ;; Return value to user indicating whether to include or discard item:
     ;;   t   ==> include
     ;;   nil ==> discard
@@ -2047,10 +2047,10 @@ Returns a data structure containing the parsed information."
       (run-hooks 'w3-parse-hooks)       ;
 
       (goto-char (point-min))
-  
+
       ;; *** Should premunge line boundaries.
       ;; ********************
-  
+
       (let* (
              ;; Speed hack, see the variable doc string.
              (gc-cons-threshold (if (> w3-gc-cons-threshold-multiplier 0)
@@ -2060,7 +2060,7 @@ Returns a data structure containing the parsed information."
 
              ;; Used to determine if we made any progress since the last loop.
              (last-loop-start (point-min))
-        
+
              ;; How many iterations of the main loop have occurred.  Used only
              ;; to send messages to the user periodically, since this function
              ;; can take some time.
@@ -2070,91 +2070,91 @@ Returns a data structure containing the parsed information."
              (status-message-format
               (if url-show-status
                   (format "Parsed %%3d%%%% of %d..." (- (point-max) (point-min)))))
-         
+
              ;; Use a float value for 100 if possible, otherwise integer.
              ;; Determine which we can use outside of the loop for speed.
              (one-hundred (funcall (if (fboundp 'float) 'float 'identity) 100))
-         
+
              ;; The buffer which contains the HTML we are parsing.  This
              ;; variable is used to avoid using the more expensive
              ;; save-excursion.
              (parse-buffer (current-buffer))
-         
+
              ;; Points to start of region of text since the previous tag.
              (between-tags-start (point-min))
-         
+
              ;; Points past end of region of text since the previous tag.  Only
              ;; non-nil when the region has been completely determined and is
              ;; ready to be processed.
              between-tags-end
-         
+
              ;; See doc string.
              w3-p-d-tag-name
-         
+
              ;; See doc string.
              w3-p-d-end-tag-p
-         
+
              ;; Is the tag we are looking at a null-end-tag-enabling
              ;; start-tag?
              net-tag-p
-         
+
              ;; Attributes of the tag we are looking at.  An alist whose items
              ;; are pairs of the form (SYMBOL . STRING).
              tag-attributes
-         
+
              ;; Points past end of attribute value we are looking at.  Points
              ;; past the syntactic construct, not the value of the attribute,
              ;; which may be at (1- attribute-value-end).
              attribute-value-end
-         
+
              ;; Points past end of tag we are looking at.
              tag-end
-         
+
              ;; See doc string.
              (w3-p-d-current-element (w3-fresh-element-for-tag '*document))
-         
+
              ;; See doc string.
              (w3-p-d-open-element-stack (list (w3-fresh-element-for-tag '*holder)))
-         
+
              ;; ***not implemented yet***
              (marked-section-undo-stack nil)
-         
+
              ;; See doc string.
              (w3-p-d-debug-url t)
-         
+
              ;; Any of the following variables with the comment ";*NESTED*"
              ;; are syntactic or semantic features that were introduced by
              ;; some containing element or marked section which will be undone
              ;; when we close that element or marked section.
-         
+
              ;; See doc string.
              (w3-p-d-non-markup-chars nil) ;*NESTED*
-         
+
              ;; See doc string.
              (w3-p-d-null-end-tag-enabled nil) ;*NESTED*
-         
+
              ;; See doc string.
              (w3-p-d-in-parsed-marked-section nil) ;*NESTED*
-         
+
              ;; See doc string.
              (w3-p-d-shortrefs nil)     ;*NESTED*
-         
+
              ;; See doc string.
              (w3-p-d-shortref-chars nil) ;*NESTED*
-         
+
              ;; ******* maybe not needed.
-             ;; 
+             ;;
              ;; ;; Are we recognizing start-tags?
              ;; (recognizing-start-tags t)     ;*NESTED*
-             ;; 
+             ;;
              ;; ;; Are we recognizing end-tags?  If this is non-nil and not t,
              ;; ;; then only the end tag of the current open element is
              ;; ;; recognized.
              ;; (recognizing-end-tags t)       ;*NESTED*
-         
+
              ;; See doc string.
              (w3-p-d-exceptions nil)    ;*NESTED*
-         
+
              ;; Scratch variables used in this function
              ref attr-name attr-value content-model content open-list
              )
@@ -2186,11 +2186,11 @@ Returns a data structure containing the parsed information."
          (while
              ;; Continue as long as we processed something last time and we
              ;; have more to process.
-             (prog1 
+             (prog1
                  (not (and (= last-loop-start (point))
                            (eobp)))
                (setq last-loop-start (point)))
-      
+
            ;; Display progress messages if asked and/or do incremental display
            ;; of results
            (cond ((= 0 (% (setq loop-count (1+ loop-count)) 40))
@@ -2198,10 +2198,10 @@ Returns a data structure containing the parsed information."
                       (message status-message-format
                                ;; Percentage of buffer processed.
                                (/ (* (point) one-hundred) (point-max))))))
-      
+
            ;; Go to next interesting thing in the buffer.
            (skip-chars-forward w3-p-d-non-markup-chars)
-      
+
            ;; We are looking at a markup-starting character, and invalid
            ;; character, or end of buffer.
            (cond
@@ -2226,7 +2226,7 @@ Returns a data structure containing the parsed information."
                (setq w3-p-d-end-tag-p (eq ?/ (char-after (point)))
                      between-tags-end (1- (point)))
                (goto-char (match-end 0))
-          
+
                ;; Read the attributes from a start-tag.
                (if w3-p-d-end-tag-p
                    (if (looking-at "[ \t\r\n/]*[<>]")
@@ -2235,7 +2235,7 @@ Returns a data structure containing the parsed information."
                      ;; attribute/value pairs on end tags.  *sigh*
                      (w3-debug-html "Evil attributes on end tag.")
                      (skip-chars-forward "^>"))
-           
+
                  ;; Attribute values can be:
                  ;;   "STRING"   where STRING does not contain the double quote
                  ;;   'STRING'   where STRING does not contain the single quote
@@ -2260,7 +2260,7 @@ Returns a data structure containing the parsed information."
                          "\\([a-z_][-a-z0-9.]*\\(\\([_:][-a-z0-9._:]*\\)?\\)\\)"
                          ;; Trailing whitespace and perhaps an "=".
                          "[ \n\r\t]*\\(\\(=[ \n\r\t]*\\)?\\)")))
-               
+
                    (cond ((/= (match-beginning 2) (match-end 2))
                           (w3-debug-html
                            :nocontext
@@ -2326,7 +2326,7 @@ Returns a data structure containing the parsed information."
                            (while (progn (skip-chars-forward "^'") (not (eobp)))
                              (delete-char 1))
                            (goto-char (point-min))))
-                     
+
                          ;; In attribute value literals, EE and RS are ignored
                          ;; and RE and SEPCHAR characters sequences are
                          ;; replaced by SPACEs.
@@ -2424,7 +2424,7 @@ Returns a data structure containing the parsed information."
                      ;; *** Another piece of code will fix the attribute name if it
                      ;; is wrong.
                      (setq attr-value (symbol-name attr-name))))
-             
+
                    ;; Accumulate the attributes.
                    (setq tag-attributes (cons (cons attr-name attr-value)
                                               tag-attributes)))
@@ -2472,7 +2472,7 @@ Returns a data structure containing the parsed information."
                      (setq tag-attributes (cons (cons 'class (list w3-p-s-btdt))
                                                 tag-attributes))))
                  )
-          
+
                ;; Process the end of the tag.
                (skip-chars-forward " \t\n\r")
                (cond ((eq ?> (char-after (point)))
@@ -2494,7 +2494,7 @@ Returns a data structure containing the parsed information."
                          (and html-element-info
                               (eq 'EMPTY
                                   (w3-element-content-model
-                                   html-element-info)))) 
+                                   html-element-info))))
                        ;; XHTML empty element which is not ordinarily
                        ;; empty.  Simulate by inserting an end tag.
                        (save-excursion
@@ -2516,9 +2516,9 @@ Returns a data structure containing the parsed information."
                        (format "Bad unclosed %s%s tag"
                                (if w3-p-d-end-tag-p "/" "")
                                (w3-sgml-name-to-string w3-p-d-tag-name)))))
-            
+
                (setq tag-end (point)))
-           
+
               ((looking-at "/?>")
                ;; We are looking at an empty tag (<>, </>).
                (setq w3-p-d-end-tag-p (eq ?/ (char-after (point))))
@@ -2532,11 +2532,11 @@ Returns a data structure containing the parsed information."
                ;; *** Make sure this is not at top level.
                (setq between-tags-end (1- (point)))
                (setq tag-end (match-end 0)))
-         
+
               ;; *** In SGML, <(doctype)element> is valid tag syntax.  This
               ;; cannot occur in HTML because the CONCUR option is off in the
               ;; SGML declaration.
-         
+
               ((looking-at "!--")
                ;; We found a comment, delete to end of comment.
                (delete-region
@@ -2561,7 +2561,7 @@ Returns a data structure containing the parsed information."
                   (or (re-search-forward "--[ \t\r\n]*>" nil t)
                       (search-forward ">" nil t))
                   (point))))
-           
+
               ((looking-at "!>\\|\\?[^>]*>")
                ;; We are looking at an empty comment or a processing
                ;; instruction.  Delete it.
@@ -2594,7 +2594,7 @@ Returns a data structure containing the parsed information."
                      (if (eq ?> (char-after (point)))
                          (forward-char))))
                   (point))))
-         
+
               ((looking-at "!\\\[\\(\\([ \t\n\r]*[a-z]+\\)+[ \t\n\r]*\\)\\\[")
                ;; We are looking at a marked section.
                ;; *** Strictly speaking, we should issue a warning if the
@@ -2667,7 +2667,7 @@ Returns a data structure containing the parsed information."
                ;; it at all.  We have skipped over the < already, so just loop
                ;; again.
                )))
-       
+
             ((eq ?& (char-after (point)))
              (w3-expand-entity-at-point-maybe))
 
@@ -2684,7 +2684,7 @@ Returns a data structure containing the parsed information."
              (setq between-tags-end (point))
              (setq tag-end (1+ (point)))
              (setq w3-p-d-tag-name (w3-element-name w3-p-d-current-element)))
-       
+
             ;; This can be slow, since we'll hardly ever get here.
             ;; *** Strictly speaking, I think we're supposed to handle
             ;; shortrefs that begin with the same characters as other markup,
@@ -2706,7 +2706,7 @@ Returns a data structure containing the parsed information."
              (let ((pt (point)))
                (insert ref)
                (goto-char pt)))
-         
+
             ((looking-at (eval-when-compile
                            (concat "[" (w3-invalid-sgml-chars) "]")))
              (w3-debug-html
@@ -2726,10 +2726,10 @@ Returns a data structure containing the parsed information."
                     (setq w3-p-d-tag-name '*document)
                     (setq w3-p-d-end-tag-p t)
                     (setq tag-end (point)))))
-         
+
             (t
              (error "unreachable code, this can't happen")))
-        
+
            ;; If we have determined the boundaries of a non-empty between-tags
            ;; region of text, then handle it.
            (cond
@@ -2744,7 +2744,7 @@ Returns a data structure containing the parsed information."
                (goto-char between-tags-start)
                (skip-chars-forward " \t\n\r" between-tags-end)
                (cond
-                ((w3-grok-tag-or-data (prog1 
+                ((w3-grok-tag-or-data (prog1
                                           (if (= between-tags-end (point))
                                               '*space
                                             '*data)
@@ -2781,20 +2781,20 @@ Returns a data structure containing the parsed information."
                                                            (point))
                                          content))))
                    (w3-set-element-content w3-p-d-current-element content))))))
-          
+
              (setq between-tags-end nil)))
-      
+
            ;; If the previous expression modified (point), then it went to
            ;; the value of between-tags-end.
-      
+
            ;; If we found a start or end-tag, we need to handle it.
            (cond
             (w3-p-d-tag-name
-        
+
              ;; Move past the tag and prepare for next between-tags region.
              (goto-char tag-end)
              (setq between-tags-start (point))
-        
+
              (cond
               (w3-p-d-end-tag-p
                ;; Handle an end-tag.
@@ -2805,7 +2805,7 @@ Returns a data structure containing the parsed information."
                  ;; any).  Then we close all of the elements.  On a conforming
                  ;; SGML document this can do no wrong and it's not
                  ;; unreasonable on a non-conforming document.
-            
+
                  ;; Can't safely modify stack until we know the element we want
                  ;; to find is in there, so work with a copy.
                  (setq open-list w3-p-d-open-element-stack)
@@ -2832,13 +2832,13 @@ Returns a data structure containing the parsed information."
                 ;; content model.
                 ((w3-grok-tag-or-data w3-p-d-tag-name)
                  (w3-open-element w3-p-d-tag-name tag-attributes)
-            
+
                  ;; Handle NET-enabling start tags.
                  (cond ((and net-tag-p
                              (not w3-p-d-null-end-tag-enabled))
                         ;; Save old values.
-                        (w3-set-element-undo-list 
-                         w3-p-d-current-element 
+                        (w3-set-element-undo-list
+                         w3-p-d-current-element
                          (cons (cons 'w3-p-d-non-markup-chars
                                      w3-p-d-non-markup-chars)
                                (cons '(w3-p-d-null-end-tag-enabled . nil)
@@ -2846,10 +2846,10 @@ Returns a data structure containing the parsed information."
                         ;; Alter syntax.
                         (setq w3-p-d-null-end-tag-enabled t)
                         (w3-update-non-markup-chars)))
-            
+
                  (setq content-model
                        (w3-element-content-model w3-p-d-current-element))
-            
+
                  ;; If the element does not have parsed contents, then we
                  ;; can find its contents immediately.
                  (cond
@@ -2869,7 +2869,7 @@ Returns a data structure containing the parsed information."
                      ;; XCDATA: special non-SGML-standard mode which includes
                      ;; all data characters until "</foo" is seen where "foo"
                      ;; is the name of this element (for XMP and LISTING).
-                     (if (search-forward 
+                     (if (search-forward
                           (concat "</" (symbol-name
                                         (w3-element-name w3-p-d-current-element)))
                           nil 'move)
@@ -2897,20 +2897,20 @@ Returns a data structure containing the parsed information."
                  ;; The element is illegal here.  We'll just discard the start
                  ;; tag as though we never saw it.
                  ))))
-        
+
              (setq w3-p-d-tag-name nil)
              (setq w3-p-d-end-tag-p nil)
              (setq net-tag-p nil)
              (setq tag-attributes nil)
              (setq tag-end nil)))
-        
+
            ;; End of main while loop.
            )
-    
+
          ;; We have finished parsing the buffer!
          (if status-message-format
              (message "%sdone" (format status-message-format 100)))
-    
+
          ;; *** For debugging, save the true parse tree.
          ;; *** Make this look inside *DOCUMENT.
          (setq w3-last-parse-tree

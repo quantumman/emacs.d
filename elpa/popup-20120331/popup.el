@@ -137,7 +137,7 @@ untouched."
        (unwind-protect
            (progn ,@body)
          (set-buffer-modified-p modified)))))
-  
+
 (defun popup-preferred-width (list)
   "Return the preferred width to show LIST beautifully."
   (loop with tab-width = 4
@@ -336,7 +336,7 @@ usual."
   (popup-set-filtered-list popup list)
   (setf (popup-pattern popup) nil)
   (setf (popup-original-list popup) list))
-  
+
 (defun popup-set-filtered-list (popup list)
   (let ((offset
          (if (> (popup-direction popup) 0)
@@ -532,7 +532,7 @@ KEYMAP is a keymap that will be put on the popup contents."
             (insert " ")
             (setq padding (make-overlay begin (point)))
             (overlay-put padding 'evaporate t))))
-      
+
       ;; Case: the popup overflows
       (if overflow
           (if foldable
@@ -554,7 +554,7 @@ KEYMAP is a keymap that will be put on the popup contents."
         (setq column 0)
         (decf popup-width margin-left)
         (setq margin-left-cancel t))
-      
+
       (dotimes (i height)
         (let (overlay begin w bottom (dangle t) (prefix "") (postfix ""))
           (when around
@@ -684,7 +684,7 @@ KEYMAP is a keymap that will be put on the popup contents."
                       (concat " " (or (popup-item-symbol item) " "))
                     "")
         for summary = (or (popup-item-summary item) "")
-        
+
         do
         ;; Show line and set item to the line
         (popup-set-line-item popup o
@@ -697,7 +697,7 @@ KEYMAP is a keymap that will be put on the popup contents."
                              :symbol sym
                              :summary summary
                              :keymap keymap)
-        
+
         finally
         ;; Remember current height
         (setf (popup-current-height popup) (- o offset))
@@ -971,11 +971,11 @@ PROMPT is a prompt string when reading events during event loop."
   (and (eq margin t) (setq margin 1))
   (or margin-left (setq margin-left margin))
   (or margin-right (setq margin-right margin))
-  
+
   (let ((it (popup-fill-string string width popup-tip-max-width)))
     (setq width (car it)
           lines (cdr it)))
-  
+
   (setq tip (popup-create point width height
                           :min-height min-height
                           :around around

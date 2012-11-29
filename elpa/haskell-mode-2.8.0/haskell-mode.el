@@ -69,7 +69,7 @@
 ;;
 ;; This mode is based on an editing mode by Simon Marlow 11/1/92
 ;; and heavily modified by Graeme E Moss and Tommy Thorn 7/11/98.
-;; 
+;;
 ;; If you have any problems or suggestions specific to a supported
 ;; module, consult that module for a list of known bugs, and an
 ;; author to contact via email.  For general problems or suggestions,
@@ -143,7 +143,7 @@
 ;;   Altered indent-line-function to indent-relative.
 ;;
 ;; Version 0.100:
-;; 
+;;
 ;;   First official release.
 
 ;; Present Limitations/Future Work (contributions are most welcome!):
@@ -327,7 +327,7 @@ be set to the preferred literate style."
 	       (modify-syntax-entry i "_" table))
 	     (setq i (1+ i)))))
        (standard-syntax-table)))
-    
+
     (modify-syntax-entry ?\` "$`" table)
     (modify-syntax-entry ?\\ "\\" table)
     (mapc (lambda (x)
@@ -502,7 +502,7 @@ Invokes `haskell-mode-hook'."
 ;;         (let ();(prefix-start (point)))
 ;;           (skip-syntax-forward "^w")
 ;;           (make-string (- (point) line-start) ?\s))))))
-          
+
 
 
 ;;;###autoload

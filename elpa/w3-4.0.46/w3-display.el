@@ -98,7 +98,7 @@
 (eval-when-compile
   (defmacro w3-get-attribute (attr)
     `(cdr-safe (assq ,attr args)))
-  
+
   (defmacro w3-get-face-info (info &optional other)
     (let ((var (intern (format "w3-face-%s" info))))
       `(push (w3-get-style-info (quote ,info) node
@@ -164,9 +164,9 @@
 	    (end (ad-get-arg 2))
 	    (orig nil ))
 	(setq orig (get-text-property start 'personality))
-	ad-do-it 
+	ad-do-it
 	(and orig
-	     (put-text-property start end 
+	     (put-text-property start end
 				'personality orig)))))
 
 (defconst w3-fill-prefixes-vector
@@ -347,7 +347,7 @@
 (defun w3-display-infer-contrasting-color (color)
   ;; Simple little algorithm suggested by Adam Hammer
   ;; <hammer@math.purdue.edu>
-  ;; 
+  ;;
   ;; Extremes are black and white, so make those the two
   ;; choices. Convert the color to grayscale (0.299R + 0.587G +
   ;; 0.114B) and then choose either black or white depending upon
@@ -523,7 +523,7 @@ If the face already exists, it is unmodified."
 	    (mm-disable-multibyte)
 	    (url-insert-file-contents href)
  	    (setq buffer-file-name nil)
- 	    (set-buffer-modified-p nil)    
+ 	    (set-buffer-modified-p nil)
 	    (let ((coding-system-for-write 'binary))
 	      (write-region (point-min) (point-max) fname 5))
 	    (setq w3-cookie-cache (cons (cons href fname) w3-cookie-cache))))
@@ -717,11 +717,11 @@ If the face already exists, it is unmodified."
        (otherwise			; Assume 'inline' rendering as default
 	nil))
     )
-    
+
 
   (defmacro w3-display-progress-meter ()
     `(url-lazy-message "Drawing... %c" (aref "/|\\-" (random 4))))
-    
+
   (defmacro w3-display-handle-end-break ()
     `(case (pop break-style)
        (block				; Full paragraph break
@@ -736,11 +736,11 @@ If the face already exists, it is unmodified."
 	(w3-display-line-break 0)
 	(pop w3-display-whitespace-stack)
 	(pop w3-display-liststyle-stack)
-	(pop w3-display-alignment-stack))      
+	(pop w3-display-alignment-stack))
        (otherwise			; Assume 'inline' rendering as default
 	nil))
      )
-)  
+)
 
 
 ;; <link> handling
@@ -903,7 +903,7 @@ If the face already exists, it is unmodified."
     (let ((default-enable-multibyte-characters nil))
       (with-temp-buffer
 	(mm-insert-part handle)
-	(setq glyph 
+	(setq glyph
 	      (let ((type (cdr-safe (assoc (car (mm-handle-type handle))
 					   w3-image-mappings))))
 		(if (fboundp 'image-normalize)
@@ -977,7 +977,7 @@ If the face already exists, it is unmodified."
 (defcustom w3-dummy-img-alt-repl "*"
   "*Dummy image alt string replacement."
   :group 'w3-images
-  :type 'string)  
+  :type 'string)
 
 (defun w3-default-image-alt-func (fname)
   ;; Assumes height/width bound by calling function
@@ -1106,8 +1106,8 @@ This vector is used when terminal characters are used directly")
 
 (defvar w3-table-border-chars w3-table-ascii-border-chars
   "Vector of characters to use to draw table borders.
-w3-setup-terminal-chars sets this to one of 
-w3-table-ascii-border-chars, 
+w3-setup-terminal-chars sets this to one of
+w3-table-ascii-border-chars,
 w3-table-glyph-border-chars, or
 w3-table-graphic-border-chars.")
 
@@ -1172,7 +1172,7 @@ w3-table-border-chars to one of the the three other vectors"
 			       (aref w3-table-graphic-border-chars c))))))
 	(setq w3-table-border-chars w3-table-glyph-border-chars
 	      w3-terminal-properties nil)))
-     (t 
+     (t
       (setq w3-table-border-chars w3-table-graphic-border-chars
 	    w3-terminal-properties (list 'start-open t
 					 'end-open t
@@ -1214,7 +1214,7 @@ This will only work if we used glyphs rather than text properties"
     (while (< i (length w3-table-border-chars))
       (and (aref w3-table-border-chars i)
 	   (< (aref w3-table-border-chars i) 16)
-	   (aset tr 
+	   (aset tr
 		 (aref w3-table-glyph-border-chars i)
 		 (aref w3-table-ascii-border-chars i)))
       (setq i (1+ i)))
@@ -1229,7 +1229,7 @@ This will only work if we used glyphs rather than text properties"
 
 (defvar w3-display-table-cut-words-p nil
   "*Whether to cut words that are oversized in table cells")
-  
+
 (defvar w3-display-table-force-borders (featurep 'emacspeak)
   "*Whether to always draw table borders
 Can sometimes make the structure of a document clearer")
@@ -1295,13 +1295,13 @@ Can sometimes make the structure of a document clearer")
       (let ((fill-column (cond ((eq minmax 'min)
 				3)
 			       ((eq minmax 'max)
-				400))) 
+				400)))
 	    (fill-prefix "")
 	    (w3-last-fill-pos (point-min))
 	    a retval
 	    (w3-do-incremental-display nil)
 	    (hr-regexp  (concat "^"
-				(regexp-quote 
+				(regexp-quote
 				 (make-string 5 (w3-horizontal-rule-char)))
 				"*$"))
 	    )
@@ -1335,9 +1335,9 @@ Can sometimes make the structure of a document clearer")
 	max-vector
 	rows cols
 	;;(w3-form-elements (and (boundp 'w3-form-elements) w3-form-elements))
-	(table-info (assq 'w3-table-info (cadr node)))) 
-    
-    (if table-info 
+	(table-info (assq 'w3-table-info (cadr node))))
+
+    (if table-info
 	(setq min-vector (nth 1 table-info)
 	      max-vector (nth 2 table-info)
 	      rows       (nth 3 table-info)
@@ -1346,11 +1346,11 @@ Can sometimes make the structure of a document clearer")
       (push (cons '*table-autolayout args) w3-display-open-element-stack)
       (let (content
 	    cur
-	    (table-spans (list nil))	; don't make this '(nil) 
+	    (table-spans (list nil))	; don't make this '(nil)
 	    ptr
 	    col
 	    constraints
-	    
+
 	    colspan rowspan min max)
 	(setq content (nth 2 node))
 	(setq rows 0 cols 0)
@@ -1410,14 +1410,14 @@ Can sometimes make the structure of a document clearer")
 	      max-vector (make-vector cols 0))
 	(let (start end i mincellwidth maxcellwidth)
 	  (mapcar (function (lambda (c)
-			      (cond ((= (cadr c) 1) 
-				     (aset min-vector (car c) 
+			      (cond ((= (cadr c) 1)
+				     (aset min-vector (car c)
 					   (max (aref min-vector (car c))
 						(nth 2 c)))
-				     (aset max-vector (car c) 
+				     (aset max-vector (car c)
 					   (max (aref max-vector (car c))
 						(nth 3 c))))
-				    (t 
+				    (t
 				     (setq start (car c)
 					   end (+ (car c) (cadr c))
 					   mincellwidth 0
@@ -1458,19 +1458,19 @@ Can sometimes make the structure of a document clearer")
 		  (list min-vector max-vector rows cols))
 	    (cadr node))
       (pop w3-display-open-element-stack))
-    
+
     (let (max-width
-	  min-width 
+	  min-width
 	  ret-vector
 	  col
 	  )
-    
+
 
       (setq max-width (apply '+ (append max-vector (list cols 1))))
       (setq min-width (apply '+ (append min-vector (list cols 1))))
 
       ;; the comments in the cond are excerpts from rfc1942 itself
-      (cond 
+      (cond
        ;;   1.  The minimum table width is equal to or wider than the available
        ;;       space. In this case, assign the minimum widths and allow the
        ;;       user to scroll horizontally. For conversion to braille, it will
@@ -1479,18 +1479,18 @@ Can sometimes make the structure of a document clearer")
        ;;       before the table.
        ((>= min-width fill-column)
 	(setq ret-vector min-vector))
-     
+
        ;;   2.  The maximum table width fits within the available space. In
        ;;       this case, set the columns to their maximum widths.
        ((<= max-width fill-column)
 	(setq ret-vector max-vector))
-     
+
        ;;   3.  The maximum width of the table is greater than the available
        ;;       space, but the minimum table width is smaller. In this case,
        ;;       find the difference between the available space and the minimum
        ;;       table width, lets call it W. Lets also call D the difference
        ;;       between maximum and minimum width of the table.
-     
+
        ;;       For each column, let d be the difference between maximum and
        ;;       minimum width of that column. Now set the column's width to the
        ;;       minimum width plus d times W over D. This makes columns with
@@ -1505,7 +1505,7 @@ Can sometimes make the structure of a document clearer")
 	  (while (< col (length ret-vector))
 	    (setq d (- (aref max-vector col)
 		       (aref min-vector col)))
-	    (aset ret-vector col 
+	    (aset ret-vector col
 		  (+ (aref min-vector col)
 		     (/ (* d W) D)))
 	    (setq col (1+ col)))
@@ -1672,7 +1672,7 @@ Can sometimes make the structure of a document clearer")
 		       (setq c i
 			     e (+ i colspan))
 		       (while (< c e)
-			 (setq fill-column (+ fill-column 
+			 (setq fill-column (+ fill-column
 					      (aref column-dimensions c)
 					      1)
 			       c (1+ c)))
@@ -1720,7 +1720,7 @@ Can sometimes make the structure of a document clearer")
 		       (let ((j (1- colspan)))
 			 (while (> j 0)
 			   (aset table-colspans (+ i j) 0)
-			   (setq j (1- j))))		
+			   (setq j (1- j))))
 		       (setq i (+ i colspan))
 		       ;; skip over columns that have leftover content
 		       (while (and (< i num-cols)
@@ -1742,10 +1742,10 @@ Can sometimes make the structure of a document clearer")
 
 		   ;; on the last row empty any pending rowspans per the rfc
 		   (if content nil
-		     (fillarray table-rowspans 1)) 
+		     (fillarray table-rowspans 1))
 
 		   ;; Find the tallest rectangle that isn't a rowspanning cell
-		   (setq height 0 
+		   (setq height 0
 			 i 0)
 		   (while (< i num-cols)
 		     (if (= 1 (aref table-rowspans i))
@@ -1762,16 +1762,16 @@ Can sometimes make the structure of a document clearer")
 			   (case valign
 			     ((center middle)
 			      (aset formatted-cols i
-				    (append (make-list (/ (- height (length this-rectangle)) 2) 
+				    (append (make-list (/ (- height (length this-rectangle)) 2)
 						       colspan-fill-line)
 					    this-rectangle)))
 			     (bottom
-			      (aset formatted-cols i 
+			      (aset formatted-cols i
 				    (append (make-list (- height (length this-rectangle))
 						       colspan-fill-line)
 					    this-rectangle))))))
 		     (setq i (+ i (max 1 (aref table-colspans i))))))))
-	     
+
 
 	     ;; fix broken colspans (this should only matter on illegal tables)
 	     (setq i 0)
@@ -1780,7 +1780,7 @@ Can sometimes make the structure of a document clearer")
 		   (aset table-colspans i 1))
 	       (setq i (+ i (aref table-colspans i))))
 
-	     ;; Insert a separator 
+	     ;; Insert a separator
 	     (insert fill-prefix)
 	     (setq i 0)
 	     (let (rflag bflag tflag lflag)
@@ -1801,7 +1801,7 @@ Can sometimes make the structure of a document clearer")
 ;;; but it messes up indentation on cell columns.
 ;;;		   (if border
 		       (w3-insert-terminal-char
-			(w3-table-lookup-char t nil t nil border-char) 
+			(w3-table-lookup-char t nil t nil border-char)
 			(aref column-dimensions i));;;)
 		   (setq i (1+ i)))
 		  ((car (aref formatted-cols i))
@@ -1821,9 +1821,9 @@ Can sometimes make the structure of a document clearer")
 		 (w3-insert-terminal-char
 		  (w3-table-lookup-char lflag (/= row 1) nil t border-char))
 		 (insert "\n"));;;)
-	     
+
 	     ;; recalculate height (in case we've shortened a rowspanning cell)
-	     (setq height 0 
+	     (setq height 0
 		   i 0)
 	     (while (< i num-cols)
 	       (if (= 1 (aref table-rowspans i))
@@ -1832,7 +1832,7 @@ Can sometimes make the structure of a document clearer")
 
 	     (aset whole-table-rowspans row-index (copy-sequence table-rowspans))
 	     (aset whole-table-colspans row-index (copy-sequence table-colspans))
-	     
+
 	     ;; update row-dimensions
 	     (aset row-dimensions row-index (1+ height))
 	     (setq row-index (1+ row-index))
@@ -1844,23 +1844,23 @@ Can sometimes make the structure of a document clearer")
 	       (setq i 0)
 	       (while (< i num-cols)
 		 (if (car (aref formatted-cols i))
-		     (insert (pop (aref formatted-cols i))) 
-		   (insert-char ?  (aref table-colwidth i) t)) 
+		     (insert (pop (aref formatted-cols i)))
+		   (insert-char ?  (aref table-colwidth i) t))
 		 (w3-insert-terminal-char (w3-table-lookup-char nil t nil t border-char))
 		 (setq i (+ i (max (aref table-colspans i) 1))))
 	       (insert "\n")
 	       ;;(and w3-do-incremental-display (w3-pause))
 	       (setq height (1- height)))
-	     
+
 	     (setq i 0)
 	     (while (< i num-cols)
 	       (if (> (aref table-rowspans i) 0)
 		   (decf (aref table-rowspans i)))
 	       (incf i))
-	     
+
 	     (setq prev-rowspans (copy-sequence table-rowspans))
 	     (setq prev-colspans (copy-sequence table-colspans))
-	 
+
 	     (and w3-do-incremental-display (w3-pause))
 	     )
 	    (caption
@@ -1870,7 +1870,7 @@ Can sometimes make the structure of a document clearer")
 		   (start (point)))
 	       (w3-display-node (pop content))
 	       (indent-rigidly start (point) left)))
-	    (otherwise			
+	    (otherwise
 	     (delete-horizontal-space)
 	     (setq content (nth 2 (car content))))
 	    ))
@@ -1917,7 +1917,7 @@ Can sometimes make the structure of a document clearer")
 		(aref dateinfo 1)	; Month
 		(aref dateinfo 2)	; Day
 		(aref timeinfo 0)	; Hour
-		(aref timeinfo 1)	; Minute 
+		(aref timeinfo 1)	; Minute
 		(aref timeinfo 2)	; Second
 		)
       "HoplesSLYCoNfUSED")))
@@ -2032,7 +2032,7 @@ Format: (((image-alt row column) . offset) ...)")
 
 (require 'w3-mouse)
 (defvar w3-display-hackmap nil "Keymap used for hyperlink widgets")
-  
+
 (defun w3-resurrect-hyperlinks ()
   (if (and (not w3-display-hackmap) (featurep 'xemacs))
       (progn
@@ -2476,7 +2476,7 @@ Format: (((image-alt row column) . offset) ...)")
 		 ;; the background for them instead of just ignoring
 		 ;; the foreground.  But I think this might be too
 		 ;; shocking for the average user. :)
-		 ;; 
+		 ;;
 		 ;; (setq back (w3-display-infer-contrasting-color fore)))
 
 		 ;; If they specify the background and not the
@@ -2573,8 +2573,8 @@ Format: (((image-alt row column) . offset) ...)")
 					 args))
 	       (w3-handle-content node)))
 	    (keygen
-	     (w3-form-add-element 
-	      (w3-display-normalize-form-info 
+	     (w3-form-add-element
+	      (w3-display-normalize-form-info
 	       (cons '(type . "keygen")
 		     args))
 	      w3-active-faces)
@@ -2727,7 +2727,7 @@ Format: (((image-alt row column) . offset) ...)")
 
 (defun w3-fixup-eol-faces ()
   ;; Remove 'face property at end of lines - underlining screws up stuff
-  ;; also remove 'mouse-face property at the beginning and end of lines 
+  ;; also remove 'mouse-face property at the beginning and end of lines
   (let ((inhibit-read-only t))
     (save-excursion
       (goto-char (point-min))

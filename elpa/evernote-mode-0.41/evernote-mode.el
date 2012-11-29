@@ -555,8 +555,8 @@ It is recommended to encrypt the file with EasyPG.")
                                         (car usernames) 'usernames)))
              (cache-passwd (enutil-aget username cache)))
         (unless (and cache-passwd
-                     (eq (catch 'error 
-                           (progn 
+                     (eq (catch 'error
+                           (progn
                              (enh-command-login username cache-passwd)
                              t))
                          t))
@@ -1699,7 +1699,7 @@ It is recommended to encrypt the file with EasyPG.")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar enh-enclient-command
-  (concat 
+  (concat
    (with-output-to-string
      (call-process evernote-ruby-command nil standard-output nil
                    "-rrbconfig" "-e" "print Config::CONFIG['bindir']"))

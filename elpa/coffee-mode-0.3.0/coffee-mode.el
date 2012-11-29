@@ -249,7 +249,7 @@ If FILENAME is omitted, the current buffer's file name is used."
     (when buffer
       (kill-buffer buffer)))
 
-  (call-process-region start end 
+  (call-process-region start end
                        js2coffee-command nil
                        (current-buffer)
                        )
