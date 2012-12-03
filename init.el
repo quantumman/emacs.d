@@ -448,5 +448,9 @@
              (guide-key/add-local-guide-key-sequence "C-c")
              (guide-key/add-local-highlight-command-regexp "feature-")))
 
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (ruby-electric-mode t)))
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
