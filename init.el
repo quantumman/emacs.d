@@ -429,6 +429,7 @@
 
 (setq indent-tabs-mode nil)
 
+(load-file (expand-file-name "~/.emacs.d/auto-install/camelCase-mode.el"))
 (require 'camelCase)
 
 (require 'guide-key)
