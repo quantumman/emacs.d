@@ -48,7 +48,7 @@
     anything-c-source-bookmarks
     anything-c-source-file-cache
     anything-c-source-files-in-current-dir+
-    anything-c-source-locate)
+    anything-c-source-mac-spotlight)
   "Your prefered sources to find files."
   :type 'list
   :group 'anything-config)
