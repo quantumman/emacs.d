@@ -431,5 +431,21 @@
 
 (require 'camelCase)
 
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+(setq guide-key/popup-window-position 'bottom)
+(guide-key-mode 1)
+
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (guide-key/add-local-guide-key-sequence "C-c")
+             (guide-key/add-local-guide-key-sequence "C-c C-x")
+             (guide-key/add-local-highlight-command-regexp "org-")))
+
+(add-hook 'feature-mode
+          '(lambda ()
+             (guide-key/add-local-guide-key-sequence "C-c")
+             (guide-key/add-local-highlight-command-regexp "feature-")))
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
