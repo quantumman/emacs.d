@@ -425,6 +425,7 @@
 (require 'rebase-mode)
 
 (require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 
 (setq indent-tabs-mode nil)
 
