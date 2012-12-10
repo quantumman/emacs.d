@@ -11,6 +11,12 @@
 	  #'(lambda ()
 	      (setq c-basic-offset 4
 		    tab-width 4
-		    indent-tabs-mode t)))
+		    indent-tabs-mode t)
+	      (c-set-offset 'substatement-open 0)
+	      (c-set-offset 'case-label '+)
+	      (c-set-offset 'arglist-intro '+)
+	      (c-set-offset 'arglist-close 0)
+	      )
+	  )
 
 (provide 'init.csharp-mode)
