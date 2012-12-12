@@ -32,7 +32,6 @@
                      ac-source-abbrev))
              nil ))
 
-
 (defun ghc-flymake-display-errors-popup ()
   (interactive)
   (when (and (ghc-flymake-have-errs-p)
