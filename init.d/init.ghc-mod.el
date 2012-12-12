@@ -14,19 +14,12 @@
     (cache)
     ))
 
-(defvar ac-source-ghc-module
-  '((candidates . ghc-module-names)
-    (prefix . "^import\\s+*")
-    (cache)
-    ))
-
 ;; add some symbols into ac-sources
 (add-hook 'haskell-mode-hook
           '(lambda ()
              (auto-complete-mode t)
              (setq ac-sources
                    '(ac-source-ghc-completion
-                     ac-source-ghc-module
                      ac-source-yasnippet
                      ac-source-words-in-same-mode-buffers
                      ac-source-abbrev))
