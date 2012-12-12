@@ -14,7 +14,7 @@
   (interactive "P")
   (let* ((modname (or (ghc-find-module-name) "Main"))
 	 (expr0 (ghc-things-at-point))
-	 (expr (if ask (ghc-read-expression expr0) expr0))
+	 (expr (if (or ask (not expr0)) (ghc-read-expression expr0) expr0))
 	 (file (buffer-file-name))
 	 (cmds (list "info" file modname expr)))
     (ghc-display-information cmds nil)))
@@ -70,7 +70,7 @@
 
 (defun ghc-show-type ()
   (interactive)
-  (if (not (ghc-which ghc-module-command))
+  (if (not (executable-find ghc-module-command))
       (message "%s not found" ghc-module-command)
     (let ((modname (or (ghc-find-module-name) "Main")))
       (ghc-show-type0 modname))))
@@ -134,7 +134,7 @@
 
 (defun ghc-display-information (cmds fontify)
   (interactive)
-  (if (not (ghc-which ghc-module-command))
+  (if (not (executable-find ghc-module-command))
       (message "%s not found" ghc-module-command)
     (ghc-display
      fontify
