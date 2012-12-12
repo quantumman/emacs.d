@@ -51,16 +51,6 @@
             errs "\n")
            0 -1)))
 
-(defadvice ghc-show-type (around ghc-show-type-around-advice ())
-  (lambda ()
-    (flet ((message (format-strings args)
-                    (popup-tip (format format-strings args))))
-      (popup-tip "HOGE")
-      (ad-do-it)
-      )))
-(ad-activate 'ghc-show-type 'ghc-show-type-around-advice)
-
-
 (defvar ghc-flymake-popup-errors-timer-handler nil)
 
 (defvar ghc-flymake-popup-errors-key "\C-c\C-SPC")
