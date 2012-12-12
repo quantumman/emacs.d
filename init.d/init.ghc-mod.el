@@ -6,12 +6,7 @@
 
 (autoload 'ghc-init "ghc" nil t)
 
-(add-hook 'haskell-mode-hook (lambda ()
-                               (ghc-init)
-                               ;; (flymake-mode)
-                               ;; (setq auto-save-buffers-exclude-regexp "\\.hs$")
-                               ))
-
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (defvar ac-source-ghc-completion
   '((candidates . ghc-select-completion-symbol)
@@ -31,10 +26,7 @@
              (auto-complete-mode t)
              (setq ac-sources
                    '(ac-source-ghc-completion
-                     ;; ac-source-symbols
                      ac-source-ghc-module
-                     ;; ac-source-ghc-pragmas
-                     ;; ac-source-ghc-langexts
                      ac-source-yasnippet
                      ac-source-words-in-same-mode-buffers
                      ac-source-abbrev))
@@ -49,7 +41,6 @@
            (errs (ghc-flymake-err-list))
            (errmsg (pretty-error-message errs)))
       (pos-tip-show errmsg nil nil nil 0)
-      ;; (message errmsg)
       )))
 
 (defun pretty-error-message (errs)
@@ -68,7 +59,6 @@
       (ad-do-it)
       )))
 (ad-activate 'ghc-show-type 'ghc-show-type-around-advice)
-;; (ad-deactivate 'ghc-show-type)
 
 
 (defvar ghc-flymake-popup-errors-timer-handler nil)
