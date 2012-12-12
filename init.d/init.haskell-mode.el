@@ -1,11 +1,9 @@
 ;;; if you wont to be on those hook, then never use those hooks explicitly
 ;;; otherwise ghc-mod will turn off those hooks implicitly.
-(require 'anything-hasktags)
 (add-hook 'haskell-mode-hook
           (lambda ()
             (turn-on-haskell-indent)
             (turn-on-haskell-doc-mode)
-            (define-key haskell-mode-map (kbd "M-.") 'anything-hasktags-select)
             ))
 (setq haskell-font-lock-symbols nil)
 (require 'inf-haskell)
