@@ -1,7 +1,10 @@
 ;;; if you wont to be on those hook, then never use those hooks explicitly
 ;;; otherwise ghc-mod will turn off those hooks implicitly.
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (turn-on-haskell-indent)
+            (turn-on-haskell-doc-mode)
+            ))
 (setq haskell-font-lock-symbols nil)
 (require 'inf-haskell)
 (setq haskell-program-name "ghci -XTemplateHaskell")
