@@ -43,3 +43,6 @@ saved-load-path.el
 #### log
 wget-log
 wget-log.*
+
+#### misc
+tags
