@@ -33,12 +33,11 @@
     anything-c-source-bookmarks
     anything-c-source-file-cache
     anything-c-source-files-in-current-dir+
-    anything-c-source-locate)
+    anything-c-source-mac-spotlight)
   "Your prefered sources to find files."
   :type 'list
   :group 'anything-config)
 
-(require 'init.windows)
 (defcustom anything-for-files-prefered-list-including-windows
   '(anything-c-source-ffap-line
     anything-c-source-windows
@@ -56,8 +55,8 @@
 (defun anything-for-files-and-tabs ()
   "This is anything-for-files."
   (interactive)
-  (anything-other-buffer anything-for-files-prefered-list-including-windows
-			 "anything for files including tabs")
+  (anything-other-buffer anything-for-files-prefered-list-including-elscreen
+                         "anything for files including tabs")
   )
 (global-set-key (kbd "C-x C-o") 'anything-for-files-and-tabs)
 

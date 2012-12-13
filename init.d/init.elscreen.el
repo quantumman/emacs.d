@@ -1,5 +1,6 @@
 ;;;; elscreen
 (require 'elscreen)
+(elscreen-start)
 (global-set-key (kbd "C-z C-o")
 		'(lambda () (interactive)
 		   (anything 'anything-c-source-elscreen)))

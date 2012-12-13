@@ -1,3 +1,4 @@
+(require 'elscreen-server)
 (server-start)
 
 (defun iconify-emacs-when-server-is-done ()
@@ -57,8 +58,8 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 	     ))
 (custom-set-variables '(server-kill-new-buffers t))
 
-(add-hook 'server-switch-hook
-          'switch-window-for-emacsclient)
+;; (add-hook 'server-switch-hook
+;;           'switch-window-for-emacsclient)
 
 (defun switch-window-for-emacsclient ()
   (require 'init.windows)
@@ -75,13 +76,13 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (defvar window-for-emacsclient "s"
   "The name of window on which emacsclient runs.")
 
-(add-hook 'server-done-hook
-          '(lambda ()
-             (win:store-config win:current-config)
-             (win-prev-window 1)
-             ))
+;; (add-hook 'server-done-hook
+;;           '(lambda ()
+;;              (win:store-config win:current-config)
+;;              (win-prev-window 1)
+;;              ))
 
-(global-set-key (kbd "C-x C-c") 'kill-buffer-with-save)
-(defalias 'exit 'win-save-and-killall)
+(global-set-key (kbd "C-x C-c") 'kill-buffer)
+(defalias 'exit 'elscreen-save-and-killall)
 
 (provide 'init.emacs-server)

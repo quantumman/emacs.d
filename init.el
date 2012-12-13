@@ -143,7 +143,7 @@
 
 (require 'init.org-mode)
 
-(require 'init.windows)
+(require 'init.elscreen)
 ;;;
 
 (require 'egg)
@@ -403,11 +403,11 @@
   "Return alwasy yes."
   (setq ad-return-value t))
 
-(add-hook 'after-init-hook
-          #'(lambda ()
-              (ad-activate 'yes-or-no-p)
-              (resume-windows)
-              (ad-deactivate 'yes-or-no-p)))
+;; (add-hook 'after-init-hook
+;;           #'(lambda ()
+;;               (ad-activate 'yes-or-no-p)
+;;               (resume-windows)
+;;               (ad-deactivate 'yes-or-no-p)))
 
 (require 'rst-goodies)
 (require 'rst)
