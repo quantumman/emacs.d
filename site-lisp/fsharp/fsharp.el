@@ -219,8 +219,8 @@
       )))
 
 (defun fsharp-set-compile-command ()
-  "Hook to set compile-command locally, unless there is a Makefile in the 
-   current directory." 
+  "Hook to set compile-command locally, unless there is a Makefile in the
+   current directory."
   (interactive)
   (unless (or (null buffer-file-name)
               (file-exists-p "makefile")

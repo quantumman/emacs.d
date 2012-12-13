@@ -1,9 +1,6 @@
 ;;;; elscreen
 (require 'elscreen)
 (elscreen-start)
-(global-set-key (kbd "C-z C-o")
-                '(lambda () (interactive)
-                   (anything 'anything-c-source-elscreen)))
 (defmacro elscreen-create-automatically (ad-do-it)
   `(if (not (elscreen-one-screen-p))
        ,ad-do-it
