@@ -55,7 +55,7 @@
             (setq dirs (append (cons file
                                      (directory-dirs file))
                                dirs))))))
-    dirs))
+    (add-to-list 'dirs dir)))
 
 (defun add-to-load-path-recursively (base)
   (loop for dir in (directory-dirs base)
