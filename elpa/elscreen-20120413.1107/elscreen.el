@@ -1453,6 +1453,7 @@ Use \\[toggle-read-only] to permit editing."
                               'face 'elscreen-tab-background-face
                               'display '(space :width 0.5))))
             (control-tab (eval-when-compile
+                           (require 'elscreen)
                            (propertize
                             "<->"
                             'face 'elscreen-tab-control-face
