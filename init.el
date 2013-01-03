@@ -10,7 +10,8 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/loader"))
 (require 'el-init)
-(el-init:load (expand-file-name "~/.emacs.d/inits"))
+(setq el-init:load-directory-list '("helm"))
+(el-init:load "~/.emacs.d/inits")
 
 ;; save load-path for debug
 (require 'save-load-path)
