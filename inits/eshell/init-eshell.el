@@ -28,7 +28,7 @@
  '(eshell-stringify-t nil)
  '(eshell-term-name "ansi")
  '(eshell-visual-commands (quote ("vi" "top" "screen" "less" "lynx"
-				  "ssh" "rlogin" "telnet" "diff")))
+                                  "ssh" "rlogin" "telnet" "diff")))
  )
 
 ;; (setenv "PATH" "/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/home/Quantumman/.cabal/bin")
@@ -49,33 +49,33 @@
 (defun eshell:string-shorten (source-string upper-length)
   (when (stringp source-string)
     (if (< upper-length (length source-string))
-	(concat (substring source-string 0 (- upper-length 3)) "...")
+        (concat (substring source-string 0 (- upper-length 3)) "...")
       source-string
       )))
 
 (defun eshell:replace-prefix-match-string (source-string from-string to-string)
   (when (and (stringp source-string)
-	     (stringp from-string)
-	     (stringp to-string))
+             (stringp from-string)
+             (stringp to-string))
     (when (string-match from-string source-string)
       (replace-match to-string nil nil source-string))))
 
 (defun eshell:relative-file-path ()
   (let ((absolute-path (eshell/pwd))
-	(home (getenv "HOME")))
+        (home (getenv "HOME")))
     (if (string= absolute-path home)
-	"~/"
+        "~/"
       (eshell:replace-prefix-match-string absolute-path home "~")
-	)))
+      )))
 
 
 (require 'vc-git)
 (defun get-git-branch-name (path)
   (let  ((git-directory (concat path "/.git")))
     (if (file-exists-p git-directory)
-	(let* ((revision (vc-git-working-revision git-directory))
-	       (branch (if (string-equal "" revision) "Detached!" revision)))
-	  (concat " (" branch ") " ))
+        (let* ((revision (vc-git-working-revision git-directory))
+               (branch (if (string-equal "" revision) "Detached!" revision)))
+          (concat " (" branch ") " ))
       ""
       )))
 
@@ -91,31 +91,31 @@
 
 (defun custom:eshell-prompt-function ()
   (let ((hostname (car (split-string (system-name) "\\.")))
-	(absolute-current-path (eshell/pwd))
-	(git-info (replace-regexp-in-string
+        (absolute-current-path (eshell/pwd))
+        (git-info (replace-regexp-in-string
                    "\n+$" ""
                    (get-git-info))))
     (format "%s@%s: %s %s\n%s "
             (getenv "USER")
             hostname
             (eshell:relative-file-path)
-	    git-info
+            git-info
             (if (= (user-uid) 0) "#" "$"))))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp
-          (mapconcat
-           '(lambda (str) (concat "\\(" str "\\)"))
-           '("^[^#$\n]* [#$] "                    ; default
-             "^\\(mysql\\|[ ]\\{4\\}[-\"'`]\\)> "
-             "^>>> "                              ; python
-             "^ftp> "
-	     "^[^#$\n]*\n\s:\s.*\n[#$] "
-	     "^[#$]> "
-	     "^[#$] "
-             ".*\n[#$] "
-             )
-           "\\|"))
+      (mapconcat
+       '(lambda (str) (concat "\\(" str "\\)"))
+       '("^[^#$\n]* [#$] "                    ; default
+         "^\\(mysql\\|[ ]\\{4\\}[-\"'`]\\)> "
+         "^>>> "                              ; python
+         "^ftp> "
+         "^[^#$\n]*\n\s:\s.*\n[#$] "
+         "^[#$]> "
+         "^[#$] "
+         ".*\n[#$] "
+         )
+       "\\|"))
 
 
 ;;;; Buffer Clear
@@ -143,7 +143,7 @@
 
 ;; OMG! eshell defines its own mode-map when eshell-mode is called...
 (add-hook 'eshell-mode-hook
-	  #'(lambda ()
+          #'(lambda ()
               (progn
                 (define-key eshell-mode-map (kbd "\C-cl") 'eshell/clear)
                 (define-key eshell-mode-map (kbd "\C-r") 'eshell-previous-matching-input)
