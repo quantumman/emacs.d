@@ -8,4 +8,5 @@
 
 (global-set-key "\M-f" 'fullscreen-toggle)
 
-(provide 'init.fullscreen-mac)
+(require 'el-init)
+(el-init:provide)
