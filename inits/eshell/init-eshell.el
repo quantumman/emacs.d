@@ -68,17 +68,6 @@
       (eshell:replace-prefix-match-string absolute-path home "~")
       )))
 
-
-(require 'vc-git)
-(defun get-git-branch-name (path)
-  (let  ((git-directory (concat path "/.git")))
-    (if (file-exists-p git-directory)
-        (let* ((revision (vc-git-working-revision git-directory))
-               (branch (if (string-equal "" revision) "Detached!" revision)))
-          (concat " (" branch ") " ))
-      ""
-      )))
-
 (setq git-info-command
       (expand-file-name "~/.emacs.d/init.d/init.eshell/git.bash"))
 
