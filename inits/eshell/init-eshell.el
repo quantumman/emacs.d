@@ -68,27 +68,21 @@
       (eshell:replace-prefix-match-string absolute-path home "~")
       )))
 
-(setq git-info-command
-      (expand-file-name "~/.emacs.d/init.d/init.eshell/git.bash"))
-
-(defun get-git-info ()
-  (if (file-exists-p git-info-command)
-      (shell-command-to-string git-info-command)
-    (message (format "command not exist : %s" git-info-command))
-    ""
-    ))
+(defun eshell:git-current-branch ()
+  (substring
+   (shell-command-to-string "git branch | grep \"*\" | sed \"s/\"*\" //\"")
+   0 -1 ))
 
 (defun custom:eshell-prompt-function ()
   (let ((hostname (car (split-string (system-name) "\\.")))
-        (absolute-current-path (eshell/pwd))
-        (git-info (replace-regexp-in-string
-                   "\n+$" ""
-                   (get-git-info))))
+        (absolute-current-path (eshell/pwd)))
     (format "%s@%s: %s %s\n%s "
             (getenv "USER")
             hostname
             (eshell:relative-file-path)
-            git-info
+            (if (file-exists-p (concat (eshell/pwd) "/" ".git"))
+                (concat "(" (eshell:git-current-branch) ")")
+              "")
             (if (= (user-uid) 0) "#" "$"))))
 
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
