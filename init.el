@@ -216,10 +216,6 @@
   (setq shell-file-name "C:\\cygwin\\bin\\bash.exe")
   (setq explicit-shell-file-name shell-file-name))
 
-;;;; load anything
-(require 'init.anything)
-
-
 ;;;; do not save backup files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
