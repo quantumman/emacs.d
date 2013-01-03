@@ -39,7 +39,6 @@
        `((,(kbd "C-x C-o") helm-find-other-buffers)
          (,(kbd "C-^")     helm-c-apropos)
          (,(kbd "C-;")     helm-resume)
-         (,(kbd "C-s")     helm-occur)
          (,(kbd "M-x")     helm-M-x)
          (,(kbd "M-y")     helm-show-kill-ring)
          (,(kbd "M-z")     helm-do-grep)
