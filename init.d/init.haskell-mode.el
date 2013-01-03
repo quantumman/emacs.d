@@ -93,7 +93,8 @@
 
 
 
-(define-key haskell-mode-map [return] 'haskell-smart-newline)
+; (define-key haskell-mode-map [return] 'haskell-smart-newline)
+(define-key haskell-mode-map [return] 'newline)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 
 
