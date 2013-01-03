@@ -27,7 +27,7 @@
  '(eshell-prefer-to-shell t nil (eshell))
  '(eshell-stringify-t nil)
  '(eshell-term-name "ansi")
- '(eshell-visual-commands (quote ("vi" "top" "screen" "less" "lynx"
+ '(eshell-visual-commands (quote ("git" "vi" "top" "screen" "less" "lynx"
                                   "ssh" "rlogin" "telnet" "diff")))
  )
 
