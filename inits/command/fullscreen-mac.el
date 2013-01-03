@@ -6,7 +6,5 @@
     (set-frame-parameter nil 'fullscreen 'fullboth)
     ))
 
-(global-set-key "\M-f" 'fullscreen-toggle)
-
 (require 'el-init)
 (el-init:provide)
