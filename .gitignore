@@ -44,5 +44,9 @@ saved-load-path.el
 wget-log
 wget-log.*
 
+### history
+history
+
 #### misc
 tags
+
