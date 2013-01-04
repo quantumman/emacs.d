@@ -13,7 +13,7 @@
   "*Face used by hl-line.")
 (setq hl-line-face 'hlline-face)
 ;; (setq hl-line-face 'background)
-(global-hl-line-mode 1)
+(hl-line-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;; emacs appearnce
