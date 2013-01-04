@@ -1,6 +1,6 @@
-(require 'eshell)
-(require 'env-test)
 (require 'ansi-color)
+(require 'env-test)
+(require 'eshell)
 
 (custom-set-variables
  ;; '(eshell-ask-to-save-history (quote always))
