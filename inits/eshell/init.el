@@ -137,7 +137,10 @@
 
                 (linum-mode -1)
 
-                (whitespace-mode 0))
+                (whitespace-mode 0)
+
+                (hl-line-mode 0)
+                )
               ))
 
 (provide 'init.eshell)
