@@ -9,6 +9,13 @@
       helm-input-idle-delay       0.1
       helm-candidate-number-limit 200)
 
+(require 'split-root)
+(defun helm-display-function--split-root (buf)
+  (let ((percent 40.0))
+    (set-window-buffer (split-root-window
+                       (truncate (* (frame-height) (/ percent 100.0)))) buf)))
+(setq helm-display-function 'helm-display-function--split-root)
+
 ;; helm, source definitions
 
 (defcustom helm-c-sources-buffers
