@@ -456,5 +456,7 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 
+(require 'expand-region)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
