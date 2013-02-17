@@ -462,6 +462,8 @@
 
 (require 'multiple-cursors)
 
+(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
+
 (setq require-final-newline t)
 
 ;;;; confirm the source reading finished til the end of this buffer.
