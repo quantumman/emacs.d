@@ -453,5 +453,8 @@
           '(lambda ()
              (ruby-electric-mode t)))
 
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode t)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
