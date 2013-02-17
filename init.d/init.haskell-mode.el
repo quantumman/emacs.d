@@ -3,6 +3,7 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (turn-on-haskell-indent)
+            (turn-on-haskell-indentation)
             (turn-on-haskell-doc-mode)
             ))
 (setq haskell-font-lock-symbols nil)
