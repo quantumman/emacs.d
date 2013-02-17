@@ -177,7 +177,8 @@
   ;; スペースの定義は全角スペースとする。
   (setq whitespace-spacge-regexp "\x3000+")
 
-  (setq whitespace-style '(face tabs tab-mark spaces space-mark))
+  (setq whitespace-style
+        '(face tabs tab-mark spaces space-mark newline newline-mark trailing))
 
   (setq whitespace-display-mappings
         '((space-mark ?\u3000 [?\□])
