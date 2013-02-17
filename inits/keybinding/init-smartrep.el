@@ -9,7 +9,7 @@
          ("C-n" . 'next-error)
          ("C-p" . 'previous-error)
          ))
-     (smartrep-define-key global-map "C-q"
+     (smartrep-define-key global-map "ESC"
        '(("n" . (lambda () (scroll-other-window 1)))
          ("p" . (lambda () (scroll-other-window -1)))
          ("N" . 'scroll-other-window)
