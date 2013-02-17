@@ -457,6 +457,10 @@
 (global-rainbow-delimiters-mode t)
 
 (require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C--") 'er/contract-region)
+
+(require 'multiple-cursors)
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")

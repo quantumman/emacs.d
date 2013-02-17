@@ -16,11 +16,12 @@
          ("P" . (lambda () (scroll-other-window '-)))
          ("a" . (lambda () (beginning-of-buffer-other-window 0)))
          ("e" . (lambda () (end-of-buffer-other-window 0)))))
-     (eval-after-load "expand-region"
+     (eval-after-load "multiple-cursors"
        '(progn
           (smartrep-define-key global-map "C-c"
-            '(("=" . 'er/expand-region)
-              ("-" . 'er/contract-region)
+            '(("n" . 'mc/mark-next-like-this)
+              ("p" . 'mc/mark-previous-like-this)
+              ("a" . 'mc/mark-all-like-this)
               ))))
      ))
 
