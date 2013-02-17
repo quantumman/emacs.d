@@ -38,4 +38,6 @@
 
 (global-set-key (kbd "C-x C-s") 'save-buffer--delete-trailing-whitespace)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (provide 'init.tailing-space-eraser)
