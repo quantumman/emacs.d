@@ -16,6 +16,12 @@
          ("P" . (lambda () (scroll-other-window '-)))
          ("a" . (lambda () (beginning-of-buffer-other-window 0)))
          ("e" . (lambda () (end-of-buffer-other-window 0)))))
+     (eval-after-load "expand-region"
+       '(progn
+          (smartrep-define-key global-map "C-c"
+            '(("=" . 'er/expand-region)
+              ("-" . 'er/contract-region)
+              ))))
      ))
 
 (require 'el-init)
