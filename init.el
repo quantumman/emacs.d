@@ -462,5 +462,7 @@
 
 (require 'multiple-cursors)
 
+(setq require-final-newline t)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
