@@ -13,6 +13,22 @@
   (move-to-window-line -1))
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
+(defmacro compose-region-command (region-command command)
+    `(unless (commandp ,region-command)
+       (error "Not command: %S" ,region-command))
+    `(unless (commandp ,command)
+      (error "Not command: %S" ,command))
+    `(lexical-let ((command1 ,region-command)
+                   (command2 ,command))
+       (let ((start (mark-marker))
+             (end (point-marker)))
+         (if (region-active-p)
+             (progn
+               (funcall command1 start end)
+               (deactivate-mark))
+           (funcall command2)))
+       ))
+
 (defun region-set-key (key-binding region-command command)
   "Set multiple commands for a key bindings.
 region-command is called when region is activated, and command is called when region is not activated."
