@@ -32,22 +32,13 @@
 (defun region-set-key (key-binding region-command command)
   "Set multiple commands for a key bindings.
 region-command is called when region is activated, and command is called when region is not activated."
-  (unless (commandp region-command)
-    (error "Not command: %S" region-command))
-  (unless (commandp region-command)
-    (error "Not command: %S" command))
-  (lexical-let ((command1 region-command)
-                (command2 command))
+  (lexical-let ((c1 region-command)
+                (c2 command))
     (global-set-key key-binding
-                    #'(lambda ()
-                        (interactive)
-                        (let ((start (mark-marker))
-                              (end (point-marker)))
-                          (if (region-active-p)
-                              (progn
-                                (funcall command1 start end)
-                                (deactivate-mark))
-                            (funcall command2)))))))
+                    (lambda ()
+                      (interactive)
+                      (compose-region-command c1 c2)
+                      ))))
 
 (region-set-key "\C-w" 'kill-region 'ispell-word)
 (region-set-key [C-tab] 'indent-region 'indent-for-tab-command)
