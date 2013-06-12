@@ -4,3 +4,6 @@
 [submodule "site-lisp/helm/etags"]
 	path = site-lisp/helm/etags
 	url = git://github.com/jixiuf/helm-etags-plus.git
+[submodule "el-init"]
+	path = el-init
+	url = git://github.com/HKey/el-init.git

@@ -8,7 +8,7 @@
 
 (require 'cl)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/loader"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
 (setq el-init:load-directory-list '("function"  "keybinding" "eshell" "helm" "color-theme" "command"))
 (el-init:load "~/.emacs.d/inits")
