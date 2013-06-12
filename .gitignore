@@ -47,6 +47,10 @@ wget-log.*
 ### history
 history
 
+### package manager
+elpa/archives/gnu/archive-contents
+elpa/archives/marmalade/archive-contents
+elpa/archives/melpa/archive-contents
+
 #### misc
 tags
-
