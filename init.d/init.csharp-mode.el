@@ -19,12 +19,18 @@
             ))))))
 
 (require 'etags)
-(defvar ac-source-etags
-  '((candidates . (lambda ()
-                    (all-completions ac-prefix (tags-completion-table))))
-    (document . ac-etags-signature)
-    (requires . 3))
-  "Source for etags.")
+(require 'auto-complete-etags)
+(require 'helm-git)
+(require 'helm-etags+)
+(require 'ctags-update)
+(require 'flyspell)
+
+(define-key flyspell-mode-map (kbd "C-,") 'helm-c-etags-select)
+(define-key flyspell-mode-map (kbd "C-.") 'helm-etags+-select)
+(define-key csharp-mode-map (kbd "C-,") 'helm-c-etags-select)
+(define-key csharp-mode-map (kbd "C-.") 'helm-etags+-select)
+(define-key csharp-mode-map (kbd "M-f") 'helm-git-find-files)
+(define-key csharp-mode-map (kbd "<return>") 'newline)
 
 (add-hook 'csharp-mode-hook
 	  #'(lambda ()
