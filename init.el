@@ -460,7 +460,10 @@
 
 (require 'multiple-cursors)
 
-(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
+(add-hook 'before-save-hook
+          (lambda ()
+            (unless (and windows-p (eq major-mode 'csharp-mode))
+              (my-delete-trailing-whitespace))))
 
 (setq require-final-newline t)
 
