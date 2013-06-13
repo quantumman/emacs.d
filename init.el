@@ -481,6 +481,8 @@
   '(add-to-list 'rng-schema-locating-files (expand-file-name "~/.emacs.d/site-lisp/html5-el/schemas.xml")))
 (require 'whattf-dt)
 
+(require 'gitsum)
+
 (display-time)
 (setq display-time-string-forms '((format "%s:%s" 24-hours minutes)))
 
