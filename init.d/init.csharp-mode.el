@@ -41,6 +41,7 @@
 	      (c-set-offset 'case-label '+)
 	      (c-set-offset 'arglist-intro '+)
 	      (c-set-offset 'arglist-close 0)
+	      (flymake-mode)
 	      (setq ac-sources
 		    '(ac-source-etags
 		      ac-source-yasnippet
