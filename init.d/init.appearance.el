@@ -155,8 +155,8 @@
 
     ;; fontの設定
     (set-face-attribute 'default nil
-                    :family "Consolas"
-                    :height 110)
+                    :family "Monaco"
+                    :height 100)
     (set-fontset-font nil
                       'japanese-jisx0208
                       (font-spec :family "MS Gothic"))
