@@ -486,5 +486,7 @@
 (display-time)
 (setq display-time-string-forms '((format "%s:%s" 24-hours minutes)))
 
+(display-battery-mode t)
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
