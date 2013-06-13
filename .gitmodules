@@ -7,3 +7,6 @@
 [submodule "el-init"]
 	path = el-init
 	url = git://github.com/HKey/el-init.git
+[submodule "site-lisp/html5-el"]
+	path = site-lisp/html5-el
+	url = git://github.com/hober/html5-el.git
