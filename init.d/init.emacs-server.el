@@ -85,7 +85,7 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 (global-set-key (kbd "C-x C-c")
                 '(lambda ()
                    (interactive)
-                   (elscreen-kill-screen-and-buffers (elscreen-get-current-screen))))
+                   (elscreen-kill (elscreen-get-current-screen))))
 (defalias 'exit 'elscreen-save-and-killall)
 
 (provide 'init.emacs-server)
