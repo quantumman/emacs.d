@@ -43,7 +43,7 @@
 	      (c-set-offset 'arglist-close 0)
 	      (flymake-mode)
 	      (setq ac-sources
-		    '(ac-source-etags
+		    '(;; ac-source-etags
 		      ac-source-yasnippet
 		      ac-source-words-in-same-mode-buffers
 		      ac-source-abbrev))
