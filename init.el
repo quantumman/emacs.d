@@ -405,11 +405,6 @@
 ;;                                 (interactive)
 ;;                                 (term shell-file-name)))
 
-;; resume windows after init elisp
-(defadvice yes-or-no-p (around yes-or-no-always-yes)
-  "Return alwasy yes."
-  (setq ad-return-value t))
-
 ;; (add-hook 'after-init-hook
 ;;           #'(lambda ()
 ;;               (ad-activate 'yes-or-no-p)
