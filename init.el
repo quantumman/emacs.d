@@ -164,6 +164,14 @@
 ;;;
 (require 'git-commit)
 (set-face-bold-p 'git-commit-summary-face nil)
+(define-key git-commit-map (kbd "\C-x\C-c")
+  (lambda ()
+    (interactive)
+    (save-buffer)
+    (flet ((yes-or-no-p (arg) t))
+      (kill-buffer))
+    (elscreen-kill)
+    ))
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
