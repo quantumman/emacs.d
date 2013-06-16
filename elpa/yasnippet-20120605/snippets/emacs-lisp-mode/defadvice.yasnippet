@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: define advice
 # key: defadvice
-# binding: "keybinding"
+# binding: defadvice
 # expand-env:
 # --
 (defadvice $1 (${2:$$(yas/choose-value '("before" "around" "after" "activation" "deactivation"))} $1-$2-advice ($3))$>
