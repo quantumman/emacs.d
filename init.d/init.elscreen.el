@@ -37,5 +37,6 @@
 (eval-after-load "elscreen"
   '(add-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update))
 
+(setq elscreen-display-tab nil)
 
 (provide 'init.elscreen)
