@@ -175,6 +175,7 @@
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
+(global-set-key (kbd "\C-x0") 'popwin:close-popup-window)
 
 ;;;
 
