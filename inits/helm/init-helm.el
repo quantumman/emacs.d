@@ -32,7 +32,7 @@
 
 ;; custom commands
 
-(defun helm-find-other-buffers ()
+(defun helm-find-files-and-buffers ()
   "This is helm-for-buffers."
   (interactive)
   (helm-other-buffer helm-c-sources-buffers
@@ -41,7 +41,7 @@
 ;; key bindings
 
 (let ((key-and-func
-       `((,(kbd "C-x C-o") helm-find-other-buffers)
+       `((,(kbd "C-x C-o") helm-find-files-and-buffers)
          (,(kbd "C-^")     helm-c-apropos)
          (,(kbd "C-;")     helm-resume)
          (,(kbd "M-x")     helm-M-x)
