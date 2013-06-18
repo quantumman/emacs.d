@@ -31,12 +31,22 @@
   :group 'helm-config)
 
 ;; custom commands
+(defvar helm-find-file-buffer-name
+  "open files or buffers by elscreen, bookmark and filename")
+
+(add-to-list 'helm-source-elscreen
+             '(candidate-transformer . remove-helm-buffer-name))
+(defun remove-helm-buffer-name (cands)
+  (loop for c in cands
+        for helm-buffer-name = (concat ":" helm-find-file-buffer-name)
+        collect (replace-regexp-in-string helm-buffer-name "" c)
+   ))
 
 (defun helm-find-files-and-buffers ()
   "This is helm-for-buffers."
   (interactive)
   (helm-other-buffer helm-c-sources-buffers
-                     "open files or buffers by elscreen, bookmark and filename"))
+                     helm-find-file-buffer-name))
 
 ;; key bindings
 
