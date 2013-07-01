@@ -1,6 +1,5 @@
 ;;;; yasnippet
 (require 'yasnippet)
-(require 'yasnippet-bundle)
 (yas/initialize)
 (yas/load-directory (expand-file-name "~/.emacs.d/elpa/yasnippet-20120605/snippets"))
 ;; (add-hook 'jde-mode-hook 'yas/minor-mode-on)
