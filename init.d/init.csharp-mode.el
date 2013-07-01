@@ -17,6 +17,7 @@
 
 (require 'etags)
 (require 'auto-complete-etags)
+(require 'helm-config)
 (require 'helm-git)
 (require 'helm-etags+)
 (require 'ctags-update)
