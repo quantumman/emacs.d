@@ -21,14 +21,22 @@
   (setq web-mode-php-offset    0)
   (setq web-mode-java-offset   0)
   (setq web-mode-asp-offset    0))
+(defun web-mode-asp-indent ()
+  "Indentation setting for Web mode."
+  (setq indent-tabs-mode t
+        tab-width 4
+        web-mode-html-offset   4
+        web-mode-css-offset    4
+        web-mode-script-offset 4
+        web-mode-asp-indent    4
+        ))
 
 (add-hook 'web-mode-hook
           (lambda ()
             (local-set-key (kbd "<return>") 'newline)
             (case (intern (file-name-extension (buffer-file-name)))
-             (aspx
-              (setq indent-tabs-mode t
-                    tab-width 4))
-             (otherwise
-              (web-mode-default-indent-depth)
-              ))))
+              ((aspx ascx)
+               (web-mode-asp-indent))
+              (otherwise
+               (web-mode-default-indent-depth)
+               ))))
