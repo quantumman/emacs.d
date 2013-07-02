@@ -125,8 +125,6 @@
 
 (when linux-p (require 'init.skype))
 
-(require 'init.twitter)
-
 (require 'init.viewer)
 
 (require 'init.yasnippet)
