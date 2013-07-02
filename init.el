@@ -488,7 +488,16 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
-(setq el-init:load-directory-list '("common" "function" "keybinding" "eshell" "helm" "color-theme" "command" "sns"))
+(setq el-init:load-directory-list
+      '("common"
+        "function"
+        "keybinding"
+        "eshell"
+        "helm"
+        "color-theme"
+        "command"
+        "sns"
+        ))
 (el-init:load "~/.emacs.d/inits")
 
 ;;;; confirm the source reading finished til the end of this buffer.
