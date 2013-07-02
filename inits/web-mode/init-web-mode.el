@@ -31,13 +31,13 @@
   (setq web-mode-asp-offset    0))
 
 (add-hook 'web-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "<return>") 'newline)
-	    (if (string-equal "aspx" (file-name-extension (buffer-file-name)))
-		(progn
-		  (web-mode-aspx-indent-depth)
-		  (setq indent-tabs-mode t
-			tab-width 4))
-	      (progn
-		(web-mode-default-indent-depth)
-		))))
+          (lambda ()
+            (local-set-key (kbd "<return>") 'newline)
+            (if (string-equal "aspx" (file-name-extension (buffer-file-name)))
+                (progn
+                  (web-mode-aspx-indent-depth)
+                  (setq indent-tabs-mode t
+                        tab-width 4))
+              (progn
+                (web-mode-default-indent-depth)
+                ))))
