@@ -8,11 +8,6 @@
 
 (require 'cl)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
-(require 'el-init)
-(setq el-init:load-directory-list '("function"  "keybinding" "eshell" "helm" "color-theme" "command"))
-(el-init:load "~/.emacs.d/inits")
-
 ;; save load-path for debug
 (require 'save-load-path)
 (save-load-path-initialize)
@@ -491,6 +486,12 @@
 (setq display-time-string-forms '((format "%s:%s" 24-hours minutes)))
 
 (display-battery-mode t)
+
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
+(require 'el-init)
+(setq el-init:load-directory-list '("function"  "keybinding" "eshell" "helm" "color-theme" "command"))
+(el-init:load "~/.emacs.d/inits")
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
