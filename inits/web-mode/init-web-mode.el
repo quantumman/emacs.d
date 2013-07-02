@@ -21,27 +21,14 @@
   (setq web-mode-php-offset    0)
   (setq web-mode-java-offset   0)
   (setq web-mode-asp-offset    0))
-(defun web-mode-aspx-indent-depth ()
-  "Hooks for Web mode in aspx file."
-  (setq indent-tabs-mode t
-        tab-width 4
-        web-mode-html-offset   4
-        web-mode-css-offset    2
-        web-mode-script-offset 2
-        web-mode-php-offset    2
-        web-mode-java-offset   4
-        web-mode-asp-offset    4
-        ))
 
 (add-hook 'web-mode-hook
           (lambda ()
             (local-set-key (kbd "<return>") 'newline)
             (case (intern (file-name-extension (buffer-file-name)))
              (aspx
-              (progn
-                (web-mode-aspx-indent-depth)
-                (setq indent-tabs-mode t
-                      tab-width 4)))
+              (setq indent-tabs-mode t
+                    tab-width 4))
              (otherwise
               (web-mode-default-indent-depth)
               ))))
