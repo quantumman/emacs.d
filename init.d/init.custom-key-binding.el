@@ -20,14 +20,12 @@
       (error "Not command: %S" ,command))
     `(lexical-let ((command1 ,region-command)
                    (command2 ,command))
-       (let ((start (mark-marker))
-             (end (point-marker)))
-         (if (region-active-p)
-             (progn
-               (funcall command1 start end)
-               (deactivate-mark))
-           (funcall command2)))
-       ))
+       (if (use-region-p)
+	   (progn
+	     (funcall command1 (region-beginning) (region-end))
+	     (deactivate-mark))
+	   (funcall command2)
+       )))
 
 (defun define-region-key (keymap key-binding region-command command)
   "Set multiple commands for a key bindings.
