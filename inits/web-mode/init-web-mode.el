@@ -29,6 +29,8 @@
         web-mode-css-offset    4
         web-mode-script-offset 4
         web-mode-asp-indent    4
+        web-mode-code-indent-offset 4
+        web-mode-markup-indent-offset 4
         ))
 
 (add-hook 'web-mode-hook
