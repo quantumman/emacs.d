@@ -135,8 +135,6 @@
 
 ;; (require 'init.el-get)
 
-(require 'init.eshell)
-
 (require 'init.org-mode)
 
 (require 'init.elscreen)
@@ -240,11 +238,6 @@
 
 ;;;; minor mode hack
 (require 'minor-mode-hack)
-
-;;;; full screen
-(cond (linux-p (require 'fullscreen))
-      (cocoa-p (require 'init.fullscreen-mac)))
-
 
 
 ;;;; shell
