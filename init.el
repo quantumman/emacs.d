@@ -490,7 +490,7 @@
         "color-theme"
         "command"
         "sns"
-        "web-mode"
+        "mode"
         ))
 (el-init:load "~/.emacs.d/inits")
 
