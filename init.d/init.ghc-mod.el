@@ -55,4 +55,4 @@
                    1.0 t
                    #'ghc-flymake-display-errors-popup))))
 
-(provide 'init.ghc-mode)
+(provide 'init.ghc-mod)

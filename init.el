@@ -111,7 +111,7 @@
 
 (require 'init.fsharp-mode)
 
-(require 'init.ghc-mode)
+(require 'init.ghc-mod)
 
 (require 'init.misc-util)
 
