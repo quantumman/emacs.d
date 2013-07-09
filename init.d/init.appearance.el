@@ -24,24 +24,6 @@
 (setq inhibit-startup-message t)
 ;; turn off beep
 (setq ring-bell-function '(lambda ()))
-;; font lock color
-(add-hook 'font-lock-mode-hook
-          '(lambda ()
-             (set-face-foreground 'font-lock-builtin-face "VioletRed")
-             ;;(set-face-foreground 'font-lock-comment-face "t")
-             (set-face-foreground 'font-lock-string-face  "LightSalmon4")
-             (set-face-foreground 'font-lock-keyword-face "purple4")
-             (set-face-foreground 'font-lock-constant-face "SkyBlue4")
-             (set-face-foreground 'font-lock-function-name-face "NavyBlue")
-             (set-face-foreground 'font-lock-variable-name-face "DarkGoldenrod4")
-             (set-face-foreground 'font-lock-type-face "DarkGreen")
-             ;;(set-face-foreground 'font-lock-warning-face "OrangeRed4")
-             (set-face-bold-p 'font-lock-function-name-face nil)
-             (set-face-bold-p 'font-lock-type-face nil)
-             (set-face-bold-p 'font-lock-string-face nil)
-             (set-face-bold-p 'font-lock-warning-face nil)
-             ))
-
 
 ;; (set-cursor-color "Black")
 ;; (set-background-color "White")
