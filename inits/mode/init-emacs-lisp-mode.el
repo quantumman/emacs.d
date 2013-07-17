@@ -17,3 +17,6 @@
           (lambda ()
             (emacs-lisp-mode-font-lock)
             ))
+
+(require 'el-init)
+(el-init:provide)

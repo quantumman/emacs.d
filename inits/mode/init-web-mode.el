@@ -42,3 +42,6 @@
               (otherwise
                (web-mode-default-indent-depth)
                ))))
+
+(require 'el-init)
+(el-init:provide)
