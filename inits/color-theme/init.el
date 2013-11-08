@@ -4,8 +4,8 @@
 
 (color-theme-initialize)
 
-(add-hook 'eshell-mode-hook
-          (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
+;; (add-hook 'eshell-mode-hook
+;;           (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
 
 (require 'el-init)
 (el-init:provide)

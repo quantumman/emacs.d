@@ -441,6 +441,11 @@
           '(lambda ()
              (ruby-electric-mode t)))
 
+(add-hook 'eclim-mode-hook
+          '(lambda ()
+             (guide-key/add-local-guide-key-sequence "C-c C-e")
+             (guide-key/add-local-highlight-command-regexp "eclim-")))
+
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 
@@ -476,8 +481,54 @@
 (display-time)
 (setq display-time-string-forms '((format "%s:%s" 24-hours minutes)))
 
-(display-battery-mode t)
+;; (display-battery-mode nil)
 
+(require 'historyf)
+(when (and (executable-find "cmigemo")
+           (require 'migemo nil t))
+  ;; cmigemoを使う
+  (setq migemo-command "cmigemo")
+  ;; migemoのコマンドラインオプション
+  (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+  ;; migemo辞書の場所
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  ;; cmigemoで必須の設定
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+  ;; キャッシュの設定
+  (setq migemo-use-pattern-alist t)
+  (setq migemo-use-frequent-pattern-alist t)
+  (setq migemo-pattern-alist-length 1000)
+  (setq migemo-coding-system 'utf-8-unix)
+
+  ;; migemoを起動する
+  (migemo-init))
+
+(add-hook 'java-mode-hook
+          '(lambda ()
+             (setq indent-tabs-mode nil
+                   tab-width 4
+                   )))
+
+(custom-set-variables
+ '(eclim-eclipse-dirs '("/Application/eclipse")))
+
+(require 'eclim)
+(global-eclim-mode)
+(require 'eclimd)
+
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
+
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
+
+(setq sr-speedbar-right-side nil
+      speedbar-use-images t
+      )
+
+(setq helm-split-window-default-side 'below
+      helm-split-window-default-side-p t)
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
@@ -491,6 +542,7 @@
         "command"
         "sns"
         "mode"
+        "devel-util"
         ))
 (el-init:load "~/.emacs.d/inits")
 

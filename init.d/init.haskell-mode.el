@@ -8,7 +8,7 @@
             ))
 (setq haskell-font-lock-symbols nil)
 (require 'inf-haskell)
-(setq haskell-program-name "ghci -XTemplateHaskell -i../ -package ghc")
+(setq haskell-program-name "ghci -XTemplateHaskell -i../ -iTest/ -itest/ -package ghc")
 
 
 (defun unicode-symbol (name)
