@@ -515,6 +515,10 @@
  '(eclim-eclipse-dirs '("/Application/eclipse")))
 
 (require 'eclim)
+(setq eclim-eclipse-dirs
+      (cond (windows-p "")
+            (linux-p "")
+            (darwin-p "/Application/eclipse")))
 (global-eclim-mode)
 (require 'eclimd)
 (require 'ac-emacs-eclim-source)
