@@ -18,3 +18,10 @@
   'delete-chars-region
   (lambda ()
     (delete-forward-char 1)))
+
+
+(defun point-to-top ()
+  "Put point to top line of window."
+  (interactive)
+  (move-to-window-line 0))
+(global-set-key "\C-t" 'point-to-top) ;; C-t = pointer moves to top of window
