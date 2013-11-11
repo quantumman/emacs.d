@@ -1,3 +1,5 @@
+(require 'cl)
+
 (defmacro compose-region-command (region-command command)
     `(unless (commandp ,region-command)
        (error "Not command: %S" ,region-command))
