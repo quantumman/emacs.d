@@ -534,7 +534,7 @@
 (require 'el-init)
 (setq el-init:load-directory-list
       '("common"
-        "function"
+        "elisp-util"
         "keybinding"
         "eshell"
         "helm"
