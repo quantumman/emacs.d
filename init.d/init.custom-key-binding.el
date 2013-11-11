@@ -21,10 +21,10 @@
     `(lexical-let ((command1 ,region-command)
                    (command2 ,command))
        (if (use-region-p)
-	   (progn
-	     (funcall command1 (region-beginning) (region-end))
-	     (deactivate-mark))
-	   (funcall command2)
+           (progn
+             (funcall command1 (region-beginning) (region-end))
+             (deactivate-mark))
+           (funcall command2)
        )))
 
 (defun define-region-key (keymap key-binding region-command command)
