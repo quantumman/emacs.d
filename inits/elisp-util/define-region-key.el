@@ -4,7 +4,7 @@
     `(unless (commandp ,region-command)
        (error "Not command: %S" ,region-command))
     `(unless (commandp ,command)
-      (error "Not command: %S" ,command))
+       (error "Not command: %S" ,command))
     `(lexical-let ((command1 ,region-command)
                    (command2 ,command))
        (if (use-region-p)
