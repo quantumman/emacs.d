@@ -530,6 +530,10 @@
 (setq helm-split-window-default-side 'below
       helm-split-window-default-side-p t)
 
+(require 'auto-async-byte-compile)
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
 (setq el-init:load-directory-list
