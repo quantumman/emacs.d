@@ -143,11 +143,12 @@
 (require 'egg)
 
 ;;; Powershell
-(require 'powershell)
-(require 'powershell-mode)
-(push '("\\.ps1$" . powershell-mode) auto-mode-alist)
-(add-to-list 'ac-modes 'powershell-mode)
-(setq powershell-indent 4)
+(when windows-p
+  (require 'powershell)
+  (require 'powershell-mode)
+  (push '("\\.ps1$" . powershell-mode) auto-mode-alist)
+  (add-to-list 'ac-modes 'powershell-mode)
+  (setq powershell-indent 4))
 
 ;;;
 (require 'text-adjust)
