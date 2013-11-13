@@ -93,13 +93,7 @@
 
 (require 'init.buffer-conf)
 
-;; (require 'init.calendar)
-
 (require 'init.eldoc)
-
-;; (require 'init.elscreen)
-;; (require 'init.tabbar)
-;; (tabbar-mode t)
 
 (require 'init.emacs-server)
 
@@ -132,8 +126,6 @@
 (require 'init.yatex)
 
 (require 'init.html-fold)
-
-;; (require 'init.el-get)
 
 (require 'init.org-mode)
 
@@ -291,10 +283,6 @@
 
 ;;;;
 
-;;;; tramp
-;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/config/tramp"))
-;;(require 'tramp-setting)
-
 ;;;; region
 (transient-mark-mode t)
 
@@ -313,9 +301,6 @@
 (require 'edit-list)
 (require 'el-expectations)
 
-
-;;;; facefook
-;; (require 'facebook)
 
 ;;;; miscs
 ;; indent atomically when you return
@@ -364,33 +349,6 @@
 ;; iconify
 (global-set-key (kbd "\C-z\C-z")
                 'iconify-or-deiconify-frame)
-
-;; (defun linum-dynamic-format ()
-;;   (setq linum-format
-;;      (concat "%"
-;;              (format "%dd"
-;;                      (+ 1
-;;                         (length
-;;                          (int-to-string
-;;                           (count-lines (point-min) (point-max)))))))))
-;; (defadvice next-line (after next-line-after-advice ())
-;;   (linum-dynamic-format))
-;; (ad-activate 'next-line 'next-line-after-advice)
-;; ;; (ad-deactivate 'next-line)
-;; (defadvice previous-line (after previous-line-after-advice ())
-;;   (linum-dynamic-format))
-;; (ad-activate 'previous-line 'previous-line-after-advice)
-;; ;; (ad-deactivate 'previous-line)
-
-;; (global-set-key (kbd "C-c t") '(lambda ()
-;;                                 (interactive)
-;;                                 (term shell-file-name)))
-
-;; (add-hook 'after-init-hook
-;;           #'(lambda ()
-;;               (ad-activate 'yes-or-no-p)
-;;               (resume-windows)
-;;               (ad-deactivate 'yes-or-no-p)))
 
 (require 'rst-goodies)
 (require 'rst)
