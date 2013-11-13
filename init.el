@@ -354,8 +354,6 @@
 (global-set-key (kbd "C-c t") 'toggle-opacity)
 
 
-(require 'init.custom-key-binding)
-
 ;; Line Number
 (global-linum-mode t)
 
