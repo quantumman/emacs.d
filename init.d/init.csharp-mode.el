@@ -20,7 +20,7 @@
 (require 'helm-config)
 (require 'helm-git)
 (require 'helm-etags+)
-(require 'ctags-update)
+;; (require 'ctags-update)
 (require 'flyspell)
 
 (define-key flyspell-mode-map (kbd "C-,") 'helm-c-etags-select)
