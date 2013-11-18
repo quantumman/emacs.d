@@ -39,3 +39,7 @@
 
 (global-set-key "\C-f" 'forward-word)
 (global-set-key "\C-b" 'backward-word)
+
+
+(require 'el-init)
+(el-init:provide)
