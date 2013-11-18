@@ -62,5 +62,10 @@
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 
+(require 'helm-git)
+(define-key java-mode-map (kbd "M-f") 'helm-git-find-files)
+(define-key nxml-mode-map (kbd "M-f") 'helm-git-find-files)
+
+
 (require 'el-init)
 (el-init:provide)
