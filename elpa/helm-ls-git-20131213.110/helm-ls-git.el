@@ -1,5 +1,5 @@
 ;;; helm-ls-git.el --- list git files.
-;; Version: 20131121.951
+;; Version: 20131213.110
 
 ;; Copyright (C) 2012 ~ 2013 Thierry Volpiatto <thierry.volpiatto@gmail.com>
 
@@ -71,6 +71,11 @@ Valid values are symbol 'abs (default) or 'relative."
   "Files which are newly added or copied."
   :group 'helm-ls-git)
 
+(defface helm-ls-git-added-modified-face
+  '((t :foreground "blue"))
+  "Files which are newly added and have unstaged modifications."
+  :group 'helm-ls-git)
+
 (defface helm-ls-git-deleted-not-staged-face
   '((t :foreground "Darkgoldenrod3"))
   "Files which are deleted but not staged."
@@ -115,7 +120,7 @@ Valid values are symbol 'abs (default) or 'relative."
 (defun helm-ls-git-not-inside-git-repo ()
   (not (helm-ls-git-root-dir)))
 
-(defun helm-ls-git-transformer (candidates source)
+(defun helm-ls-git-transformer (candidates)
   (cl-loop with root = (helm-ls-git-root-dir helm-default-directory)
            for i in candidates
            for abs = (expand-file-name i root)
@@ -141,21 +146,23 @@ Valid values are symbol 'abs (default) or 'relative."
                 data)))
     (helm-init-candidates-in-buffer 'global data)))
 
+(defun helm-ls-git-header-name (name)
+  (format "%s (%s)"
+          name
+          (replace-regexp-in-string
+           "\n" ""
+           (shell-command-to-string
+            "git rev-parse --abbrev-ref HEAD"))))
+
 (defvar helm-source-ls-git
   `((name . "Git files")
-    (header-name . (lambda (name)
-                     (format "%s (%s)"
-                             name
-                             (replace-regexp-in-string
-                              "\\* \\|\n" ""
-                              (shell-command-to-string
-                               "git branch | grep ^\\*")))))
+    (header-name . helm-ls-git-header-name)
     (init . helm-ls-git-init)
     (candidates-in-buffer)
     (keymap . ,helm-generic-files-map)
     (help-message . helm-generic-file-help-message)
     (mode-line . helm-generic-file-mode-line-string)
-    (filtered-candidate-transformer . helm-ls-git-transformer)
+    (candidate-transformer . helm-ls-git-transformer)
     (action-transformer helm-transform-file-load-el)
     (action . ,(cdr (helm-get-actions-from-type helm-source-locate)))))
 
@@ -215,7 +222,7 @@ Valid values are symbol 'abs (default) or 'relative."
                nil (list t helm-ls-git-log-file) nil
                (list "status" "--porcelain")))))
 
-(defun helm-ls-git-status-transformer (candidates source)
+(defun helm-ls-git-status-transformer (candidates _source)
   (cl-loop with root = (helm-ls-git-root-dir helm-default-directory)
            for i in candidates
            collect
@@ -243,17 +250,14 @@ Valid values are symbol 'abs (default) or 'relative."
                  ((string-match "^\\(UU \\)\\(.*\\)" i)
                   (cons (propertize i 'face 'helm-ls-git-conflict-face)
                         (expand-file-name (match-string 2 i) root)))
+                 ((string-match "^\\(AM \\)\\(.*\\)" i)
+                  (cons (propertize i 'face 'helm-ls-git-added-modified-face)
+                        (expand-file-name (match-string 2 i) root)))
                  (t i))))
 
 (defvar helm-source-ls-git-status
   `((name . "Git status")
-    (header-name . (lambda (name)
-                     (format "%s (%s)"
-                             name
-                             (replace-regexp-in-string
-                              "\\* \\|\n" ""
-                              (shell-command-to-string
-                               "git branch | grep ^\\*")))))
+    (header-name . helm-ls-git-header-name)
     (init . (lambda ()
               (helm-init-candidates-in-buffer
                'global
@@ -280,6 +284,7 @@ Valid values are symbol 'abs (default) or 'relative."
                                       (file-name-directory candidate))
                                      (marked (helm-marked-candidates)))
                                  (vc-call-backend 'Git 'register marked))))
+                         '("Delete file(s)" . helm-delete-marked-files)
                          '("Copy bnames to .gitignore"
                            . (lambda (candidate)
                                (let ((default-directory

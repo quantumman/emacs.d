@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (helm-ls-git-ls) "helm-ls-git" "helm-ls-git.el"
-;;;;;;  (21141 17523 0 0))
+;;;;;;  (21188 61929 0 0))
 ;;; Generated autoloads from helm-ls-git.el
 
 (autoload 'helm-ls-git-ls "helm-ls-git" "\
@@ -14,7 +14,7 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("helm-ls-git-pkg.el") (21141 17523 39489
+;;;### (autoloads nil nil ("helm-ls-git-pkg.el") (21188 61929 547205
 ;;;;;;  0))
 
 ;;;***
