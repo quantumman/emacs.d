@@ -93,17 +93,17 @@ If DONTCREATE is non-nil don't create a new session."
 If DONTCREATE is non-nil don't create a new session."
   (if (or (not dontcreate) (haskell-session-maybe))
       (let* ((session (haskell-session))
-         (modules
-          (shell-command-to-string
-           (format "%s && %s"
-                   (format "cd %s" (haskell-session-cabal-dir session))
-                   ;; TODO: Use a different, better source. Possibly hasktags or some such.
-                   ;; TODO: At least make it cross-platform. Linux
-                   ;; (and possibly OS X) have egrep, Windows
-                   ;; doesn't -- or does it via Cygwin or MinGW?
-                   ;; This also doesn't handle module\nName. But those gits can just cut it out!
-                   "egrep '^module[\t\r ]+[^(\t\r ]+' . -r -I --include='*.*hs' --include='*.hsc' -s -o -h | sed 's/^module[\t\r ]*//' | sort | uniq"))))
-    (split-string modules))))
+             (modules
+              (shell-command-to-string
+               (format "%s && %s"
+                       (format "cd %s" (haskell-session-cabal-dir session))
+                       ;; TODO: Use a different, better source. Possibly hasktags or some such.
+                       ;; TODO: At least make it cross-platform. Linux
+                       ;; (and possibly OS X) have egrep, Windows
+                       ;; doesn't -- or does it via Cygwin or MinGW?
+                       ;; This also doesn't handle module\nName. But those gits can just cut it out!
+                       "egrep '^module[\t\r ]+[^(\t\r ]+' . -r -I --include='*.*hs' --include='*.hsc' -s -o -h | sed 's/^module[\t\r ]*//' | sort | uniq"))))
+        (split-string modules))))
 
 (defun haskell-session-kill (&optional leave-interactive-buffer)
   "Kill the session process and buffer, delete the session.
@@ -221,6 +221,17 @@ If DONTCREATE is non-nil don't create a new session."
                               (haskell-session-choose)
                               (haskell-session-new))))
 
+(defun haskell-session-change-target (target)
+  "Set the build target for cabal repl"
+  (interactive "sNew build target:")
+  (let* ((session haskell-session)
+         (old-target (haskell-session-get session 'target)))
+    (when session
+      (haskell-session-set-target session target)
+      (when (and (not (string= old-target target))
+                 (y-or-n-p "Target changed, restart haskell process?"))
+        (haskell-process-start session)))))
+
 (defun haskell-session-strip-dir (session file)
   "Strip the load dir from the file path."
   (let ((cur-dir (haskell-session-current-dir session)))
@@ -251,6 +262,19 @@ If DONTCREATE is non-nil don't create a new session."
 (defun haskell-session-name (s)
   "Get the session name."
   (haskell-session-get s 'name))
+
+(defun haskell-session-target (s)
+  "Get the session build target."
+  (let* ((maybe-target (haskell-session-get s 'target))
+         (target (if maybe-target maybe-target
+                   (let ((new-target
+                          (read-string "build target (empty for default):")))
+                     (haskell-session-set-target s new-target)))))
+    (if (not (string= target "")) target nil)))
+
+(defun haskell-session-set-target (s target)
+  "Set the session build target."
+  (haskell-session-set s 'target target))
 
 (defun haskell-session-interactive-buffer (s)
   "Get the session interactive buffer."

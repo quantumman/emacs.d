@@ -346,6 +346,13 @@ be set to the preferred literate style."
 (defun haskell-ident-at-point ()
   "Return the identifier under point, or nil if none found.
 May return a qualified name."
+  (let ((reg (haskell-ident-pos-at-point)))
+    (when reg
+      (buffer-substring-no-properties (car reg) (cdr reg)))))
+
+(defun haskell-ident-pos-at-point ()
+  "Return the span of the identifier under point, or nil if none found.
+May return a qualified name."
   (save-excursion
     ;; Skip whitespace if we're on it.  That way, if we're at "map ", we'll
     ;; see the word "map".
@@ -383,7 +390,7 @@ May return a qualified name."
                     (looking-at "[[:upper:]]"))
           (setq start (point)))
         ;; This is it.
-        (buffer-substring-no-properties start end)))))
+        (cons start end)))))
 
 (defun haskell-delete-indentation (&optional arg)
   "Like `delete-indentation' but ignoring Bird-style \">\"."
@@ -645,6 +652,9 @@ If nil, use the Hoogle web-site."
 (defvar haskell-saved-check-command nil
   "Internal use.")
 
+(defcustom haskell-indent-spaces 2
+  "Number of spaces to indent inwards.")
+
 ;; Like Python.  Should be abstracted, sigh.
 (defun haskell-check (command)
   "Check a Haskell file (default current buffer's file).
@@ -727,9 +737,7 @@ Brings up the documentation for haskell-mode-hook."
     (ignore-errors (haskell-mode-stylish-buffer)))
   (let ((before-save-hook '())
         (after-save-hook '()))
-    (set-buffer-modified-p nil)
-    (basic-save-buffer)
-    )
+    (basic-save-buffer))
   )
 
 (defun haskell-mode-buffer-apply-command (cmd)
@@ -846,6 +854,24 @@ given a prefix arg."
     (rgrep sym
            "*.hs" ;; TODO: common Haskell extensions.
            (haskell-session-current-dir (haskell-session)))))
+
+(defun haskell-fontify-as-mode (text mode)
+  "Fontify TEXT as MODE, returning the fontified text."
+  (with-temp-buffer
+    (funcall mode)
+    (insert text)
+    (font-lock-fontify-buffer)
+    (buffer-substring (point-min) (point-max))))
+
+(defun haskell-guess-module-name ()
+  "Guess the current module name of the buffer."
+  (interactive)
+  (let ((components (loop for part
+                          in (reverse (split-string (buffer-file-name) "/"))
+                          while (let ((case-fold-search nil))
+                                  (string-match "^[A-Z]+" part))
+                          collect (replace-regexp-in-string "\\.l?hs$" "" part))))
+    (mapconcat 'identity (reverse components) ".")))
 
 
 ;; Provide ourselves:

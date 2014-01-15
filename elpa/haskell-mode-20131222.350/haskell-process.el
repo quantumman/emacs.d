@@ -91,6 +91,13 @@ pass additional flags to `ghc'."
   :group 'haskell-interactive
   :type '(repeat (string :tag "Argument")))
 
+(defcustom haskell-process-do-cabal-format-string
+  ":!cd %s && %s"
+  "The way to run cabal comands. It takes two arguments -- the directory and the command.
+See `haskell-process-do-cabal' for more details."
+  :group 'haskell-interactive
+  :type 'string)
+
 (defcustom haskell-process-type
   'ghci
   "The inferior Haskell process type to use."
@@ -268,12 +275,12 @@ If PROMPT-VALUE is non-nil, request identifier via mini-buffer."
                     (haskell-utils-parse-import-statement-at-point))))
      (if modname
          (format ":browse! %s" modname)
-       (format (if (string-match "^[a-z][A-Z]" ident)
+       (format (if (string-match "^[a-zA-Z_]" ident)
                    ":info %s"
                  ":info (%s)")
                (or ident
                    (haskell-ident-at-point)))))
-     'haskell-mode))
+   'haskell-mode))
 
 (defun haskell-process-do-try-info (sym)
   "Get info of `sym' and echo in the minibuffer."
@@ -431,8 +438,8 @@ to be loaded by ghci."
       (lambda (state)
         (haskell-process-send-string
          (cadr state)
-         (format ":!%s && %s"
-                 (format "cd %s" (haskell-session-cabal-dir (car state)))
+         (format haskell-process-do-cabal-format-string
+                 (haskell-session-cabal-dir (car state))
                  (format "%s %s"
                          (ecase haskell-process-type
                            ('ghci "cabal")
@@ -718,7 +725,9 @@ from `module-buffer'."
                  (append (list (haskell-session-name session)
                                nil
                                haskell-process-path-cabal)
-                         '("repl") haskell-process-args-cabal-repl)))
+                         '("repl") haskell-process-args-cabal-repl
+                          (let ((target (haskell-session-target session)))
+                            (if target (list target) nil)))))
          ('cabal-ghci
           (haskell-process-log (format "Starting inferior cabal-ghci process using %s ..."
                                        haskell-process-path-cabal-ghci))

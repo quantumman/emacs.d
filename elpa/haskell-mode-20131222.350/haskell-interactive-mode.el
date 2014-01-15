@@ -261,7 +261,7 @@ Key bindings:
     (move-beginning-of-line nil)))
 
 (defun haskell-interactive-mode-clear ()
-  "Newline and indent at the prompt."
+  "Clear the screen and put any current input into the history."
   (interactive)
   (let ((session (haskell-session)))
     (with-current-buffer (haskell-session-interactive-buffer session)
@@ -325,21 +325,8 @@ SESSION, otherwise operate on the current buffer.
           (inhibit-read-only t))
       (delete-region start-point (point))
       (goto-char (point-max))
-      (insert (haskell-interactive-text-as-mode (concat text "\n")
-                                                haskell-interactive-mode-eval-mode)))))
-
-(defun haskell-interactive-text-as-mode (text mode)
-  "Propertize `text' according to the font locking settings of
-`mode'."
-  (with-current-buffer (get-buffer-create (concat " haskell-font-lock-as-"
-                                                  (symbol-name mode)))
-    (unless (eq major-mode mode)
-      (funcall mode))
-    (erase-buffer)
-    (insert text)
-    (font-lock-fontify-region (point-min) (point-max))
-    (buffer-substring (point-min)
-                      (point-max))))
+      (insert (haskell-fontify-as-mode (concat text "\n")
+                                       haskell-interactive-mode-eval-mode)))))
 
 (defun haskell-interactive-mode-eval-pretty-result (session text)
   "Insert the result of an eval as a pretty printed Showable, if
@@ -361,7 +348,7 @@ SESSION, otherwise operate on the current buffer.
     (save-excursion
       (haskell-interactive-mode-goto-end-point)
       (insert (if mode
-                  (haskell-interactive-text-as-mode
+                  (haskell-fontify-as-mode
                    (concat message "\n")
                    mode)
                 (propertize (concat message "\n")
@@ -503,7 +490,7 @@ SESSION, otherwise operate on the current buffer.
           result)))))
 
 (defun haskell-interactive-mode-tab ()
-  "The tab command."
+  "Do completion if at prompt or else try collapse/expand."
   (interactive)
   (cond
    ((haskell-interactive-at-prompt)
