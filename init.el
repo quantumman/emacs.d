@@ -525,7 +525,7 @@
 (el-init:load "~/.emacs.d/inits")
 
 (load-theme 'solarized-light t)
-
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
 
 
 (setq-default mode-line-format
