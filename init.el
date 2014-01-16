@@ -471,7 +471,19 @@
 
 ;; Eclim
 (custom-set-variables
- '(eclim-eclipse-dirs '("/Application/eclipse")))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(eclim-eclipse-dirs (quote ("/Application/eclipse")))
+ '(haskell-notify-p t)
+ '(haskell-process-args-cabal-repl (quote ("--ghc-option=-ferror-spans")))
+ '(haskell-process-path-cabal (expand-file-name "~/Library/Haskell/bin/cabal"))
+ '(haskell-process-type (quote cabal-repl))
+ '(haskell-stylish-on-save t)
+ '(haskell-tags-on-save t)
+ '(server-kill-new-buffers t))
 
 (require 'eclim)
 (setq eclim-eclipse-dirs
