@@ -312,6 +312,13 @@
 (require 'auto-async-byte-compile)
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
 (add-hook 'emacs-lisp-hook-mode 'enable-auto-async-byte-compile-mode)
+(custom-set-variables
+ '(auto-async-byte-compile-display-function 'display-buffer)
+ )
+(require 'popwin)
+(push '(" *auto-async-byte-compile*" :height 14 :position bottom :noselect t)
+      popwin:special-display-config)
+
 
 ;;;; w3m
 (when (or darwin-p carbon-p)
