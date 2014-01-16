@@ -5,14 +5,18 @@
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
 
-(defun delete-chars-region (start end)
+(defun delete-chars-region (&optional start end)
   (interactive)
-  (save-excursion
-    (save-restriction
-      (narrow-to-region start end)
-      (goto-char (point-min))
-      (delete-forward-char (- (point-max) (point-min)))
-      )))
+  (when (region-active-p)
+    (save-excursion
+      (save-restriction
+	(if (and start ebd)
+	    (narrow-to-region start end)
+	  (narrow-to-region (region-beginning) (region-end))
+	  )
+	(goto-char (point-min))
+	(delete-forward-char (- (point-max) (point-min)))
+	))))
 
 (define-region-key global-map (kbd "\C-d")
   'delete-chars-region
