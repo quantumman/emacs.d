@@ -35,7 +35,12 @@
         (setq frame-title-format title)))))
 
 (eval-after-load "elscreen"
-  '(add-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update))
+  '(progn
+     (add-hook 'elscreen-screen-update-hook 'elscreen-frame-title-update)
+     (custom-set-variables
+      '(elscreen-display-tab nil)
+      ))
+  )
 
 
 (provide 'init.elscreen)
