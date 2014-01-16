@@ -173,10 +173,10 @@
   (set-face-foreground 'whitespace-newline "gray60")
 
   ;; スペースの色を変更
-  (set-face-foreground 'whitespace-hspace "gray80")
-  (set-face-background 'whitespace-hspace "white")
-  (set-face-foreground 'whitespace-space "gray80")
-  (set-face-background 'whitespace-space "white")
+  (set-face-foreground 'whitespace-hspace "gray60")
+  ;; (set-face-background 'whitespace-hspace "white")
+  (set-face-foreground 'whitespace-space "gray60")
+  ;; (set-face-background 'whitespace-space "white")
   (set-face-foreground 'whitespace-tab "grey60")
   (set-face-background 'whitespace-tab nil)
   (set-face-underline 'whitespace-tab "grey80")
