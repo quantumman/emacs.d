@@ -514,5 +514,87 @@
         ))
 (el-init:load "~/.emacs.d/inits")
 
+(load-theme 'solarized-light t)
+
+
+
+(setq-default mode-line-format
+              '("-"
+                mode-line-mule-info
+                mode-line-modified
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                " "
+                global-mode-string
+                " %[("
+                mode-name
+                mode-line-process
+                minor-mode-alist
+                "%n" ")%]-"
+                (which-func-mode ("" which-func-format "-"))
+                (line-number-mode "L%l-")
+                (column-number-mode "C%c-")
+                (-3 . "%p")
+                "-%-")
+              )
+
+(require 'powerline)
+(defun my-powerline-default-theme ()
+  "Setup my default mode-line."
+  (interactive)
+  (setq-default mode-line-format
+                '("%e"
+                  (:eval
+                   (let* ((active (powerline-selected-window-active))
+                          (face1 (if active 'powerline-active1
+                                   'powerline-inactive1))
+                          (face2 (if active 'powerline-active2
+                                   'powerline-inactive2))
+                          (lhs (list
+                                (powerline-raw "%*" face2 'l)
+                                (powerline-buffer-size face2 'l)
+                                (powerline-buffer-id face2 'l)
+
+                                (powerline-raw " " face2)
+                                (powerline-arrow-right face2 face1)
+                                (powerline-raw which-func-format face1)
+                                (powerline-vc face1)
+
+                                (powerline-arrow-right face1 face2)
+
+                                (powerline-major-mode face2 'l)
+                                (powerline-process face2)
+                                (powerline-minor-modes face2 'l)
+                                (powerline-narrow face2 'l)
+                                ))
+                          (rhs (list
+                                (powerline-raw global-mode-string face2 'r)
+
+                                (powerline-arrow-left face2 face1)
+
+                                (powerline-raw "%4l" face1 'r)
+                                (powerline-raw ":" face1)
+                                (powerline-raw "%3c" face1 'r)
+
+                                (powerline-arrow-left face1 nil)
+
+                                (powerline-raw "%6p" nil 'r)
+
+                                (powerline-hud face2 face1))))
+                     (concat
+                      (powerline-render lhs)
+                      (powerline-fill face2 (powerline-width rhs))
+                      (powerline-render rhs)))))))
+(my-powerline-default-theme)
+
+(custom-set-faces
+ '(powerline-active1 ((t (:background "light salmon" :inherit mode-line))))
+ '(powerline-active2 ((t (:background "navajo white" :inherit mode-line))))
+ '(powerline-inactive1 ((t (:background "light salmon" :inherit mode-line))))
+ '(powerline-inactive2 ((t (:background "navajo white" :inherit mode-line))))
+ )
+
+
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
