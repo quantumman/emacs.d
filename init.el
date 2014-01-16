@@ -497,11 +497,13 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
 (setq el-init:load-directory-list
-      '("common"
+      '("macro"
+        "common"
         "elisp-util"
         "keybinding"
         "eshell"
         "helm"
+        "tab"
         "color-theme"
         "command"
         "sns"
