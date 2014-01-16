@@ -527,27 +527,6 @@
 (load-theme 'solarized-light t)
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 
-
-(setq-default mode-line-format
-              '("-"
-                mode-line-mule-info
-                mode-line-modified
-                mode-line-frame-identification
-                mode-line-buffer-identification
-                " "
-                global-mode-string
-                " %[("
-                mode-name
-                mode-line-process
-                minor-mode-alist
-                "%n" ")%]-"
-                (which-func-mode ("" which-func-format "-"))
-                (line-number-mode "L%l-")
-                (column-number-mode "C%c-")
-                (-3 . "%p")
-                "-%-")
-              )
-
 (require 'powerline)
 (defun my-powerline-default-theme ()
   "Setup my default mode-line."
