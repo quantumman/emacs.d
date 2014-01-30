@@ -217,7 +217,10 @@
   (define-key haskell-mode-map (kbd "C-<left>")
     (lambda ()
       (interactive)
-      (backward-word))))
+      (backward-word)))
+
+  (add-hook 'after-save-hook 'auto-save-buffers--set-buffer-modified nil t)
+  )
 
 ;; Useful to have these keybindings for .cabal files, too.
 (defun haskell-cabal-hook ()
@@ -234,9 +237,6 @@
 (defun auto-save-buffers--set-buffer-modified ()
   (set-visited-file-modtime)
   (set-buffer-modified-p nil))
-
-(defun haskell-hook ()
-  (add-hook 'after-save-hook 'auto-save-buffers--set-buffer-modified nil t))
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 
