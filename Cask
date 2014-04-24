@@ -17,7 +17,6 @@
 (depends-on "ac-etags")
 (depends-on "auto-complete-nxml")
 (depends-on "ac-octave")
-(depends-on "auto-complete-verilog")
 (depends-on "auto-indent-mode")
 (depends-on "bind-key")
 (depends-on "bm")
