@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: define advice
+# key: defadvice
+# expand-env:
+# --
+(defadvice $1 (${2:$$(yas/choose-value '("before" "around" "after" "activation" "deactivation"))} $1-$2-advice ($3))$>
+  $0$>
+)$>
+(ad-activate '$1)
+;; (ad-deactivate '$1)
