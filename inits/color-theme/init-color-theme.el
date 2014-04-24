@@ -1,8 +1,9 @@
 (require 'color-theme)
-(require 'color-theme-tango)
 (require 'color-theme-buffer-local)
 
 (color-theme-initialize)
+
+(load-theme 'solarized-light t)
 
 ;; (add-hook 'eshell-mode-hook
 ;;           (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
