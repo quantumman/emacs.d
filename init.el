@@ -8,6 +8,9 @@
 
 (require 'cl)
 
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;; save load-path for debug
 (require 'save-load-path)
 (save-load-path-initialize)
