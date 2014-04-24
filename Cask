@@ -71,6 +71,7 @@
 (depends-on "gh")
 (depends-on "gist")
 (depends-on "git-commit")
+(depends-on "git-commit")
 (depends-on "git-gutter+")
 (depends-on "git-gutter-fringe+")
 (depends-on "go-mode")
