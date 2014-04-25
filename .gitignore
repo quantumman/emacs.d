@@ -1,6 +1,9 @@
 #### backup files by emacs
 *~
 
+# Cask
+.cask
+
 #### data files like binarires or caches, etc..
 *.dat
 *.elc

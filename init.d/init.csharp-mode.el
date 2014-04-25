@@ -2,8 +2,6 @@
 (require 'csharp-mode)
 (push '("\\.cs$" . csharp-mode) auto-mode-alist)
 
-(defvar yas/menu-keymap yas/minor-mode-menu)
-
 (defun ac-etags-signature (keyword)
   (save-excursion
     (let ((buf (find-tag-noselect keyword)))
@@ -16,7 +14,7 @@
             ))))))
 
 (require 'etags)
-(require 'auto-complete-etags)
+(require 'ac-etags)
 (require 'helm-config)
 (require 'helm-git)
 (require 'helm-etags+)

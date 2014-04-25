@@ -8,19 +8,12 @@
 
 (require 'cl)
 
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;; save load-path for debug
 (require 'save-load-path)
 (save-load-path-initialize)
-
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/package/"))
-(when
-    (when (< emacs-major-version 24)
-      (load (expand-file-name "~/.emacs.d/elpa/package.el")))
-  (package-initialize))
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
@@ -524,7 +517,6 @@
         ))
 (el-init:load "~/.emacs.d/inits")
 
-(load-theme 'solarized-light t)
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 
 (require 'powerline)
