@@ -88,7 +88,7 @@
 (setq eshell-prompt-function #'custom:eshell-prompt-function)
 (setq eshell-prompt-regexp
       (mapconcat
-       '(lambda (str) (concat "\\(" str "\\)"))
+       #'(lambda (str) (concat "\\(" str "\\)"))
        '("^[^#$\n]* [#$] "                    ; default
          "^\\(mysql\\|[ ]\\{4\\}[-\"'`]\\)> "
          "^>>> "                              ; python
