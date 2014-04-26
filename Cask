@@ -4,6 +4,8 @@
 
 (depends-on "cask")
 
+(depends-on "ac-etags")
+(depends-on "ac-octave")
 (depends-on "ace-jump-mode")
 (depends-on "all")
 (depends-on "all-ext")
@@ -14,9 +16,7 @@
 (depends-on "auto-complete-clang")
 (depends-on "auto-complete-clang")
 (depends-on "auto-complete-clang-async")
-(depends-on "ac-etags")
 (depends-on "auto-complete-nxml")
-(depends-on "ac-octave")
 (depends-on "auto-indent-mode")
 (depends-on "bind-key")
 (depends-on "bm")
