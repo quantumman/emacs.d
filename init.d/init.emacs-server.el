@@ -1,4 +1,3 @@
-(require 'elscreen-server)
 (server-start)
 
 (defun iconify-emacs-when-server-is-done ()
