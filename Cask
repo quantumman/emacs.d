@@ -29,6 +29,7 @@
 (depends-on "cmake-mode")
 (depends-on "coffee-mode")
 (depends-on "color-theme")
+(depends-on "color-theme-buffer-local")
 (depends-on "company")
 (depends-on "csharp-mode")
 (depends-on "csv-mode")
