@@ -134,6 +134,7 @@
 (depends-on "rainbow-delimiters")
 (depends-on "redo+")
 (depends-on "rinari")
+(depends-on "rotate")
 (depends-on "ruby-block")
 (depends-on "ruby-compilation")
 (depends-on "ruby-electric")
