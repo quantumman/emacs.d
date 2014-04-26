@@ -60,6 +60,7 @@
 (depends-on "fold-dwim")
 (depends-on "fold-dwim-org")
 (depends-on "fringe-helper")
+(depends-on "fsharp-mode")
 (depends-on "full-ack")
 (depends-on "furl")
 (depends-on "fuzzy")
