@@ -1,16 +1,17 @@
 (setq message-log-max 10000)
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
-;;;; auto-install.el
-(require 'auto-install)
-(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)
 
 (require 'cl)
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 (require 'pallet)
+
+;;;; auto-install.el
+(require 'auto-install)
+(auto-install-update-emacswiki-package-name t)
+(auto-install-compatibility-setup)
 
 ;; save load-path for debug
 (require 'save-load-path)
