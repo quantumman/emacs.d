@@ -3,6 +3,7 @@
 (source marmalade)
 
 (depends-on "cask")
+(depends-on "pallet")
 
 (depends-on "ac-etags")
 (depends-on "ac-octave")
@@ -119,7 +120,6 @@
 (depends-on "org2blog")
 (depends-on "page-break-lines")
 (depends-on "pager")
-(depends-on "pallet")
 (depends-on "paredit")
 (depends-on "pcache")
 (depends-on "popup")
