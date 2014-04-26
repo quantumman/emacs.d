@@ -1,9 +1,6 @@
 (source gnu)
-(source melpa)
 (source marmalade)
-
-(depends-on "cask")
-(depends-on "pallet")
+(source melpa)
 
 (depends-on "ac-etags")
 (depends-on "ac-octave")
@@ -23,6 +20,7 @@
 (depends-on "c-eldoc")
 (depends-on "calfw")
 (depends-on "calfw-gcal")
+(depends-on "cask")
 (depends-on "cl-lib")
 (depends-on "clojure-mode")
 (depends-on "cmake-mode")
@@ -121,6 +119,7 @@
 (depends-on "org2blog")
 (depends-on "page-break-lines")
 (depends-on "pager")
+(depends-on "pallet")
 (depends-on "paredit")
 (depends-on "pcache")
 (depends-on "popup")
