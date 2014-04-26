@@ -351,9 +351,6 @@
 (global-set-key (kbd "\C-z\C-z")
                 'iconify-or-deiconify-frame)
 
-(require 'rst-goodies)
-(require 'rst)
-
 (require 'windmove)               ; to load the package
 (windmove-default-keybindings)    ; default keybindings
 
