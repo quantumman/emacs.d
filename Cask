@@ -25,6 +25,7 @@
 (depends-on "clojure-mode")
 (depends-on "cmake-mode")
 (depends-on "coffee-mode")
+(depends-on "color-moccur")
 (depends-on "color-theme")
 (depends-on "color-theme-buffer-local")
 (depends-on "company")
