@@ -10,6 +10,7 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+(require 'pallet)
 
 ;; save load-path for debug
 (require 'save-load-path)
