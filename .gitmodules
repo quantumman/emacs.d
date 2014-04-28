@@ -1,8 +1,8 @@
 [submodule "loader"]
 	path = loader
 	url = git://github.com/HKey/el-init.git
-[submodule "site-lisp/helm/etags"]
-	path = site-lisp/helm/etags
+[submodule "site-lisp/helm-etags-plus"]
+	path = site-lisp/helm-etags-plus
 	url = git://github.com/jixiuf/helm-etags-plus.git
 [submodule "el-init"]
 	path = el-init
@@ -13,3 +13,6 @@
 [submodule "site-lisp/auto-java-complete"]
 	path = site-lisp/auto-java-complete
 	url = https://github.com/emacs-java/auto-java-complete.git
+[submodule "site-lisp/fsharpbinding"]
+	path = site-lisp/fsharpbinding
+	url = https://github.com/fsharp/fsharpbinding.git
