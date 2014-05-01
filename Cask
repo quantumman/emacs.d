@@ -70,6 +70,7 @@
 (depends-on "fuzzy-match")
 (depends-on "gccsense")
 (depends-on "gh")
+(depends-on "ghc")
 (depends-on "gist")
 (depends-on "git")
 (depends-on "git-blame")
