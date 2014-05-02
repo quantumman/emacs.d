@@ -152,7 +152,7 @@
 (custom-set-variables
  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
  '(haskell-process-type 'cabal-repl)
- '(haskell-process-path-cabal (expand-file-name "~/Library/Haskell/bin/cabal"))
+ '(haskell-process-path-cabal "cabal")
  '(haskell-process-args-cabal-repl
    '("--ghc-option=-ferror-spans"))
 
