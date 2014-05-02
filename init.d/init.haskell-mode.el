@@ -239,6 +239,6 @@
   (set-visited-file-modtime)
   (set-buffer-modified-p nil))
 
-(add-hook 'haskell-mode-hook 'haskell-hook)
+(add-hook 'haskell-mode-hook 'auto-save-buffers--set-buffer-modified)
 
 (provide 'init.haskell-mode)
