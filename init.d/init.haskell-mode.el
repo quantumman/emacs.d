@@ -233,8 +233,6 @@
   (setq indent-tabs-mode nil)
   )
 
-(add-hook 'haskell-cabal-mode-hook #'haskell-cabal-hook)
-
 (defun auto-save-buffers--set-buffer-modified ()
   (set-visited-file-modtime)
   (set-buffer-modified-p nil))
