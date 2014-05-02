@@ -536,11 +536,11 @@
                                 (powerline-buffer-id face2 'l)
 
                                 (powerline-raw " " face2)
-                                (powerline-arrow-right face2 face1)
+                                (powerline-zigzag-right face2 face1)
                                 (powerline-raw which-func-format face1)
                                 (powerline-vc face1)
 
-                                (powerline-arrow-right face1 face2)
+                                (powerline-zigzag-right face1 face2)
 
                                 (powerline-major-mode face2 'l)
                                 (powerline-process face2)
@@ -550,13 +550,13 @@
                           (rhs (list
                                 (powerline-raw global-mode-string face2 'r)
 
-                                (powerline-arrow-left face2 face1)
+                                (powerline-zigzag-left face2 face1)
 
                                 (powerline-raw "%4l" face1 'r)
                                 (powerline-raw ":" face1)
                                 (powerline-raw "%3c" face1 'r)
 
-                                (powerline-arrow-left face1 nil)
+                                (powerline-zigzag-left face1 nil)
 
                                 (powerline-raw "%6p" nil 'r)
 
