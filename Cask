@@ -2,6 +2,7 @@
 (source marmalade)
 (source melpa)
 
+(depends-on "ac-c-headers")
 (depends-on "ac-etags")
 (depends-on "ac-octave")
 (depends-on "ace-jump-mode")
