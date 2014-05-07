@@ -15,7 +15,7 @@
 (set-face-attribute
  'tabbar-default nil
  :family (face-attribute 'default :family)
- :background (face-attribute 'mode-line-inactive :background)
+ :background (face-attribute 'default :background)
  :height 0.9)
 (set-face-attribute
  'tabbar-unselected nil
@@ -24,12 +24,13 @@
  :box nil)
 (set-face-attribute
  'tabbar-selected nil
- :background (face-attribute 'mode-line :background)
- :foreground (face-attribute 'mode-line :foreground)
+ :background (face-attribute 'default :background)
+ :foreground (face-attribute 'default :foreground)
  :box nil)
 (set-face-attribute
  'tabbar-separator nil
- :foreground "red"
+ :background (face-attribute 'default :background)
+ :foreground (face-attribute 'mode-line-inactive :foreground)
  :height 1.2)
 
 (defun my-tabbar-buffer-groups (&optional buffer) ;; customize to show all normal files in one group
