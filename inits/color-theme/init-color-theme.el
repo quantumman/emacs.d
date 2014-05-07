@@ -3,7 +3,8 @@
 
 (color-theme-initialize)
 
-(load-theme 'solarized-light t)
+(load-theme 'base16-railscasts t)
+(enable-theme 'base16-railscasts)
 
 ;; (add-hook 'eshell-mode-hook
 ;;           (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
