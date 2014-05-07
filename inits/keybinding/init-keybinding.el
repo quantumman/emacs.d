@@ -10,7 +10,7 @@
   (when (region-active-p)
     (save-excursion
       (save-restriction
-        (if (and start ebd)
+        (if (and start end)
             (narrow-to-region start end)
           (narrow-to-region (region-beginning) (region-end))
           )
