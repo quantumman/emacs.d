@@ -176,7 +176,7 @@
   (set-face-foreground 'whitespace-hspace "gray60")
   ;; (set-face-background 'whitespace-hspace "white")
   (set-face-foreground 'whitespace-space "gray60")
-  ;; (set-face-background 'whitespace-space "white")
+  (set-face-background 'whitespace-space nil)
   (set-face-foreground 'whitespace-tab "grey60")
   (set-face-background 'whitespace-tab nil)
   (set-face-underline 'whitespace-tab "grey80")
