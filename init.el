@@ -542,23 +542,24 @@
 
                                 (powerline-zigzag-right face1 face2)
 
+                                (powerline-raw "%4l" face2 'r)
+                                (powerline-raw ":" face2)
+                                (powerline-raw "%3c" face2 'r)
+
+                                ))
+                          (rhs (list
                                 (powerline-major-mode face2 'l)
                                 (powerline-process face2)
                                 (powerline-minor-modes face2 'l)
                                 (powerline-narrow face2 'l)
-                                ))
-                          (rhs (list
-                                (powerline-raw global-mode-string face2 'r)
 
                                 (powerline-zigzag-left face2 face1)
 
-                                (powerline-raw "%4l" face1 'r)
-                                (powerline-raw ":" face1)
-                                (powerline-raw "%3c" face1 'r)
+                                (powerline-raw global-mode-string face1 'r)
 
-                                (powerline-zigzag-left face1 nil)
+                                (powerline-zigzag-left face1 face2)
 
-                                (powerline-raw "%6p" nil 'r)
+                                (powerline-raw "%6p" face2 'r)
 
                                 (powerline-hud face2 face1))))
                      (concat
