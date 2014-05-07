@@ -28,12 +28,6 @@
         (delete-char (- (point-max) (point-min)))
         ))))
 
-(define-region-key global-map (kbd "\C-d")
-  'delete-chars-region
-  (lambda ()
-    (delete-forward-char 1)))
-
-
 (defun point-to-top ()
   "Put point to top line of window."
   (interactive)
