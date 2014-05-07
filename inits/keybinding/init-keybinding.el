@@ -5,6 +5,11 @@
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
 
+(require 'mykie)
+(setq mykie:use-major-mode-key-override t)
+(mykie:initialize)
+
+
 (defun delete-chars-region (&optional start end)
   (interactive)
   (when (region-active-p)
