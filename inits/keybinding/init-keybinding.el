@@ -9,6 +9,11 @@
 (setq mykie:use-major-mode-key-override t)
 (mykie:initialize)
 
+(mykie:set-keys nil
+  "C-d"
+  :default     (delete-char 1)
+  :region      delete-chars-region
+  )
 
 (defun delete-chars-region (&optional start end)
   (interactive)
