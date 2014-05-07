@@ -45,7 +45,6 @@
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
 
-(define-region-key global-map "\C-w" 'kill-region 'ispell-word)
 (define-region-key global-map [C-tab] 'indent-region 'indent-for-tab-command)
 
 (global-set-key "\C-f" 'forward-word)
