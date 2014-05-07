@@ -17,6 +17,7 @@
 (depends-on "auto-highlight-symbol")
 (depends-on "auto-indent-mode")
 (depends-on "auto-install")
+(depends-on "base16-theme")
 (depends-on "bind-key")
 (depends-on "bm")
 (depends-on "browse-kill-ring")
