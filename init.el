@@ -4,7 +4,7 @@
 
 (require 'cl)
 
-(require 'cask "~/.cask/cask.el")
+(require 'cask)
 (cask-initialize)
 (require 'pallet)
 
