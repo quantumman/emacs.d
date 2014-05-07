@@ -568,14 +568,6 @@
                       (powerline-render rhs)))))))
 (my-powerline-default-theme)
 
-(custom-set-faces
- '(powerline-active1 ((t (:background "light salmon" :inherit mode-line))))
- '(powerline-active2 ((t (:background "navajo white" :inherit mode-line))))
- '(powerline-inactive1 ((t (:background "light salmon" :inherit mode-line))))
- '(powerline-inactive2 ((t (:background "navajo white" :inherit mode-line))))
- )
-
-
 
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
