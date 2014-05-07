@@ -16,6 +16,9 @@
   "C-w"
   :default     (ispell-word)
   :region      kill-region
+  [C-tab]
+  :default     (indent-for-tab-command)
+  :region      indent-region
   )
 
 (defun delete-chars-region (&optional start end)
