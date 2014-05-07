@@ -15,7 +15,7 @@
           (narrow-to-region (region-beginning) (region-end))
           )
         (goto-char (point-min))
-        (delete-forward-char (- (point-max) (point-min)))
+        (delete-char (- (point-max) (point-min)))
         ))))
 
 (define-region-key global-map (kbd "\C-d")
