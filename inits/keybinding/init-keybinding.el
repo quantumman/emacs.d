@@ -10,13 +10,13 @@
   (when (region-active-p)
     (save-excursion
       (save-restriction
-	(if (and start ebd)
-	    (narrow-to-region start end)
-	  (narrow-to-region (region-beginning) (region-end))
-	  )
-	(goto-char (point-min))
-	(delete-forward-char (- (point-max) (point-min)))
-	))))
+        (if (and start ebd)
+            (narrow-to-region start end)
+          (narrow-to-region (region-beginning) (region-end))
+          )
+        (goto-char (point-min))
+        (delete-forward-char (- (point-max) (point-min)))
+        ))))
 
 (define-region-key global-map (kbd "\C-d")
   'delete-chars-region
