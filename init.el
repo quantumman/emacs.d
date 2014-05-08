@@ -516,7 +516,7 @@
         ))
 (el-init:load "~/.emacs.d/inits")
 
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
 
 (require 'powerline)
 (defun my-powerline-default-theme ()
