@@ -5,24 +5,37 @@
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
 
+(require 'mykie)
+(setq mykie:use-major-mode-key-override t)
+(mykie:initialize)
+
+(mykie:set-keys nil
+  "C-d"
+  :default     (delete-char 1)
+  :region      delete-chars-region
+  "C-w"
+  :default     (ispell-word)
+  :region      kill-region
+  "C-k"
+  :default     (kill-line)
+  :region      kill-region
+  [C-tab]
+  :default     (indent-for-tab-command)
+  :region      indent-region
+  )
+
 (defun delete-chars-region (&optional start end)
   (interactive)
   (when (region-active-p)
     (save-excursion
       (save-restriction
-	(if (and start ebd)
-	    (narrow-to-region start end)
-	  (narrow-to-region (region-beginning) (region-end))
-	  )
-	(goto-char (point-min))
-	(delete-forward-char (- (point-max) (point-min)))
-	))))
-
-(define-region-key global-map (kbd "\C-d")
-  'delete-chars-region
-  (lambda ()
-    (delete-forward-char 1)))
-
+        (if (and start end)
+            (narrow-to-region start end)
+          (narrow-to-region (region-beginning) (region-end))
+          )
+        (goto-char (point-min))
+        (delete-char (- (point-max) (point-min)))
+        ))))
 
 (defun point-to-top ()
   "Put point to top line of window."
@@ -37,9 +50,6 @@
   (move-to-window-line -1))
 (global-set-key "\C-b" 'point-to-bottom) ;; C-b = pointer moves to bottom of window
 
-
-(define-region-key global-map "\C-w" 'kill-region 'ispell-word)
-(define-region-key global-map [C-tab] 'indent-region 'indent-for-tab-command)
 
 (global-set-key "\C-f" 'forward-word)
 (global-set-key "\C-b" 'backward-word)
