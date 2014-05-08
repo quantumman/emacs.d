@@ -6,7 +6,7 @@
        )
       (t
        (setq browse-url-generic-program
-             "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+             "open"
              )
        )
       )
