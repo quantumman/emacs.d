@@ -89,7 +89,7 @@
           (persistent-action . helm-buffers-list-persistent-action)
           (volatile)
           (no-delay-on-input)
-          (mode-line . helm-buffer-mode-line-string)moccur
+          (mode-line . helm-buffer-mode-line-string)
           (persistent-help
            . "Show this buffer / C-u \\[helm-execute-persistent-action]: Kill this buffer")
           )
