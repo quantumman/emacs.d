@@ -9,9 +9,13 @@
 (copy-face 'default 'region)
 (invert-face 'region)
 
-;; Use visible foreground color for git commit summary
-;; because "base16-railscasts" theme uses invisible color for git commit summary.
+;; Use visible color combination for some faces
+;; because "base16-railscasts" theme makes those faces be invisible color balance.
 (copy-face 'git-commit-text-face 'git-commit-summary-face)
+(set-face-attribute
+ 'popup-tip-face nil
+ :background (face-attribute 'default :background)
+ )
 
 ;; (add-hook 'eshell-mode-hook
 ;;           (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
