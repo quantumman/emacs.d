@@ -167,6 +167,7 @@
 (depends-on "scala-mode")
 (depends-on "sequential-command")
 (depends-on "shell-history")
+(depends-on "shm")
 (depends-on "slime")
 (depends-on "slime-repl")
 (depends-on "smartparens")
