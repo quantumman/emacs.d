@@ -397,6 +397,18 @@
              (guide-key/add-local-guide-key-sequence "C-c C-e")
              (guide-key/add-local-highlight-command-regexp "eclim-")))
 
+(add-hook 'web-mode-hook
+          '(lambda ()
+             (guide-key/add-local-guide-key-sequence "C-c")
+             (guide-key/add-local-guide-key-sequence "C-c C-a")
+             (guide-key/add-local-guide-key-sequence "C-c C-b")
+             (guide-key/add-local-guide-key-sequence "C-c C-d")
+             (guide-key/add-local-guide-key-sequence "C-c C-e")
+             (guide-key/add-local-guide-key-sequence "C-c C-f")
+             (guide-key/add-local-guide-key-sequence "C-c C-t")
+             (guide-key/add-local-highlight-command-regexp "web-mode-")
+             ))
+
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 
