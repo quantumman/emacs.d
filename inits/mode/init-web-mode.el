@@ -41,6 +41,13 @@
         web-mode-markup-indent-offset 4
         ))
 
+(setq web-mode-enable-auto-paring t
+      web-mode-enable-css-colorization t
+      web-mode-enable-part-face t
+      web-mode-enable-comment-keywords t
+      web-mode-enable-current-element-highlight t
+      )
+
 (add-hook 'web-mode-hook
           (lambda ()
             (local-set-key (kbd "<return>") 'newline)
