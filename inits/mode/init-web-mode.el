@@ -25,6 +25,9 @@
         web-mode-php-offset    2
         web-mode-java-offset   2
         web-mode-asp-offset    2
+        web-mode-style-padding 2
+        web-mode-script-padding 2
+        web-mode-block-padding 2
         ))
 (defun web-mode-asp-indent ()
   "Indentation setting for Web mode."
