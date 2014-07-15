@@ -83,6 +83,7 @@
 (depends-on "goto-chg")
 (depends-on "groovy-mode")
 (depends-on "guide-key")
+(depends-on "guide-key-tip")
 (depends-on "haml-mode")
 (depends-on "hamlet-mode")
 (depends-on "haskell-mode")
