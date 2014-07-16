@@ -528,7 +528,7 @@
         ))
 (el-init:load "~/.emacs.d/inits")
 
-(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
 
 (require 'powerline)
 (require 'nyan-mode)
