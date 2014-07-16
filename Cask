@@ -3,6 +3,7 @@
 (source melpa)
 
 (depends-on "ac-c-headers")
+(depends-on "ac-emmet")
 (depends-on "ac-etags")
 (depends-on "ac-js2")
 (depends-on "ac-octave")
@@ -50,6 +51,7 @@
 (depends-on "eldoc-extension")
 (depends-on "elscreen")
 (depends-on "emacs-eclim")
+(depends-on "emmet-mode")
 (depends-on "eproject")
 (depends-on "etags-table")
 (depends-on "evernote-mode")
