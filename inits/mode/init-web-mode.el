@@ -48,6 +48,20 @@
       web-mode-enable-current-element-highlight t
       )
 
+(require 'emmet-mode)
+(require 'ac-emmet)
+(require 'ac-js2)
+(add-hook 'web-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode)
+(setq ac-source-emmt-html
+      (append ac-source-emmet-html-snippets
+              ac-source-emmet-html-aliases)
+      )
+(setq web-mode-ac-sources-alist
+      '(("html" 'ac-source-emmt-html)
+        ("css" 'ac-source-emmet-css-snippets)
+        ("javascript" 'ac-js2)))
+
 (add-hook 'web-mode-hook
           (lambda ()
             (local-set-key (kbd "<return>") 'newline)
