@@ -4,6 +4,7 @@
 
 (depends-on "ac-c-headers")
 (depends-on "ac-etags")
+(depends-on "ac-js2")
 (depends-on "ac-octave")
 (depends-on "ace-jump-mode")
 (depends-on "all")
