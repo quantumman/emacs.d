@@ -164,13 +164,19 @@
  '(haskell-tags-on-save t)
 
  ;; To enable stylish on save.
- '(haskell-stylish-on-save t))
+ '(haskell-stylish-on-save t)
+
+ '(haskell-process-log t)
+ '(haskell-process-auto-import-loaded-modules t)
+ )
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
+  (interactive-haskell-mode)
+
   ;; Use simple indentation.
   (turn-on-haskell-simple-indent)
   (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
