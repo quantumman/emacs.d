@@ -107,7 +107,6 @@
 (depends-on "inf-ruby")
 (depends-on "inflections")
 (depends-on "js2-mode")
-(depends-on "js3-mode")
 (depends-on "json")
 (depends-on "jump")
 (depends-on "key-chord")
