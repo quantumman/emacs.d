@@ -132,6 +132,7 @@
 (depends-on "multiple-cursors")
 (depends-on "mykie")
 (depends-on "nyan-mode")
+(depends-on "omnisharp")
 (depends-on "open-junk-file")
 (depends-on "org")
 (depends-on "org-email")
