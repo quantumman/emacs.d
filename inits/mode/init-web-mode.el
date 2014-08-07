@@ -62,15 +62,17 @@
         ("css" 'ac-source-emmet-css-snippets)
         ("javascript" 'ac-js2)))
 
-(add-hook 'web-mode-hook
-          (lambda ()
-            (local-set-key (kbd "<return>") 'newline)
-            (case (intern (file-name-extension (buffer-file-name)))
-              ((aspx ascx)
-               (web-mode-asp-indent))
-              (otherwise
-               (web-mode-default-indent-depth)
-               ))))
+(defun web-mode-hook-function ()
+  (lambda ()
+    (local-set-key (kbd "<return>") 'newline)
+    (case (intern (file-name-extension (buffer-file-name)))
+      ((aspx ascx)
+       (web-mode-asp-indent))
+      (otherwise
+       (web-mode-default-indent-depth)
+       )))
+  )
+(add-hook 'web-mode-hook 'web-mode-hook-function)
 
 (require 'el-init)
 (el-init:provide)
