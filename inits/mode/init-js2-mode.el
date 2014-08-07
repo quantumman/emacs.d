@@ -9,6 +9,16 @@
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-hook 'web-mode-hook 'skewer-html-mode)
 
+(custom-set-variables
+ '(js2-basic-offset 2)
+ )
+
+(defun js2-mode-hook-function ()
+  (setq indent-tabs-mode nil
+        tab-width 2
+        )
+  )
+(add-hook 'js2-mode-hook 'js2-mode-hook-function)
 
 (setq ac-js2-evaluate-calls t
       )
