@@ -45,7 +45,7 @@
       web-mode-enable-css-colorization t
       web-mode-enable-part-face t
       web-mode-enable-comment-keywords t
-      web-mode-enable-current-element-highlight t
+      web-mode-enable-current-element-highlight nil
       )
 
 (require 'emmet-mode)
