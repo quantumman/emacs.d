@@ -133,7 +133,7 @@
 (when windows-p
   (require 'powershell)
   (require 'powershell-mode)
-  (push '("\\.ps1$" . powershell-mode) auto-mode-alist)
+  (push '("\\.ps1\\'" . powershell-mode) auto-mode-alist)
   (add-to-list 'ac-modes 'powershell-mode)
   (setq powershell-indent 4))
 
@@ -365,7 +365,7 @@
 (require 'rebase-mode)
 
 (require 'feature-mode)
-(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+(add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
 
 (setq indent-tabs-mode nil)
 
@@ -426,10 +426,10 @@
 (setq require-final-newline t)
 
 (require 'nxml-mode)
-(add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.htm$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.xhtml$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.shtml$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.htm\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.xhtml\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.shtml\\'" . nxml-mode))
 (setq nxml-slash-auto-complete-flag t
       nxml-child-indent 2
       nxml-attribute-indent 4

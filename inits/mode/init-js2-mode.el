@@ -1,7 +1,7 @@
 (require 'js2-mode)
 (require 'ac-js2)
 
-(add-to-list 'auto-mode-alist '("\\.js\\" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
