@@ -586,5 +586,11 @@
 (my-powerline-default-theme)
 
 
+(when (or cocoa-p ns-p)
+  (require 'ucs-normalize)
+  (setq file-name-coding-system 'utf-8-mac
+        locale-coding-system 'utf-8-mac
+        ))
+
 ;;;; confirm the source reading finished til the end of this buffer.
 (print "Load all the files!")
