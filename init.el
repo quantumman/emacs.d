@@ -4,7 +4,7 @@
 
 (require 'cl)
 
-(require 'cask)
+(require 'cask "/usr/local/Cellar/cask/0.7.0/cask.el")
 (cask-initialize)
 (require 'pallet)
 
@@ -141,16 +141,17 @@
 (require 'text-adjust)
 
 ;;;
-(require 'git-commit)
-(set-face-bold-p 'git-commit-summary-face nil)
-(define-key git-commit-map (kbd "\C-x\C-c")
-  (lambda ()
-    (interactive)
-    (save-buffer)
-    (flet ((yes-or-no-p (arg) t))
-      (kill-buffer))
-    (elscreen-kill)
-    ))
+(eval-after-load-1 "cl"
+  (require 'git-commit)
+  (set-face-bold-p 'git-commit-summary-face nil)
+  (define-key git-commit-map (kbd "\C-x\C-c")
+    (lambda ()
+      (interactive)
+      (save-buffer)
+      (flet ((yes-or-no-p (arg) t))
+        (kill-buffer))
+      (elscreen-kill)
+      )))
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
@@ -163,7 +164,7 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 ;; (require 'git-emacs)
 
-(require 'init.csharp-mode)
+;; (require 'init.csharp-mode)
 
 ;;;
 
@@ -410,7 +411,7 @@
              ))
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode t)
+(rainbow-delimiters-mode t)
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -584,7 +585,6 @@
                       (powerline-fill face2 (powerline-width rhs))
                       (powerline-render rhs)))))))
 (my-powerline-default-theme)
-
 
 (when (or cocoa-p ns-p)
   (require 'ucs-normalize)

@@ -2,6 +2,7 @@
 (require 'ac-js2)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
 
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
@@ -16,9 +17,10 @@
 (defun js2-mode-hook-function ()
   (setq indent-tabs-mode nil
         tab-width 2
-        )
-  )
+        ))
 (add-hook 'js2-mode-hook 'js2-mode-hook-function)
 
-(setq ac-js2-evaluate-calls t
-      )
+(setq ac-js2-evaluate-calls t)
+
+(require' el-init)
+(el-init:provide)

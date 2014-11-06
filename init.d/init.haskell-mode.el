@@ -152,7 +152,7 @@
 (custom-set-variables
  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
  '(haskell-process-type 'cabal-repl)
- '(haskell-process-path-cabal "cabal")
+ '(haskell-process-path-cabal (expand-file-name "~/.cabal/bin/cabal"))
  '(haskell-process-args-cabal-repl
    '("--ghc-option=-ferror-spans"))
 
@@ -237,6 +237,8 @@
   (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
   (make-local-variable 'indent-tabs-mode)
   (setq indent-tabs-mode nil)
+  (setq haskell-indent-offset 2)
+  (haskell-cabal-indent-line)
   )
 
 (defun auto-save-buffers--set-buffer-modified ()

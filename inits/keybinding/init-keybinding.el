@@ -68,8 +68,8 @@
 (setq mac-option-modifier 'hyper)
 (loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-" c))
 (loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-" c))
-(loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "H-M-" c 'word))
-(loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "H-M-" c 'word))
+(loop for c from ?0 to ?9 do (add-keys-to-ace-jump-mode "C-H-" c 'word))
+(loop for c from ?a to ?z do (add-keys-to-ace-jump-mode "C-H-" c 'word))
 
 
 (require 'el-init)

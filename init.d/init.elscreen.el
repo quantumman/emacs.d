@@ -28,7 +28,7 @@
                    (lambda (screen)
                      (format "%d%s %s"
                              screen (elscreen-status-label screen)
-                             (get-alist screen screen-to-name-alist)))
+                             (cdar (elscreen-get-screen-to-name-alist-cache))))
                    screen-list " ")))
       (if (fboundp 'set-frame-name)
           (set-frame-name title)

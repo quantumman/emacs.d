@@ -78,6 +78,7 @@
 (defun web-mode-hook-function ()
   (lambda ()
     (local-set-key (kbd "<return>") 'newline)
+    (setq indent-tabs-mode nil)
     (case (intern (file-name-extension (buffer-file-name)))
       ((aspx ascx)
        (web-mode-asp-indent))
