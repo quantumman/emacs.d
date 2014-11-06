@@ -44,6 +44,7 @@ while
 saved-load-path.el
 
 #### log
+*.log
 wget-log
 wget-log.*
 
