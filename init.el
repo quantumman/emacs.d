@@ -100,8 +100,6 @@
 
 (require 'init.fsharp-mode)
 
-(require 'init.ghc-mod)
-
 (require 'init.misc-util)
 
 (require 'init.objective-c-mode)
