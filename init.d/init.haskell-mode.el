@@ -176,6 +176,7 @@
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
 ;; Haskell main editing mode key bindings.
