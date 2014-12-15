@@ -524,6 +524,7 @@
         "sns"
         "mode"
         "devel-util"
+        "misc"
         ))
 (el-init:load "~/.emacs.d/inits")
 
