@@ -66,6 +66,19 @@
 (define-key java-mode-map (kbd "M-f") 'helm-git-find-files)
 (define-key nxml-mode-map (kbd "M-f") 'helm-git-find-files)
 
+;;; quick-buffer-switch
+(require 'quick-buffer-switch)
+(setq qbs-prefix-key "C-x C-c") ;プレフィクスキー、C-x C-cは潰していいよね
+(qbs-init)
+(helm-mode 1)                      ;helmなどを入れないと使いづらい
+(qbs-add-predicates                ;カスタマイズするときに囲む必要ある
+ ;; M-x qbs-ruby-modeを定義
+ (make-qbs:predicate
+    :name 'ruby-mode   ;名前
+    :shortcut "r"      ;C-x C-c rに割り当て
+    ;; enh-ruby-modeかruby-modeかつファイルバッファ
+    :test '(and (memq major-mode '(enh-ruby-mode ruby-mode))
+                qbs:buffer-file-name)))
 
 (require 'el-init)
 (el-init:provide)
