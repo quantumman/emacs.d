@@ -157,6 +157,7 @@
 (depends-on "pretty-lambdada")
 (depends-on "prodigy")
 (depends-on "projectile")
+(depends-on "quick-buffer-switch")
 (depends-on "rainbow-delimiters")
 (depends-on "recentf-ext")
 (depends-on "redo+")
