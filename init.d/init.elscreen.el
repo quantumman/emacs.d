@@ -42,5 +42,6 @@
       ))
   )
 
+(elscreen-persist-mode 1)
 
 (provide 'init.elscreen)
