@@ -53,11 +53,23 @@
   (c-set-offset 'arglist-close 0)
   (c-set-offset 'cpp-macro-cont '+)
   (c-set-offset 'cpp-macro 0)
+
+  (setq flycheck-checker 'csharp-syntax-checker)
   )
 (add-hook 'csharp-mode-hook 'csharp-mode-hook-function)
 
 
 (define-key omnisharp-mode-map "." 'omnisharp-add-dot-and-auto-complete)
+
+(flycheck-define-checker csharp-syntax-checker
+  "C# syntax checker"
+  :command ("csharp-checker.sh" source)
+  :error-patterns
+  ((error line-start (file-name) "(" line "," column "):"
+          " error " (message) line-end)
+   (warning line-start (file-name) "(" line "," column "):"
+          " warning " (message) line-end))
+  :modes csharp-mode)
 
 (require 'el-init)
 (el-init:provide)
