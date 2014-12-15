@@ -159,6 +159,7 @@
 (depends-on "prodigy")
 (depends-on "projectile")
 (depends-on "quick-buffer-switch")
+(depends-on "quickrun")
 (depends-on "rainbow-delimiters")
 (depends-on "recentf-ext")
 (depends-on "redo+")
