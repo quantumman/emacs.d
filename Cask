@@ -38,6 +38,7 @@
 (depends-on "csharp-mode")
 (depends-on "csv-mode")
 (depends-on "ctags")
+(depends-on "dart-mode")
 (depends-on "dash")
 (depends-on "deferred")
 (depends-on "diff-hl")
