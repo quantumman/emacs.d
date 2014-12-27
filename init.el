@@ -139,7 +139,7 @@
 (require 'text-adjust)
 
 ;;;
-(eval-after-load-1 "cl"
+(with-eval-after-load "cl"
   (require 'git-commit)
   (set-face-bold-p 'git-commit-summary-face nil)
   (define-key git-commit-map (kbd "\C-x\C-c")
