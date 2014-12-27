@@ -31,9 +31,9 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init.d"))
 (let ((default-directory "~/.emacs.d/init.d"))
   (load (expand-file-name "~/.emacs.d/init.d/subdirs.el")))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
-;; (let ((default-directory "~/.emacs.d/site-lisp"))
-;;   (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
+(let ((default-directory "~/.emacs.d/site-lisp"))
+  (load (expand-file-name "~/.emacs.d/site-lisp/subdirs.el")))
 
 
 (defun directory-dirs (dir)
