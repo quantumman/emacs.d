@@ -62,6 +62,9 @@
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 
+(add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(iswitchb-buffer . nil))
+
 (require 'helm-ls-git)
 (define-key java-mode-map (kbd "M-f") 'helm-git-find-files)
 (define-key nxml-mode-map (kbd "M-f") 'helm-git-find-files)
