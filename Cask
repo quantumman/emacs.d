@@ -199,7 +199,6 @@
 (depends-on "w3")
 (depends-on "web-mode")
 (depends-on "wget")
-(depends-on "wikidoc")
 (depends-on "xml-rpc")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
