@@ -17,18 +17,15 @@
 ;; (setq helm-display-function 'helm-display-function--split-root)
 
 ;; helm, source definitions
-
-(defcustom helm-c-sources-buffers
-  '(helm-c-source-elscreen
-    helm-c-source-buffers-list
-    helm-c-source-recentf
-    helm-c-source-bookmarks
-    helm-c-source-file-cache
-    helm-c-source-files-in-current-dir
-    helm-c-source-mac-spotlight)
-  "List of buffers"
-  :type 'list
-  :group 'helm-config)
+(setq helm-c-sources-buffers
+  '(helm-source-elscreen
+    helm-source-buffers-list
+    helm-source-recentf
+    helm-source-bookmarks
+    helm-source-file-cache
+    helm-source-files-in-current-dir
+    helm-source-mac-spotlight
+    ))
 
 ;; custom commands
 (defvar helm-find-file-buffer-name
@@ -45,6 +42,9 @@
 (defun helm-find-files-and-buffers ()
   "This is helm-for-buffers."
   (interactive)
+  (unless helm-source-buffers-list
+    (setq helm-source-buffers-list
+          (helm-make-source "Buffers" 'helm-source-buffers)))
   (helm-other-buffer helm-c-sources-buffers
                      helm-find-file-buffer-name))
 
