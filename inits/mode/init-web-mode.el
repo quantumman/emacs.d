@@ -19,9 +19,9 @@
 ;;; インデント数
 (defun web-mode-default-indent-depth ()
   "Hooks for Web mode."
-  (setq web-mode-html-offset   2
-        web-mode-css-offset    2
-        web-mode-script-offset 2
+  (setq web-mode-markup-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-css-indent-offset 2
         web-mode-php-offset    2
         web-mode-java-offset   2
         web-mode-asp-offset    2
