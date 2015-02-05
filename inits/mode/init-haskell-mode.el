@@ -1,9 +1,3 @@
-;;; if you wont to be on those hook, then never use those hooks explicitly
-;;; otherwise ghc-mod will turn off those hooks implicitly.
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (turn-on-haskell-doc-mode)
-            ))
 (setq haskell-font-lock-symbols nil)
 (require 'inf-haskell)
 (setq haskell-program-name "ghci -XTemplateHaskell -i../ -iTest/ -itest/ -package ghc")
@@ -182,6 +176,8 @@
   (interactive-haskell-mode)
 
   (turn-off-haskell-simple-indent)
+
+  (turn-on-haskell-doc-mode)
 
   ;; Load the current file (and make a session if not already made).
   (define-key haskell-mode-map [?\C-c ?\C-i] 'inferior-haskell-load-file)
