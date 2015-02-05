@@ -181,8 +181,6 @@
 
   (interactive-haskell-mode)
 
-  (turn-off-haskell-simple-indent)
-
   (turn-on-haskell-doc-mode)
 
   ;; Load the current file (and make a session if not already made).
