@@ -173,6 +173,10 @@
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
+  (require 'company)
+  (company-mode)
+  (setq auto-complete-mode nil)
+
   (interactive-haskell-mode)
 
   (turn-off-haskell-simple-indent)
