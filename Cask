@@ -35,6 +35,7 @@
 (depends-on "color-theme")
 (depends-on "color-theme-buffer-local")
 (depends-on "company")
+(depends-on "company-ghc")
 (depends-on "csharp-mode")
 (depends-on "csv-mode")
 (depends-on "ctags")
