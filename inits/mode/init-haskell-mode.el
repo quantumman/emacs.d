@@ -174,6 +174,8 @@
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
   (require 'company)
+  (require 'company-ghc)
+  (add-to-list 'company-backend 'company-ghc)
   (company-mode)
   (setq auto-complete-mode nil)
 
