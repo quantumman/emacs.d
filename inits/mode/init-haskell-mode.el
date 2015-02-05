@@ -248,4 +248,5 @@
 
 (add-hook 'haskell-mode-hook 'auto-save-buffers--set-buffer-modified)
 
-(provide 'init.haskell-mode)
+(require 'el-init)
+(el-init:provide)
