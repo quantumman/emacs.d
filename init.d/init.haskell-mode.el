@@ -181,10 +181,7 @@
 (defun haskell-hook ()
   (interactive-haskell-mode)
 
-  ;; Use simple indentation.
-  (turn-on-haskell-simple-indent)
-  (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
-  (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
+  (turn-off-haskell-simple-indent)
 
   ;; Load the current file (and make a session if not already made).
   (define-key haskell-mode-map [?\C-c ?\C-i] 'inferior-haskell-load-file)
