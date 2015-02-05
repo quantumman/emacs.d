@@ -82,8 +82,6 @@
 (when (file-exists-p (expand-file-name "~/.rsense"))
   (require 'rsense-conf nil nil))
 
-(require 'init.auto-complete)
-
 (require 'init.bm)
 
 (require 'init.buffer-conf)
