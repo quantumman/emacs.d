@@ -63,6 +63,7 @@
         do (global-set-key key func)))
 
 (add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(iswitchb-buffer . nil))
 
 (require 'helm-ls-git)
