@@ -1,7 +1,8 @@
 (require 'company)
+(require 'company-ghc)
 
 (global-company-mode)
-(add-to-list 'company-backend 'company-elisp)
+(add-to-list 'company-backends 'company-ghc)
 
 (defun fallback-key-sequence ()
   (setq unread-command-events
