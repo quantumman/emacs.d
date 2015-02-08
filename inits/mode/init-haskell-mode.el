@@ -179,8 +179,6 @@
   (company-mode)
   (setq auto-complete-mode nil)
 
-  (interactive-haskell-mode)
-
   (turn-on-haskell-doc-mode)
 
   ;; Load the current file (and make a session if not already made).
