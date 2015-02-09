@@ -511,7 +511,6 @@
       '("macro"
         "common"
         "elisp-util"
-        "keybinding"
         "eshell"
         "helm"
         "color-theme"
@@ -521,6 +520,7 @@
         "mode"
         "devel-util"
         "misc"
+        "keybinding"
         ))
 (el-init:load "~/.emacs.d/inits")
 
