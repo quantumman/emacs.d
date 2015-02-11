@@ -85,6 +85,7 @@
 (depends-on "git-rebase-mode")
 (depends-on "go-mode")
 (depends-on "goto-chg")
+(depends-on "gradle-mode")
 (depends-on "groovy-mode")
 (depends-on "guide-key")
 (depends-on "guide-key-tip")
