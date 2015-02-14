@@ -57,7 +57,8 @@
   (setq flycheck-checker 'csharp-syntax-checker)
   )
 (add-hook 'csharp-mode-hook 'csharp-mode-hook-function)
-
+(setq omnisharp-server-executable-path
+      (expand-file-name "bin/Omnisharp/server/OmniSharp/bin/Debug/OmniSharp.exe"))
 
 (define-key omnisharp-mode-map "." 'omnisharp-add-dot-and-auto-complete)
 
