@@ -146,6 +146,7 @@
 (depends-on "pallet")
 (depends-on "paredit")
 (depends-on "pcache")
+(depends-on "persp-mode")
 (depends-on "phi-search-migemo")
 (depends-on "point-undo")
 (depends-on "popup")
