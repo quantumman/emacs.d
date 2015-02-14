@@ -3,6 +3,7 @@
 
 (global-company-mode)
 (add-to-list 'company-backends 'company-ghc)
+(add-to-list 'company-backends 'company-omnisharp)
 
 (defun fallback-key-sequence ()
   (setq unread-command-events
