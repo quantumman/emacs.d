@@ -13,6 +13,9 @@
   "C-d"
   :default     (delete-char 1)
   :region      delete-chars-region
+  [backspace]
+  :default     (delete-backward-char 1)
+  :region      delete-chars-region
   "C-w"
   :default     (ispell-word)
   :region      kill-region
