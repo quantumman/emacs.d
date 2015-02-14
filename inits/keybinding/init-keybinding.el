@@ -19,6 +19,7 @@
   "C-w"
   :default     (ispell-word)
   :region      kill-region
+  :region&:emacs-lisp-mode paredit-kill-region
   "C-k"
   :default     (kill-line)
   :region      kill-region
