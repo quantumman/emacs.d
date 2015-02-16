@@ -199,6 +199,7 @@
 (depends-on "web-mode")
 (depends-on "wget")
 (depends-on "xml-rpc")
+(depends-on "yafolding")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
 (depends-on "zencoding-mode")
