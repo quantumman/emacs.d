@@ -105,6 +105,7 @@
 (depends-on "helm-ls-hg")
 (depends-on "helm-migemo")
 (depends-on "helm-open-github")
+(depends-on "helm-swoop")
 (depends-on "hideshowvis")
 (depends-on "historyf")
 (depends-on "htmlize")
