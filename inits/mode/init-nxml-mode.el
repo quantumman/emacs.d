@@ -1,15 +1,24 @@
 (require 'nxml-mode)
+(require 'whattf-dt)
 
-(add-hook 'nxml-mode-hook
-          '(lambda ()
-             (auto-complete-mode)
-             (setq indent-tabs-mode nil
-                   nxml-child-indent 2
-                   nxml-attribute-indent 2
-                   )))
+(setq nxml-slash-auto-complete-flag t
+      nxml-child-indent 4
+      nxml-attribute-indent 4
+      nxml-sexp-element-flag t)
 
-(require 'auto-complete-nxml)
+(add-hook 'nxml-mode-hook 'nxml-mode-hook-function)
 
+(defun nxml-mode-hook-function ()
+  (setq indent-tabs-mode nil)
+  )
+
+(add-to-list 'auto-mode-alist '("\\.html\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.htm\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.xhtml\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.shtml\\'" . nxml-mode))
+
+(eval-after-load "rng-loc"
+  '(add-to-list 'rng-schema-locating-files (expand-file-name "~/.emacs.d/site-lisp/html5-el/schemas.xml")))
 
 (require 'el-init)
 (el-init:provide)

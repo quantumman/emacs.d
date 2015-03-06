@@ -418,20 +418,6 @@
 
 (setq require-final-newline t)
 
-(require 'nxml-mode)
-(add-to-list 'auto-mode-alist '("\\.html\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.htm\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.xhtml\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.shtml\\'" . nxml-mode))
-(setq nxml-slash-auto-complete-flag t
-      nxml-child-indent 2
-      nxml-attribute-indent 4
-      nxml-sexp-element-flag t)
-
-(eval-after-load "rng-loc"
-  '(add-to-list 'rng-schema-locating-files (expand-file-name "~/.emacs.d/site-lisp/html5-el/schemas.xml")))
-(require 'whattf-dt)
-
 (require 'gitsum)
 
 (display-time)
