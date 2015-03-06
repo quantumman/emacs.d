@@ -65,6 +65,8 @@
 (add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(iswitchb-buffer . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(iswitchb-kill-buffer . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(kill-buffer . nil))
 
 (require 'helm-ls-git)
 (define-key java-mode-map (kbd "M-f") 'helm-git-find-files)
