@@ -92,8 +92,6 @@
 
 (require 'init.ffap-bindings)
 
-(require 'init.flymake-mode)
-
 (require 'init.fsharp-mode)
 
 (require 'init.misc-util)
