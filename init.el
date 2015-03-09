@@ -116,7 +116,6 @@
 
 (require 'init.org-mode)
 
-(require 'init.elscreen)
 ;;;
 
 (require 'egg)
