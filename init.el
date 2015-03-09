@@ -340,10 +340,6 @@
 (set-face-attribute 'linum nil :foreground "grey40" :height 0.7)
 (setq linum-format "%4d")
 
-;; iconify
-(global-set-key (kbd "\C-z\C-z")
-                'iconify-or-deiconify-frame)
-
 (require 'windmove)               ; to load the package
 (windmove-default-keybindings)    ; default keybindings
 
