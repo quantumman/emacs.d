@@ -47,8 +47,6 @@
 (depends-on "el-init")
 (depends-on "eldoc-eval")
 (depends-on "eldoc-extension")
-(depends-on "elscreen")
-(depends-on "elscreen-persist")
 (depends-on "emacs-eclim")
 (depends-on "emmet-mode")
 (depends-on "eproject")
