@@ -2,6 +2,7 @@
 (require 'helm-command)
 (require 'helm-config)
 (require 'helm-misc)
+(require 'helm-swoop)
 
 ;; misc
 
@@ -85,6 +86,47 @@
     ;; enh-ruby-modeかruby-modeかつファイルバッファ
     :test '(and (memq major-mode '(enh-ruby-mode ruby-mode))
                 qbs:buffer-file-name)))
+
+;;; helm-swoop
+
+(require 'helm-migemo)
+(eval-after-load "helm-migemo"
+  '(defun helm-compile-source--candidates-in-buffer (source)
+     (helm-aif (assoc 'candidates-in-buffer source)
+         (append source
+                 `((candidates
+                    . ,(or (cdr it)
+                           (lambda ()
+                             ;; Do not use `source' because other plugins
+                             ;; (such as helm-migemo) may change it
+                             (helm-candidates-in-buffer (helm-get-current-source)))))
+                   (volatile) (match identity)))
+       source)))
+
+
+(require 'helm-swoop)
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+(setq helm-swoop-move-to-line-cycle nil)
+
+(cl-defun helm-swoop-nomigemo (&key $query ($multiline current-prefix-arg))
+  "シンボル検索用Migemo無効版helm-swoop"
+  (interactive)
+  (let ((helm-swoop-pre-input-function
+         (lambda () (format "\\_<%s\\_> " (thing-at-point 'symbol)))))
+    (helm-swoop :$source (delete '(migemo) (copy-sequence (helm-c-source-swoop)))
+                :$query $query :$multiline $multiline)))
+(global-set-key (kbd "C-M-:") 'helm-swoop-nomigemo)
+
+;;; [2014-11-25 Tue]
+(when (featurep 'helm-anything)
+  (defadvice helm-resume (around helm-swoop-resume activate)
+    "helm-anything-resumeで復元できないのでその場合に限定して無効化"
+    ad-do-it))
+
+;;; ace-isearch
+(global-ace-isearch-mode 1)
+
 
 (require 'el-init)
 (el-init:provide)
