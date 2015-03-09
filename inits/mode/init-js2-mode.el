@@ -23,4 +23,4 @@
 (setq ac-js2-evaluate-calls t)
 
 (require' el-init)
-(el-init:provide)
+(el-init-provide)

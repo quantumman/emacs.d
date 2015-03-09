@@ -17,4 +17,4 @@
 (add-hook 'persp-activated-hook 'persp-register-buffers-on-create)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

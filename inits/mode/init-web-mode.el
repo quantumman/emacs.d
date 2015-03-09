@@ -89,4 +89,4 @@
 (add-hook 'web-mode-hook 'web-mode-hook-function)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

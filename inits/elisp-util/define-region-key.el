@@ -26,4 +26,4 @@ region-command is called when region is activated, and command is called when re
                       ))))
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

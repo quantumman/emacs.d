@@ -62,4 +62,4 @@
 (define-key omnisharp-mode-map "." 'omnisharp-add-dot-and-auto-complete)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

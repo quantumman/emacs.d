@@ -17,4 +17,4 @@
 ;;           (lambda nil (color-theme-buffer-local 'color-theme-tango (current-buffer))))
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

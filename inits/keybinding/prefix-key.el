@@ -3,4 +3,4 @@
 ;; (define-key global-map (kbd "\C-q") 'ctl-q-prefix)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

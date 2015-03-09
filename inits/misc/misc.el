@@ -6,4 +6,4 @@
   (define-key mc/keymap (kbd "C-r") 'phi-search-migemo-backward))
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

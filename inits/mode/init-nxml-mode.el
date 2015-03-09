@@ -21,4 +21,4 @@
   '(add-to-list 'rng-schema-locating-files (expand-file-name "~/.emacs.d/site-lisp/html5-el/schemas.xml")))
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

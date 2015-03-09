@@ -6,4 +6,4 @@
 (add-hook 'find-file-hook 'ajc-4-jsp-find-file-hook)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

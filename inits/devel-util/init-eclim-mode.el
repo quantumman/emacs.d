@@ -9,4 +9,4 @@
 (ac-emacs-eclim-config)
 
 (require 'el-init)
-(el-init:provide)
+(el-init-provide)

@@ -489,24 +489,22 @@
 (setq helm-split-window-default-side 'below
       helm-split-window-default-side-p t)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/el-init"))
 (require 'el-init)
-(setq el-init:load-directory-list
-      '("macro"
-        "common"
-        "elisp-util"
-        "eshell"
-        "helm"
-        "color-theme"
-        "tab"
-        "command"
-        "sns"
-        "mode"
-        "devel-util"
-        "misc"
-        "keybinding"
-        ))
-(el-init:load "~/.emacs.d/inits")
+(el-init-load "~/.emacs.d/inits"
+              :subdirectories '("macro"
+                                "common"
+                                "elisp-util"
+                                "eshell"
+                                "helm"
+                                "color-theme"
+                                "tab"
+                                "command"
+                                "sns"
+                                "mode"
+                                "devel-util"
+                                "misc"
+                                "keybinding"
+                                ))
 
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 
