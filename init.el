@@ -492,7 +492,6 @@
                                 "eshell"
                                 "helm"
                                 "color-theme"
-                                "tab"
                                 "command"
                                 "sns"
                                 "mode"
