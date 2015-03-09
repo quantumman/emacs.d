@@ -503,7 +503,6 @@
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 
 (require 'powerline)
-(require 'nyan-mode)
 (defun my-powerline-default-theme ()
   "Setup my default mode-line."
   (interactive)
@@ -530,15 +529,12 @@
                                 (powerline-raw ":" face2)
                                 (powerline-raw "%3c" face2 'r)
 
-                                (powerline-zigzag-left face2 face1)
-
-                                (nyan-create)
-
-                                (powerline-zigzag-right face1 face2)
                                 ))
                           (rhs (list
-                                (powerline-major-mode face2 'l)
-                                (powerline-process face2)
+                                (powerline-zigzag-left face2 face1)
+                                (powerline-major-mode face1 'l)
+                                (powerline-zigzag-left face1 face2)
+
                                 (powerline-minor-modes face2 'l)
                                 (powerline-narrow face2 'l)
 
