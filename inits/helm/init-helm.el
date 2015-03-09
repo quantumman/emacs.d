@@ -17,42 +17,21 @@
 ;;                        (truncate (* (frame-height) (/ percent 100.0)))) buf)))
 ;; (setq helm-display-function 'helm-display-function--split-root)
 
-;; helm, source definitions
-(setq helm-c-sources-buffers
-  '(helm-source-elscreen
-    helm-source-buffers-list
-    helm-source-recentf
-    helm-source-bookmarks
-    helm-source-file-cache
-    helm-source-files-in-current-dir
-    helm-source-mac-spotlight
-    ))
-
-;; custom commands
-(defvar helm-find-file-buffer-name
-  "open files or buffers by elscreen, bookmark and filename")
-
-(add-to-list 'helm-source-elscreen
-             '(candidate-transformer . remove-helm-buffer-name))
-(defun remove-helm-buffer-name (cands)
-  (loop for c in cands
-        for helm-buffer-name = (concat ":" helm-find-file-buffer-name)
-        collect (replace-regexp-in-string helm-buffer-name "" c)
-   ))
-
-(defun helm-find-files-and-buffers ()
-  "This is helm-for-buffers."
-  (interactive)
-  (unless helm-source-buffers-list
-    (setq helm-source-buffers-list
-          (helm-make-source "Buffers" 'helm-source-buffers)))
-  (helm-other-buffer helm-c-sources-buffers
-                     helm-find-file-buffer-name))
 
 ;; key bindings
 
+(custom-set-variables
+ '(helm-for-files-preferred-list '(helm-source-buffers-list
+                                   helm-source-recentf
+                                   helm-source-bookmarks
+                                   helm-source-file-cache
+                                   helm-source-files-in-current-dir
+                                   helm-source-mac-spotlight
+                                   ))
+ )
+
 (let ((key-and-func
-       `((,(kbd "C-x C-o") helm-find-files-and-buffers)
+       `((,(kbd "C-x C-o") helm-for-files)
          (,(kbd "C-^")     helm-c-apropos)
          (,(kbd "C-;")     helm-resume)
          (,(kbd "M-x")     helm-M-x)
