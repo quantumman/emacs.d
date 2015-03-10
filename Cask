@@ -201,4 +201,5 @@
 (depends-on "yafolding")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
+(depends-on "yatemplate")
 (depends-on "zencoding-mode")
