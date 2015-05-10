@@ -182,6 +182,7 @@
 (depends-on "slime-repl")
 (depends-on "smartparens")
 (depends-on "smartrep")
+(depends-on "smart-newline")
 (depends-on "smex")
 (depends-on "solarized-theme")
 (depends-on "speck")
