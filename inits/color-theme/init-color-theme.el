@@ -1,9 +1,11 @@
 (require 'color-theme)
 (require 'color-theme-buffer-local)
 
+(load-file (expand-file-name "~/.emacs.d/inits/color-theme/base16-railscasts-theme.el"))
+
 (color-theme-initialize)
 
-(load-theme 'base16-railscasts t)
+(load-theme 'base16-railscasts)
 (enable-theme 'base16-railscasts)
 
 (copy-face 'default 'region)
