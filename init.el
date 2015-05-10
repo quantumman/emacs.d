@@ -484,6 +484,8 @@
 (setq helm-split-window-default-side 'below
       helm-split-window-default-side-p t)
 
+(smart-newline-mode 1)
+
 (require 'el-init)
 (el-init-load "~/.emacs.d/inits"
               :subdirectories '("macro"
