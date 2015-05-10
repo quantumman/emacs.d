@@ -107,6 +107,7 @@
 (depends-on "hideshowvis")
 (depends-on "historyf")
 (depends-on "htmlize")
+(depends-on "ibuffer-vc")
 (depends-on "idle-highlight-mode")
 (depends-on "inf-ruby")
 (depends-on "inflections")
