@@ -108,8 +108,6 @@
 
 (require 'init.viewer)
 
-(require 'init.yasnippet)
-
 (require 'init.yatex)
 
 (require 'init.html-fold)
