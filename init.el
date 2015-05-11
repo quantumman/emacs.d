@@ -489,17 +489,9 @@
 (require 'el-init)
 (el-init-load "~/.emacs.d/inits"
               :subdirectories '("macro"
-                                "common"
                                 "elisp-util"
-                                "eshell"
-                                "helm"
                                 "color-theme"
-                                "command"
-                                "sns"
-                                "mode"
-                                "devel-util"
-                                "misc"
-                                "keybinding"
+                                "configs"
                                 ))
 
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
