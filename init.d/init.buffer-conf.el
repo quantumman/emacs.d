@@ -3,11 +3,6 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-ignore-buffer-re "*[^*]+*")
 
-(iswitchb-mode 1)
-(setq read-buffer-function 'iswitchb-read-buffer)
-(setq iswitchb-regexp nil)
-(setq iswitchb-prompt-newbuffer nil)
-
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAG$" "/var/tmp/"))
 (require 'recentf-ext)
