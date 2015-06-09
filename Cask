@@ -51,6 +51,7 @@
 (depends-on "eldoc-extension")
 (depends-on "elixir-mode")
 (depends-on "emacs-eclim")
+(depends-on "emacs-tss")
 (depends-on "emmet-mode")
 (depends-on "eproject")
 (depends-on "etags-table")
