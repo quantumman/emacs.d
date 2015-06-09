@@ -14,7 +14,8 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'"  . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 ;;; インデント数
 (defun web-mode-default-indent-depth ()
