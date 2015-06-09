@@ -133,6 +133,7 @@
 (require 'git-commit)
 (defun git-commit-commit-hook-function ()
   (set-buffer-modified-p nil)
+  (server-edit)
   (kill-buffer)
   )
 (add-hook 'git-commit-commit-hook
