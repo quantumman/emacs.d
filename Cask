@@ -196,6 +196,7 @@
 (depends-on "tabbar")
 (depends-on "test-case-mode")
 (depends-on "twittering-mode")
+(depends-on "typescript")
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "viewer")
