@@ -9,6 +9,7 @@
 (depends-on "ac-octave")
 (depends-on "ace-isearch")
 (depends-on "ace-jump-mode")
+(depends-on "alchemist")
 (depends-on "all")
 (depends-on "all-ext")
 (depends-on "android-mode")
