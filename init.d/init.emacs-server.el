@@ -3,11 +3,6 @@
 (defun iconify-emacs-when-server-is-done ()
   (unless server-clients (iconify-frame)))
 
-(defun elscreen-buffer-still-exist-p ()
-  (let ((elscree-keeping-to-be-alive ()))
-    (and (buffer-name (current-buffer)) (elscreen-get-screen-to-name-alist)
-	 t)))
-
 (defun elscreen-save-and-killall ()
   (interactive)
   (require 'elscreen-server)
@@ -81,10 +76,6 @@ If the buffer is emacs buffer, then it returns scratch buffer."
 ;;              (win-prev-window 1)
 ;;              ))
 
-(global-set-key (kbd "C-x C-c")
-                '(lambda ()
-                   (interactive)
-                   (elscreen-kill (elscreen-get-current-screen))))
 (defalias 'exit 'elscreen-save-and-killall)
 
 (provide 'init.emacs-server)
