@@ -55,17 +55,18 @@
   (when (or cocoa-p ns-p)
 
     (set-face-attribute 'default nil
-                        :family "Ricty Discord"
-                        :height 160)
+                        :family "Source Han Code JP"
+                        :weight 'light
+                        :height 120)
     (set-fontset-font (frame-parameter nil 'font)
                       'japanese-jisx0208
-                      (cons "Ricty Discord" "iso10646-1"))
+                      (font-spec :family "Source Han Code JP" :size 14))
     (set-fontset-font (frame-parameter nil 'font)
                       'japanese-jisx0212
-                      (cons "Ricty Discord" "iso10646-1"))
+                      (font-spec :family "Source Han Code JP" :size 14))
     (set-fontset-font (frame-parameter nil 'font)
                       'katakana-jisx0201
-                      (cons "Ricty Discord" "iso10646-1"))
+                      (font-spec :family "Source Han Code JP" :size 14))
     )
 
   (when (or cygwin-p windows-p)
