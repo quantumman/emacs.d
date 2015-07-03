@@ -23,7 +23,11 @@
         ad-do-it)
     ad-do-it))
 
-;;; インデント数
+(setq web-mode-engines-alist
+      '(("javascript" . "\\.ts\\'"))
+      )
+
+;;; インデント数
 (defun web-mode-default-indent-depth ()
   "Hooks for Web mode."
   (setq web-mode-markup-indent-offset 2
