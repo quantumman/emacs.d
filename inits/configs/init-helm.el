@@ -31,7 +31,8 @@
  )
 
 (let ((key-and-func
-       `((,(kbd "C-x C-o") helm-for-files)
+       `((,(kbd "C-x C-f") helm-find-files)
+         (,(kbd "C-x C-o") helm-for-files)
          (,(kbd "C-^")     helm-c-apropos)
          (,(kbd "C-;")     helm-resume)
          (,(kbd "M-x")     helm-M-x)
@@ -42,7 +43,6 @@
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 
-(add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(iswitchb-buffer . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(iswitchb-kill-buffer . nil))
