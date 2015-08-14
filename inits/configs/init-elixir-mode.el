@@ -1,5 +1,15 @@
 (require 'elixir-mode)
 (require 'alchemist)
+(require 'smartparens)
+
+(sp-with-modes '(elixir-mode)
+  (sp-local-pair "fn" "end"
+         :when '(("SPC" "RET"))
+         :actions '(insert navigate))
+  (sp-local-pair "do" "end"
+         :when '(("SPC" "RET"))
+         :post-handlers '(sp-ruby-def-post-handler)
+         :actions '(insert navigate)))
 
 (setq alchemist-project-compile-when-needed t
       alchemist-mix-command (executable-find "mix")
@@ -11,6 +21,7 @@
 (defun elixir-mode-hook-function ()
   (setq indent-tabs-mode nil)
   (alchemist-mode)
+  (smartparens-mode)
   )
 
 (add-to-list 'elixir-mode-hook
