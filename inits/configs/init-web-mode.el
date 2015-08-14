@@ -54,13 +54,6 @@
         web-mode-markup-indent-offset 4
         ))
 
-(setq web-mode-enable-auto-paring t
-      web-mode-enable-css-colorization t
-      web-mode-enable-part-face t
-      web-mode-enable-comment-keywords t
-      web-mode-enable-current-element-highlight nil
-      )
-
 (require 'emmet-mode)
 (require 'ac-emmet)
 (require 'ac-js2)
@@ -89,16 +82,22 @@
 (add-hook 'web-mode-before-auto-complete-hooks 'web-mode-on-before-auto-complete-hooks-function)
 
 (defun web-mode-hook-function ()
-  (lambda ()
-    (local-set-key (kbd "<return>") 'newline)
-    (setq indent-tabs-mode nil)
-    (case (intern (file-name-extension (buffer-file-name)))
-      ((aspx ascx)
-       (web-mode-asp-indent))
-      (otherwise
-       (web-mode-default-indent-depth)
-       )))
-  )
+  (local-set-key (kbd "<return>") 'newline)
+  (setq indent-tabs-mode nil
+        web-mode-enable-auto-paring t
+        web-mode-enable-css-colorization t
+        web-mode-enable-part-face t
+        web-mode-enable-comment-keywords t
+        web-mode-enable-current-element-highlight t
+        web-mode-enable-current-column-highlight t
+        )
+  (case (intern (file-name-extension (buffer-file-name)))
+    ((aspx ascx)
+     (web-mode-asp-indent))
+    (otherwise
+     (web-mode-default-indent-depth)
+     )))
+
 (add-hook 'web-mode-hook 'web-mode-hook-function)
 
 (require 'el-init)
