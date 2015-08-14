@@ -39,6 +39,8 @@
         web-mode-style-padding 2
         web-mode-script-padding 2
         web-mode-block-padding 2
+        tab-width 2
+        indent-tabs-mode nil
         ))
 (defun web-mode-asp-indent ()
   "Indentation setting for Web mode."
