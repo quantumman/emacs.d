@@ -1,6 +1,7 @@
 (require 'elixir-mode)
 (require 'alchemist)
 (require 'smartparens)
+(require 'yasnippet)
 
 (sp-with-modes '(elixir-mode)
   (sp-local-pair "fn" "end"
@@ -22,6 +23,7 @@
   (setq indent-tabs-mode nil)
   (alchemist-mode)
   (smartparens-mode)
+  (yas/minor-mode)
   )
 
 (add-to-list 'elixir-mode-hook
