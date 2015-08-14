@@ -20,7 +20,7 @@
   :command ("tsc" "--out" "/dev/null" source)
   :error-patterns
   ((error line-start (file-name) "(" line "," column "): error " (message) line-end))
-  :mode typescript-mode)
+  :modes typescript-mode)
 (add-to-list 'flycheck-checkers 'typescript)
 
 ;; (require 'cl)
