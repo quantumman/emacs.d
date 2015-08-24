@@ -28,6 +28,8 @@
 
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-search-repeat-forward)
+(define-key company-search-map (kbd "C-p") 'company-search-repeat-backward)
 (define-key company-active-map (kbd "SPC") 'company-filter-candidates)
 (define-key company-filter-map (kbd "<backspace>") 'company-search-delete-char)
 
