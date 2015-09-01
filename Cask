@@ -27,6 +27,8 @@
 (depends-on "cask")
 (depends-on "cl-lib")
 (depends-on "clojure-mode")
+(depends-on "clojure-mode-extra-font-locking")
+(depends-on "clj-refactor-mode")
 (depends-on "cmake-mode")
 (depends-on "coffee-mode")
 (depends-on "color-moccur")
