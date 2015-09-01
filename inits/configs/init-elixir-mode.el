@@ -28,3 +28,6 @@
 
 (add-to-list 'elixir-mode-hook
              'elixir-mode-hook-function)
+
+(require 'el-init)
+(el-init-provide)
