@@ -143,4 +143,5 @@
                 )
               ))
 
-(provide 'init.eshell)
+(require 'el-init)
+(el-init-provide)
