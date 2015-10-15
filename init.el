@@ -2,6 +2,8 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
 
+(require 'ert)
+
 (require 'cl)
 
 (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
