@@ -17,7 +17,12 @@
 (defun js2-mode-hook-function ()
   (setq indent-tabs-mode nil
         tab-width 2
-        ))
+        auto-complete-mode nil
+        company-mode t
+        )
+  (unload-feature auto-complete-mode t)
+  (flycheck-mode)
+  )
 (add-hook 'js2-mode-hook 'js2-mode-hook-function)
 
 (setq ac-js2-evaluate-calls t)
