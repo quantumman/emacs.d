@@ -1,6 +1,6 @@
 ;; display emacs lisp function's helps in the echo area
 (require 'eldoc)
-;; (require 'eldoc-extension)
+(require 'eldoc-extension)
 (require 'c-eldoc)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
