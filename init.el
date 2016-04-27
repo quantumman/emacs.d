@@ -12,8 +12,8 @@
 
 ;;;; auto-install.el
 (require 'auto-install)
-(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)
+;; (auto-install-update-emacswiki-package-name t)
+;; (auto-install-compatibility-setup)
 
 ;; save load-path for debug
 (require 'save-load-path)
@@ -493,57 +493,6 @@
                                 ))
 
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
-
-(require 'powerline)
-(defun my-powerline-default-theme ()
-  "Setup my default mode-line."
-  (interactive)
-  (setq-default mode-line-format
-                '("%e"
-                  (:eval
-                   (let* ((active (powerline-selected-window-active))
-                          (face1 (if active 'powerline-active1
-                                   'powerline-inactive1))
-                          (face2 (if active 'powerline-active2
-                                   'powerline-inactive2))
-                          (lhs (list
-                                (powerline-raw "%*" face2 'l)
-                                (powerline-buffer-size face2 'l)
-                                (powerline-buffer-id face2 'l)
-
-                                (powerline-zigzag-right face2 face1)
-                                (powerline-raw which-func-format face1)
-                                (powerline-vc face1)
-
-                                (powerline-zigzag-right face1 face2)
-
-                                (powerline-raw "%4l" face2 'r)
-                                (powerline-raw ":" face2)
-                                (powerline-raw "%3c" face2 'r)
-
-                                ))
-                          (rhs (list
-                                (powerline-zigzag-left face2 face1)
-                                (powerline-major-mode face1 'l)
-                                (powerline-zigzag-left face1 face2)
-
-                                (powerline-minor-modes face2 'l)
-                                (powerline-narrow face2 'l)
-
-                                (powerline-zigzag-left face2 face1)
-
-                                (powerline-raw global-mode-string face1 'r)
-
-                                (powerline-zigzag-left face1 face2)
-
-                                (powerline-raw "%6p" face2 'r)
-
-                                (powerline-hud face2 face1))))
-                     (concat
-                      (powerline-render lhs)
-                      (powerline-fill face2 (powerline-width rhs))
-                      (powerline-render rhs)))))))
-(my-powerline-default-theme)
 
 (when (or cocoa-p ns-p)
   (require 'ucs-normalize)

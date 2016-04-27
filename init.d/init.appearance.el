@@ -56,7 +56,7 @@
 
     (set-face-attribute 'default nil
                         :family "Source Han Code JP"
-                        :weight 'light
+                        :weight 'normal
                         :height 120)
     (set-fontset-font (frame-parameter nil 'font)
                       'japanese-jisx0208
@@ -90,7 +90,7 @@
       (mapc
        (lambda (coding-system)
          (coding-system-put coding-system :decode-translation-table table)
-         (coding-system-put coding-system :encode-translation-table table)
+         (coding-system-put conding-system :encode-translation-table table)
          )
        '(utf-8 cp932 utf-16le)))
 

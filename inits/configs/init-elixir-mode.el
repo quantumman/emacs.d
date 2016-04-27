@@ -21,6 +21,7 @@
 
 (defun elixir-mode-hook-function ()
   (setq indent-tabs-mode nil)
+  (setq company-quickhelp-delay nil)
   (alchemist-mode)
   (smartparens-mode)
   (yas/minor-mode)

@@ -1,5 +1,10 @@
 (require 'web-mode)
 
+(eval-after-load 'flycheck
+  '(custom-set-variables
+    '(flycheck-disable-checkers '(javascript-jshint javascript-jscs))
+    ))
+
 ;;; emacs 23以下の互換
 (when (< emacs-major-version 24)
   (defalias 'prog-mode 'fundamental-mode))
@@ -14,10 +19,9 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'"  . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.msx\\'" . web-mode))
 (defadvice web-mode-highlight-part (around tweak-jsx activate)
   (if (equal web-mode-content-type "jsx")
@@ -25,9 +29,7 @@
         ad-do-it)
     ad-do-it))
 
-(setq web-mode-engines-alist
-      '(("javascript" . "\\.ts\\'"))
-      )
+(add-to-list 'web-mode-content-types '("jsx" . "\\.jsx?\\'"))
 
 ;;; インデント数
 (defun web-mode-default-indent-depth ()
@@ -85,7 +87,22 @@
 
 (defun web-mode-hook-function ()
   (local-set-key (kbd "<return>") 'newline)
-  (setq indent-tabs-mode nil
+
+  (when (string-equal "tsx" (file-name-extension buffer-file-name))
+    (require 'flycheck-typescript-tslint)
+    (flycheck-typescript-tslint-setup)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (company-mode-on))
+
+  (when (equal web-mode-content-type "jsx")
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (flycheck-mode)
+    (tern-mode t))
+
+ (setq indent-tabs-mode nil
         web-mode-enable-auto-paring t
         web-mode-enable-css-colorization t
         web-mode-enable-part-face t
