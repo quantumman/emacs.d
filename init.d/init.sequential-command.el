@@ -8,7 +8,8 @@
 (global-set-key "\C-a" 'seq-home)
 
 ;; end of line -> end of buffer -> departure
-(define-sequential-command seq-epnd
+(define-sequential-command seq-end
+  end-of-line
   end-of-buffer seq-return)
 (global-set-key "\C-e" 'seq-end)
 
