@@ -76,5 +76,9 @@
               " "
               filename-and-process)))
 
+(require 'mark-more-like-this)
+(global-set-key (kbd "C-<") 'mark-previous-like-this)
+(global-set-key (kbd "C->") 'mark-next-like-this)
+
 (require 'el-init)
 (el-init-provide)
