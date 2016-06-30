@@ -1,4 +1,5 @@
 (require 'web-mode)
+(require 'tern)
 
 (eval-after-load 'flycheck
   '(custom-set-variables
@@ -37,12 +38,6 @@
   (setq web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
-        web-mode-php-offset    2
-        web-mode-java-offset   2
-        web-mode-asp-offset    2
-        web-mode-style-padding 2
-        web-mode-script-padding 2
-        web-mode-block-padding 2
         tab-width 2
         indent-tabs-mode nil
         ))
@@ -50,12 +45,9 @@
   "Indentation setting for Web mode."
   (setq indent-tabs-mode t
         tab-width 4
-        web-mode-html-offset   4
-        web-mode-css-offset    4
-        web-mode-script-offset 4
-        web-mode-asp-indent    4
         web-mode-code-indent-offset 4
         web-mode-markup-indent-offset 4
+        web-mode-css-indent-offset 2
         ))
 
 (require 'emmet-mode)
@@ -90,7 +82,6 @@
 
   (when (string-equal "tsx" (file-name-extension buffer-file-name))
     (require 'flycheck-typescript-tslint)
-    (flycheck-typescript-tslint-setup)
     (tide-setup)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
