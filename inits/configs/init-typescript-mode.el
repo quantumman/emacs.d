@@ -1,6 +1,5 @@
 (require 'typescript)
 ;; (require 'tide)
-(require 'flycheck-typescript-tslint)
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
@@ -9,7 +8,6 @@
         typescript-indent-level 2
         )
 
-  (flycheck-typescript-tslint-setup)
   ;; (tide-setup)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
