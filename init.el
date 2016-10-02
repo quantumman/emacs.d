@@ -468,7 +468,7 @@
             (darwin-p "/Application/eclipse")))
 (global-eclim-mode)
 (require 'eclimd)
-(require 'ac-emacs-eclim-source)
+(require 'ac-emacs-eclim)
 (ac-emacs-eclim-config)
 
 
