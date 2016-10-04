@@ -15,7 +15,7 @@
 (setq alchemist-project-compile-when-needed t
       alchemist-mix-command (executable-find "mix")
       alchemist-iex-program-name (executable-find "iex")
-      alchemist-execute-command (executable-find "elixr")
+      alchemist-execute-command (executable-find "elixir")
       alchemist-compile-command (executable-find "elixirc")
       )
 
